@@ -1,0 +1,240 @@
+/* IMPORTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&family=Roboto:wght@300;400&display=swap');
+
+/* font-family: 'Roboto', sans-serif; */
+/* font-family: 'Roboto Slab', serif; */
+
+
+/* BROWSER RESET */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: 0.8px;
+}
+
+
+/* GLOBALS */
+
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	font-family: 'Roboto Slab', serif;
+	text-transform: uppercase;
+}
+
+p,
+span {
+	font-size: 14px;
+}
+
+.small {
+	font-size: 12px;
+	color: #a5a5a5;
+}
+
+.error-message {
+	color: #c55e5e;
+}
+
+.btn {
+    display: block;
+    line-height: 38px;
+    padding: 0 15px;
+    outline: none;
+	border-radius: 3px;
+	cursor: pointer;
+	border: none;
+}
+
+.btn:hover {
+	opacity: .8;
+}
+
+.btn.btn-primary {
+	background: #000;
+	color: #fff;
+}
+
+.btn.btn-dash-primary {
+	background: #3c8dbc;
+	color: #fff;
+}
+
+.hide-font {
+	font-size: 0;
+}
+
+
+/* HEADER */
+
+.header {
+	background: #000;
+	max-height: 75px;
+}
+
+.header.dashboard {
+	background: #343a40;
+}
+
+.header .row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 7px 45px;
+}
+
+.logo a {
+	text-decoration: none;
+}
+
+.logo-text {
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 26px;
+	font-family: 'Roboto Slab', sans-serif;
+}
+
+
+/* FOOTER */
+
+.footer {
+	background: #000;
+	max-height: 35px;
+}
+
+.footer.dashboard {
+	background-color: #343a40;
+}
+
+.footer .row {
+	padding: 8px 45px;
+}
+
+.built-by {
+	color: #fff;
+	font-size: 12px;
+}
+
+
+/* NAVIGATION */
+
+.navigation ul {
+	display: flex;
+	align-items: center;
+	padding: 0;
+	list-style: none;
+}
+
+.navigation ul li {
+	padding: 5px 10px;
+}
+
+.navigation ul li a {
+	font-size: 14px;
+	font-weight: 300;
+	color: #fff;
+	text-decoration: none;
+}
+
+
+/* MAIN CONTENT */
+
+.content-wrapper {
+	min-height: calc(100vh - 110px);
+}
+
+.content-wrapper > .row {
+	margin: 35px 45px
+}
+
+
+/* LOGIN / REGISTER */
+
+.content-wrapper.register > .row,
+.content-wrapper.login > .row {
+	max-width: 660px;
+	margin: 35px auto;
+}
+
+.content-wrapper.register h1,
+.content-wrapper.login h1 {
+	margin-bottom: 20px;
+}
+
+.content-wrapper.register form .row,
+.content-wrapper.login form .row {
+	margin-bottom: 20px;
+}
+
+.content-wrapper.register form label,
+.content-wrapper.login  form label {
+	display: block;
+	width: 100%;
+	margin-bottom: 5px
+}
+
+.content-wrapper.register form input,
+.content-wrapper.login form input {
+	width: 100%;
+	height: 42px;
+	border: 1px solid #000;
+	border-radius: 3px;
+	padding: 5px 10px;
+}
+
+
+/* DASHBOARD */
+
+.content-wrapper.dashboard h1 {
+	margin-bottom: 30px;
+	color: #343a40
+}
+
+.users .row.headers {
+	background: #343a40;
+	border-bottom: none;
+}
+
+.users .row.headers:hover {
+	background: #343a40;
+}
+
+.users .row.headers .cell {
+	padding: 15px;
+}
+
+.row.headers .cell strong {
+	text-transform: uppercase;
+	color: #fff;
+}
+
+.users .row {
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+	border-bottom: 1px solid #ccc;
+}
+
+.users .row:hover {
+	background: #f6f6f6;
+}
+
+.users .row .cell {
+	width: 100%;
+	padding: 5px 15px; 
+}
+
+.users .row .cell .btn {
+	float: right;
+}

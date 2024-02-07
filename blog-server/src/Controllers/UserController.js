@@ -64,7 +64,7 @@ const createUser = async (req, res) => {
 };
 
 const editUser = async (req, res) => {
-
+	// Add comment
 }
 
 module.exports = {getUsers, createUser, editUser}

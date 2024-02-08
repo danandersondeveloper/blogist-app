@@ -1,5 +1,6 @@
 const dotenv = require("dotenv").config();
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
@@ -11,13 +12,15 @@ const app = express();
 
 const corsConfig = {
 	origin: 'http://localhost:3000',
-	optionsSuccessStatus: 200
+	optionsSuccessStatus: 200,
+	credentials: true
 }
 
 mongoose.connect(process.env.DB_CONNECTION_STRING);
 
 
 // Middle-ware
+app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("common"));
 app.use(cors(corsConfig))

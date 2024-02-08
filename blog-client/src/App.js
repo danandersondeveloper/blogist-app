@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import Cookies from "js-cookie";
 
 //Context imports
 import { AuthContext } from "./Contexts/AuthContext";
@@ -27,7 +28,13 @@ import Users from "./Admin/Pages/Users";
 
 function App() {
 
-  const [auth, setAuth] = useState();
+  /***  auth = {auth: true, user: "String value", role: "String value"} ***/
+
+  const [ auth, setAuth ] = useState();
+
+  useEffect(() => {
+    (Cookies.get("auth")) && setAuth(true)
+  }, []);
 
   return (
     <>

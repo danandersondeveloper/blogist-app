@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import Cookies from "js-cookie";
 
 // Import contexts
 import { AuthContext } from "../Contexts/AuthContext";
@@ -10,6 +11,9 @@ function Header() {
 	const [ auth, setAuth ] = useContext(AuthContext);
 
 	const handleLogout = () => {
+		Cookies.remove("auth");
+		Cookies.remove("user");
+		Cookies.remove("role");
 		setAuth(!auth);
 		navigate("/");
 	}

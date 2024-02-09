@@ -39,12 +39,15 @@ function Users() {
 								<strong>Email:</strong>
 							</div>
 							<div className="cell">
+								<strong>Role:</strong>
+							</div>
+							<div className="cell">
 								<strong className="hide-font">Edit</strong>
 							</div>
 						</div>
 						{users.map(user => (
 							<div className="row" key={user._id}>
-								<div class="cell">
+								<div className="cell">
 									<span>{user.firstName}</span>
 								</div>
 								<div className="cell">
@@ -52,6 +55,9 @@ function Users() {
 								</div>
 								<div className="cell">
 									<span>{user.email}</span>
+								</div>
+								<div className="cell">
+									<span>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>
 								</div>
 								<div className="cell">
 									<button className="btn btn-dash-primary">Edit</button>

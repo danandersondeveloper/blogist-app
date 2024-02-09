@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext";
-import { userLogin } from "../Services/UserServices";
+import { userLogin } from "../Services/AuthServices";
 
 function Login() {
 

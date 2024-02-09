@@ -5,7 +5,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
-const user = require("./Routes/UserRoutes");
+const authRoutes = require("./Routes/AuthRoutes");
+const userRoutes = require("./Routes/UserRoutes");
 
 const PORT = process.env.PORT || 5500;
 const app = express();
@@ -27,19 +28,13 @@ app.use(cors(corsConfig))
 
 
 // Routes 
-app.use("/user", user);
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 
 
 app.get('/logout', (req, res) => {
 	res.clearCookie("auth_user");
 	res.status(200).json({message: 'sucsess'});
-});
-
-app.get('/auth', (req, res) => {
-	console.log(req.cookies);
-	if (req.cookies.auth_user) {
-		res.status(200).json({message: 'autherised'});
-	}
 });
 
 // Root

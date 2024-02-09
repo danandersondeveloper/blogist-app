@@ -29,14 +29,12 @@ import Users from "./Admin/Pages/Users";
 
 function App() {
 
-  /***  auth = {auth: true, user: "String value", role: "String value"} ***/
-
   const [ auth, setAuth ] = useState();
 
   useEffect(() => {
     axios.get('http://localhost:9000/auth', {withCredentials: true})
     .then(response => {
-      if (response.data.message == 'autherised') setAuth(true);
+      if (response.data.message.auth === 'autherised') setAuth(true);
     });
   }, []);
 

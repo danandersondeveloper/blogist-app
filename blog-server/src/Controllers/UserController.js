@@ -82,11 +82,12 @@ const loginUser = async (req, res) => {
 		if (!(bcrypt.compareSync(password, user.password))) return res.status(404).json({ message: "Incorrect username or password" }); 
 
 		const cookieOptions = {
-			maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+			maxAge: 1000 * 60 * 30,
+			httpOnly: true
 		}
 
-		res.cookie('auth', 'true', cookieOptions).cookie('user', user.id, cookieOptions).cookie('role', user.role, cookieOptions);
-		res.status(200).json({ message: "Success" });
+		res.cookie('auth_user', `user=${user._id};role="${user.role};"`, cookieOptions);
+		res.status(200).json({ message: "success" });
 
 	} catch(err) {
 		console.log(err);

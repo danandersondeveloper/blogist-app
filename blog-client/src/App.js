@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 //Context imports
 import { AuthContext } from "./Contexts/AuthContext";
@@ -33,7 +34,10 @@ function App() {
   const [ auth, setAuth ] = useState();
 
   useEffect(() => {
-    (Cookies.get("auth")) && setAuth(true)
+    axios.get('http://localhost:9000/auth', {withCredentials: true})
+    .then(response => {
+      if (response.data.message == 'autherised') setAuth(true);
+    });
   }, []);
 
   return (

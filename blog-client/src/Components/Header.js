@@ -1,21 +1,22 @@
-import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useContext } from "react";
-import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
+
 
 // Import contexts
 import { AuthContext } from "../Contexts/AuthContext";
 
 function Header() {
 
-	const navigate = useNavigate();
 	const [ auth, setAuth ] = useContext(AuthContext);
 
 	const handleLogout = () => {
-		Cookies.remove("auth");
-		Cookies.remove("user");
-		Cookies.remove("role");
-		setAuth(!auth);
-		navigate("/");
+		axios.get('http://localhost:9000/logout', {withCredentials: true})
+		.then(response => {
+			if (response.data.message === 'success') setAuth(false);
+		});
+
+		window.location.reload();
 	}
 
 	return(

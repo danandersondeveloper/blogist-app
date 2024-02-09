@@ -30,6 +30,18 @@ app.use(cors(corsConfig))
 app.use("/user", user);
 
 
+app.get('/logout', (req, res) => {
+	res.clearCookie("auth_user");
+	res.status(200).json({message: 'sucsess'});
+});
+
+app.get('/auth', (req, res) => {
+	console.log(req.cookies);
+	if (req.cookies.auth_user) {
+		res.status(200).json({message: 'autherised'});
+	}
+});
+
 // Root
 app.get("/", (req, res) => {
 	res.status(200).json({ message: "Blog Server: V0" })

@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext";
-
+import { userLogin } from "../Services/UserServices";
 
 function Login() {
 
@@ -15,7 +15,7 @@ function Login() {
 	const [ password, setPassword ] = useState('');
 
 
-	const handleLogin = (event) => {
+	const handleLogin = async (event) => {
 		event.preventDefault();
 
 		if (email.length <= 0 || password.length <= 0) return setInvalidSubmit(true);
@@ -25,17 +25,11 @@ function Login() {
 			"password": password
 		}
 
-		axios.post("http://localhost:9000/user/login", requestBody, {withCredentials: true})
-		.then(resposne => {
-			resposne.data.message === "Success" && setAuth(true);
-			navigate("/")
-		})
-		.catch(err => {
-			setInvalidSubmitMessage(err.response.data.message);
-			setInvalidSubmit(true)
-		});
+		const data = await userLogin(requestBody);
 
-		//setAuth(true);
+		if (data === 'success') setAuth(true);
+		if (data === 'success') navigate("/");
+
 	}
 
 	return(
@@ -58,6 +52,10 @@ function Login() {
 						<button className="btn btn-primary" type="submit">Login</button>
 					</div>
 				</form>
+
+				<div className="not-registered">
+					<p>Not register? <Link to="/register">Register</Link></p>
+				</div>
 			</div>
 		</main>
 	);

@@ -38,9 +38,9 @@ const login = async (req, res) => {
 
 		const user = await User.findOne({"email": email});
 	
-		if (user == null) return res.status(404).json({ message: "Incorrect username or password" });
+		if (user == null) return res.status(400).json({ message: "Incorrect username or password" });
 	
-		if (!(bcrypt.compareSync(password, user.password))) return res.status(404).json({ message: "Incorrect username or password" }); 
+		if (!(bcrypt.compareSync(password, user.password))) return res.status(400).json({ message: "Incorrect username or password" }); 
 
 		const cookieOptions = {
 			maxAge: 1000 * 60 * 30,

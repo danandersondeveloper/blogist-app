@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 
 function Register() {
 
@@ -49,6 +49,8 @@ function Register() {
 
 				{ !formSubmitted ? 
 
+					<>
+
 					<form onSubmit={(e) => {handleSubmit(e)}}>
 						<div className="row">
 							<label htmlFor="first-name">First Name:</label>
@@ -71,6 +73,12 @@ function Register() {
 							<button className="btn btn-primary" type="submit">Register</button>
 						</div>
 					</form> 
+
+					<div className="already-registered">
+						<p>Already registered? <Link to="/login">Login</Link></p>
+					</div>
+
+					</>
 
 					:
 

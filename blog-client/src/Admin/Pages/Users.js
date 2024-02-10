@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Users() {
@@ -16,7 +17,13 @@ function Users() {
 	return(
 		<main className="content-wrapper dashboard">
 			<div className="row">
-				<h1>Users</h1>
+				<div className="title">
+					<h1>Users</h1>
+					<div className="buttons-wrapper">
+						<Link to="#">Create</Link>
+					</div>
+				</div>
+
 				{ users.lenth <= 0 ? 
 
 					<div className="no-data-found">

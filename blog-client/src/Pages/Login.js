@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext";
-import { userLogin } from "../Services/AuthServices";
+import { login } from "../Services/AuthServices";
 
 function Login() {
 
@@ -18,6 +18,8 @@ function Login() {
 	const handleLogin = async (event) => {
 		event.preventDefault();
 
+		setInvalidSubmit(false);
+
 		if (email.length <= 0 || password.length <= 0) return setInvalidSubmit(true);
 
 		const requestBody = {
@@ -25,10 +27,17 @@ function Login() {
 			"password": password
 		}
 
-		const data = await userLogin(requestBody);
+		const data = await login(requestBody);
 
-		if (data === 'success') setAuth(true);
-		if (data === 'success') navigate("/");
+		console.log(data)
+
+		if (data === 'success') {
+			setAuth(true);
+			navigate("/");
+		} else {
+			setInvalidSubmitMessage(data);
+			setInvalidSubmit(true);
+		}
 
 	}
 

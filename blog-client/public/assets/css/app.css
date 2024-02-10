@@ -197,8 +197,30 @@ span {
 /* DASHBOARD */
 
 .content-wrapper.dashboard h1 {
-	margin-bottom: 30px;
 	color: #343a40
+}
+
+.content-wrapper.dashboard .title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 30px;
+}
+
+.content-wrapper.dashboard .buttons-wrapper a {
+    display: inline-block;
+    line-height: 38px;
+    padding: 0 15px;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+    background: green;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0;
+    margin-left: 5px;
 }
 
 .users .row.headers {

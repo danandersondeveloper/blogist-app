@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
+//Import services
+import { getUsers } from "../Services/UserServices";
 
 function Users() {
 
 	const [ users, setUsers ] = useState([]);
 
 	useEffect(() => {
-		axios.get("http://localhost:9000/user/")
-		.then(resposne => {
-			setUsers(resposne.data);
-		})
-		.catch( err => { console.log(err)});
+		const requestUserData = async () => {
+			const users = await getUsers();
+			setUsers(users.data)
+		} 
+		requestUserData();
 	}, [])
 
 	return(
@@ -20,7 +22,7 @@ function Users() {
 				<div className="title">
 					<h1>Users</h1>
 					<div className="buttons-wrapper">
-						<Link to="#">Create</Link>
+						<Link to="#">Create user</Link>
 					</div>
 				</div>
 
@@ -46,7 +48,7 @@ function Users() {
 								<strong>Email:</strong>
 							</div>
 							<div className="cell">
-								<strong>Role:</strong>
+								<strong>User role:</strong>
 							</div>
 							<div className="cell">
 								<strong className="hide-font">Edit</strong>

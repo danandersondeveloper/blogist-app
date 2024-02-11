@@ -16,13 +16,17 @@ function Users() {
 		requestUserData();
 	}, [])
 
+	const handleClick = (userId) => {
+		alert(userId);
+	}
+
 	return(
 		<main className="content-wrapper dashboard">
 			<div className="row">
 				<div className="title">
 					<h1>Users</h1>
 					<div className="buttons-wrapper">
-						<Link to="#">Create user</Link>
+						<Link to="#">Create new user</Link>
 					</div>
 				</div>
 
@@ -69,7 +73,7 @@ function Users() {
 									<span>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>
 								</div>
 								<div className="cell">
-									<button className="btn btn-dash-primary">Edit</button>
+									<button className="btn btn-dash-primary" onClick={() => {handleClick(user._id)}}>Edit</button>
 								</div>
 							</div>
 						))}

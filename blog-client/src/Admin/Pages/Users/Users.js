@@ -16,10 +16,6 @@ function Users() {
 		requestUserData();
 	}, [])
 
-	const handleClick = (userId) => {
-		alert(userId);
-	}
-
 	return(
 		<main className="content-wrapper dashboard">
 			<div className="row">
@@ -73,7 +69,7 @@ function Users() {
 									<span>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>
 								</div>
 								<div className="cell">
-									<button className="btn btn-dash-primary" onClick={() => {handleClick(user._id)}}>Edit</button>
+									<Link to={`/dashboard/users/update/${user._id}`}>Edit</Link>
 								</div>
 							</div>
 						))}

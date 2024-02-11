@@ -24,8 +24,9 @@ import Error from "./Pages/Error";
 // Private routes / pages 
 
 import Dashboard from "./Admin/Dashboard";
-import Blogs from "./Admin/Pages/Blogs";
-import Users from "./Admin/Pages/Users";
+import Blogs from "./Admin/Pages/Blogs/Blogs";
+import Users from "./Admin/Pages/Users/Users";
+import UpdateUser from "./Admin/Pages/Users/UpdateUser";
 
 function App() {
 
@@ -58,7 +59,10 @@ function App() {
           <Route path="dashboard">
             <Route index element={ <Dashboard /> } />
             <Route path="blogs" element={ <Blogs /> } />
-            <Route path="users" element={ <Users /> } />
+            <Route path="users">
+              <Route index element={ <Users /> } />
+              <Route path="update/:id" element={ <UpdateUser /> } />
+            </Route>
           </Route>
         </Route>
 

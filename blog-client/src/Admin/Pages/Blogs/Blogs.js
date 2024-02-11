@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 //Import services
-import { getBlogs } from "../Services/BlogServices";
+import { getBlogs } from "../../Services/BlogServices";
 
 
 function Blogs() {

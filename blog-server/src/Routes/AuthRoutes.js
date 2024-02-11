@@ -7,6 +7,4 @@ router.get('/', (req, res) => { authController.isAutherised(req, res) });
 
 router.post('/login', (req, res) => { authController.login(req, res) })
 
-//router.get('/logout', (req, res) => {});
-
 module.exports = router;

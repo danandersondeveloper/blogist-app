@@ -5,9 +5,9 @@ const userController = require("../Controllers/UserController");
 
 router.get('/', (req, res) => { userController.getUsers(req, res) });
 
-router.post('/register', (req, res) => userController.createUser(req, res));
+router.get('/:id', (req, res) => { userController.getUser(req, res)});
 
-router.post('/login', (req, res) => {userController.loginUser(req, res)});
+router.post('/register', (req, res) => userController.createUser(req, res));
 
 router.patch('/edit', (req, res) => {});
 

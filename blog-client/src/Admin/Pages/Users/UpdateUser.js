@@ -1,24 +1,66 @@
+
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function UpdateUser() {
 
-	const [userId, setUserId] = useState("")
+	const [ userFirstName, setUserFirstName ] = useState(String);
+	const [ userLastName, setUserLastName ] = useState(String);
+	const [ userEmail, setUserEmail ] = useState(String);
+	const [ userRole, setUserRole ] = useState(String);
+	const [ userIsActive, setUserIsActive ] = useState(Boolean);
 
 	useEffect(() => {
 		const userId = window.location.href.replace("http://localhost:3000/dashboard/users/update/", "");
-		setUserId(userId);
 
-		// Need to make a request to server to get the relevant information.
-		// On save, need to make a patch request to server to save data.
+		const requestData = {
+			"userId": userId
+		}
+
+		axios.get(`http://localhost:9000/user/${userId}`, { params: requestData })
+			.then(response => {
+				setUserFirstName(response.data.firstName);
+				setUserLastName(response.data.lastName);
+				setUserEmail(response.data.email);
+				setUserRole(response.data.role);
+				setUserIsActive(response.data.active);
+			})
+			.catch(error => { 
+				console.log(error)
+			});
 
 	}, []);
 
 	return(
 		<main className="content-wrapper dashboard">
-			<div class="row">
+			<div className="row">
 				<div className="title">
-					<h1>Edit: {userId}</h1>
+					<h1>Edit:</h1>
 				</div>
+
+				<form>
+					<div className="row">
+						<label>First Name:</label>
+						<input value={ userFirstName } onChange={(event) => { setUserFirstName(event.target.value)} } />
+					</div>
+					<div className="row">
+						<label>Last Name:</label>
+						<input value={ userLastName } onchange={(event) => { setUserLastName(event.target.value) }} />
+					</div>
+					<div className="row">
+						<label>Email Address:</label>
+						<input value={ userEmail } />
+					</div>
+					<div className="row">
+						<label>User Role:</label>
+						<input value={ userRole } />
+					</div>
+					<div className="">
+						<lable>Active</lable>
+						<input type="checkbox" />
+					</div>
+				</form>
+
 			</div>
 		</main>
 	);

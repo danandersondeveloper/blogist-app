@@ -17,13 +17,31 @@ const getUsers = async (req, res) => {
 		if (users.length <= 0) return res.status(503).json({ message: "No user data found!" });
 		return res.status(200).json(users);
 
-	} catch(err) {
+	} catch(error) {
 
-		console.log(err);
-		res.status(500).json({ message: "Status Code 500: Internal server error." });
+		res.status(500)
+		res.json({ message: "Status Code 500: Internal server error." });
+		console.log(error);
 
 	}
 };
+
+
+const getUser = async (req, res) => {
+	try {
+		
+		const userId = req.params.id
+		const user = await User.findById(userId).select("-password");
+		return res.status(200).json(user);
+
+	} catch(error) {
+
+		res.status(500);
+		res.json({ message: "Status Code 500: Internal server error." });
+		console.log(error);
+
+	}
+}
 
 
 // @desc Create a new user
@@ -65,12 +83,24 @@ const createUser = async (req, res) => {
 	}
 };
 
+
 // @desc Login a users
 // @route POST /users
 // @access Private
 
 const editUser = async (req, res) => {
-	// Add comment
+	try {
+
+		//const user = await User.findById().select("-password").lean();
+
+
+	} catch(error) {
+
+		res.status(500);
+		res.json({ message: "Status Code 500: Internal server error." });
+		console.log(error);
+
+	}
 }
 
-module.exports = {getUsers, createUser, editUser}
+module.exports = {getUsers, getUser, createUser, editUser}

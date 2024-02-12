@@ -69,7 +69,7 @@ function Users() {
 									<span>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>
 								</div>
 								<div className="cell">
-									<Link to={`/dashboard/users/update/${user._id}`}>Edit</Link>
+									<Link className="btn btn-dash-primary" to={`/dashboard/users/update/${user._id}`}>Edit</Link>
 								</div>
 							</div>
 						))}

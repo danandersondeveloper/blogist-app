@@ -91,8 +91,20 @@ const createUser = async (req, res) => {
 const editUser = async (req, res) => {
 	try {
 
-		//const user = await User.findById().select("-password").lean();
+		const { _id, firstName, lastName, email, role, active } = req.body;
+		const filter = { "_id": _id }
 
+		const update = {
+			"firstName": firstName,
+			"lastName": lastName,
+			"email": email,
+			"role": role,
+			"active": active
+		}
+
+		const resposne = await User.findByIdAndUpdate(_id, update).select("-password")
+
+		res.status(200).json({ message: "success" })
 
 	} catch(error) {
 

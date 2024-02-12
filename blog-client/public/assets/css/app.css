@@ -47,15 +47,39 @@ span {
 	color: #c55e5e;
 }
 
+.success-message {
+	display: flex;
+	align-items: center;
+	color: #3b803b;
+    padding: 5px 10px;
+    background: #92d092;
+    border-radius: 3px;
+    border: 1px solid #91c091;
+}
+
+.success-message span {
+    display: inline-block;
+    line-height: 18px;
+    width: 20px;
+    text-align: center;
+    border: 1px solid #3b803b;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-left: 6px;
+}
+
 .btn {
     display: block;
+	font-size: 14px;
     line-height: 38px;
     padding: 0 15px;
     outline: none;
 	border-radius: 3px;
 	cursor: pointer;
 	border: none;
+	text-decoration: none;
 }
+
 
 .btn:hover {
 	opacity: .8;

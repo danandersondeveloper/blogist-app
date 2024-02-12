@@ -26,7 +26,7 @@ function UpdateUser() {
 
 		axios.patch(`http://localhost:9000/user/edit/${userID}`, requestData)
 		.then(response => {
-			if (response === "success") setSuccessMessage("User has been updates successfully!");
+			if (response.data.message === "success") setSuccessMessage("User has been updates successfully!");
 		})
 		.catch(error => {
 			console.log(error);
@@ -62,9 +62,8 @@ function UpdateUser() {
 			<div className="row">
 				<div className="title">
 					<h1>{`Edit: ${userFirstName} ${userLastName}`}</h1>
+					{(successMessage.length > 0) && <p className="success-message">{successMessage} <span onClick={(event) => {setSuccessMessage("")}}>x</span></p>}
 				</div>
-
-				{( successMessage.length > 0) ? <p>{successMessage}</p> : "" }
 
 				<form onSubmit={(event) => { handleSubmit(event) }}>
 					<div className="row">

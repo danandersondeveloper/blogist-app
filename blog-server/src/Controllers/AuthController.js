@@ -10,17 +10,18 @@ const User = require("../Models/UserModel");
 const isAutherised = (req, res) => {
 	const authCookie = req.cookies.auth_user;
 
+	console.log(authCookie);
+
 	if (authCookie) {
 
-		console.log(authCookie)
+		const isAdmin = authCookie.includes("admin") ? true : false 
 
-		res.status(200).json(
-			{
-				message: {
-					auth:'autherised'
-				}
+		res.status(200).json({
+			message: {
+				loggedIn: true,
+				admin: isAdmin
 			}
-		);
+		});
 	}
 }
 

@@ -35,7 +35,7 @@ function App() {
   useEffect(() => {
     axios.get('http://localhost:9000/auth', {withCredentials: true})
     .then(response => {
-      if (response.data.message.auth === 'autherised') setAuth(true);
+      (response.data.message.loggedIn) && setAuth(true);
     });
   }, []);
 

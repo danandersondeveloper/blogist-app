@@ -12,7 +12,13 @@ function UpdateUser() {
 	const [ userEmail, setUserEmail ] = useState(String);
 	const [ userRole, setUserRole ] = useState(String);
 	const [ userIsActive, setUserIsActive ] = useState(Boolean);
-	const [ successMessage, setSuccessMessage ] = useState("");
+	const [ successMessage, setSuccessMessage ] = useState(String);
+	const [ displayDeleteModel, setDisplayDeleteModel ] = useState(false);
+
+	const handleDelete = (event) => {
+		event.preventDefault();
+		alert("Great - Now make a delete request to the server and refresh or something")
+	}
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -89,8 +95,8 @@ function UpdateUser() {
 						<input name="active" type="checkbox" checked={ userIsActive ? "checked" : "" } onChange={ (event) => { setUserIsActive(!userIsActive) } } />
 					</div>
 					<div className="row">
-						<button className="btn btn-dash-primary" type="submit">Save user</button>
-						<button className="btn btn-dash-delete" type="button">Delete user</button>
+						<button className="btn btn-dash-primary" type="submit">Save</button>
+						<button className="btn btn-dash-delete" type="button" onClick={(e) => { setDisplayDeleteModel(true) }}>Delete</button>
 					</div>
 
 				</form>
@@ -100,6 +106,29 @@ function UpdateUser() {
 						<span>{successMessage}</span>
 						<span className="close" onClick={(event) => {setSuccessMessage("")}}>x</span>
 					</p>
+				}
+
+				{ displayDeleteModel && 
+				<>
+					<div className="overlay"></div>
+					<div className="popup-model delete">
+						<div class="row">
+							<div className="title">
+								<h3>{`Delete: ${userFirstName} ${userLastName}`}</h3>
+								<span className="close" onClick={() => { setDisplayDeleteModel(!setDisplayDeleteModel) }}>x</span>
+							</div>
+							<div className="content">
+								<p>Copy what you see in the input field below:</p>
+								<div className="inputs-wrapper">
+									<form>
+										<input type="text" placeholder="DELETE"/>
+										<button className="btn btn-dash-delete" type="submit" onClick={ (event) => { handleDelete(event) }}>Delete</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</>
 				}
 
 			</div>

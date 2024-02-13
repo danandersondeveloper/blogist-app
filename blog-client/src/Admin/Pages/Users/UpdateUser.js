@@ -1,8 +1,10 @@
-
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 function UpdateUser() {
+
+	const navigate = useNavigate();
 
 	const [ userID, setUserID ] = useState(String);
 	const [ userFirstName, setUserFirstName ] = useState(String);
@@ -62,7 +64,7 @@ function UpdateUser() {
 			<div className="row">
 				<div className="title">
 					<h1>{`Edit: ${userFirstName} ${userLastName}`}</h1>
-					{(successMessage.length > 0) && <p className="success-message">{successMessage} <span onClick={(event) => {setSuccessMessage("")}}>x</span></p>}
+					<button type="button" className="btn btn-dash-back" onClick={() => {navigate(-1)}}>Back</button>
 				</div>
 
 				<form onSubmit={(event) => { handleSubmit(event) }}>
@@ -88,8 +90,17 @@ function UpdateUser() {
 					</div>
 					<div className="row">
 						<button className="btn btn-dash-primary" type="submit">Save user</button>
+						<button className="btn btn-dash-delete" type="button">Delete user</button>
 					</div>
+
 				</form>
+
+				{(successMessage.length > 0) &&
+					<p className="success-message">
+						<span>{successMessage}</span>
+						<span className="close" onClick={(event) => {setSuccessMessage("")}}>x</span>
+					</p>
+				}
 
 			</div>
 		</main>

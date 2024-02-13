@@ -55,9 +55,10 @@ span {
     background: #92d092;
     border-radius: 3px;
     border: 1px solid #91c091;
+	justify-content: space-between;
 }
 
-.success-message span {
+.success-message span.close {
     display: inline-block;
     line-height: 18px;
     width: 20px;
@@ -92,6 +93,11 @@ span {
 
 .btn.btn-dash-primary {
 	background: #3c8dbc;
+	color: #fff;
+}
+
+.btn.btn-dash-delete {
+	background: #bc3c3c;
 	color: #fff;
 }
 
@@ -324,6 +330,10 @@ span {
 	width: unset;
 }
 
-.user-edit .btn.btn-dash-primary {
-	margin-left: auto;
+.user-edit form .row:last-child {
+	justify-content: right;
+}
+
+.user-edit form .row .btn {
+	margin-left: 5px;
 }

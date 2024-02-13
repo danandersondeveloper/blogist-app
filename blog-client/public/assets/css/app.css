@@ -226,6 +226,12 @@ span {
 
 /* DASHBOARD */
 
+.nav-border {
+	border-left: 1px solid #7b7b7b;
+    padding-left: 25px !important;
+    margin-left: 15px;
+}
+
 .content-wrapper.dashboard h1 {
 	color: #343a40
 }

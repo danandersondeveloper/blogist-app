@@ -36,8 +36,8 @@ function Header() {
 							<li>
 								<Link to="/dashboard/users">Users</Link>
 							</li>
-							<li>
-								<Link to="/">Public store</Link>
+							<li className="nav-border">
+								<Link to="/">Public site</Link>
 							</li>
 							<li>
 								<Link onClick={ handleLogout }>Logout</Link>

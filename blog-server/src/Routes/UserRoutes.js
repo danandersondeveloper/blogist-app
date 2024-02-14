@@ -20,7 +20,7 @@ router.patch('/edit/:id', (req, res) => {
 });
 
 router.delete('/delete', (req, res) => {
-	// DO SOMETHING HERE ON ROUTE
+	userController.deleteUser(req, res);
 });
 
 module.exports = router;

@@ -84,7 +84,7 @@ const createUser = async (req, res) => {
 };
 
 
-// @desc Login a users
+// @desc Edit a users details
 // @route POST /users
 // @access Private
 
@@ -115,4 +115,31 @@ const editUser = async (req, res) => {
 	}
 }
 
-module.exports = {getUsers, getUser, createUser, editUser}
+
+// @desc Delete a user from the Database
+// @route DELETE /users
+// @access Private
+
+const deleteUser = async (req, res) => {
+	try {
+
+		const id = req.params.id;
+
+		console.log(id)
+
+	} catch(error) {
+		
+		res.status(500);
+		res.json({ message: "Status Code 500: Internal server error." });
+		console.log(error);
+
+	}
+}
+
+module.exports = {
+	getUsers,
+	getUser,
+	createUser,
+	editUser,
+	deleteUser
+}

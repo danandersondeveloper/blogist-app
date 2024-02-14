@@ -22,7 +22,7 @@ function Users() {
 				<div className="title">
 					<h1>Users</h1>
 					<div className="buttons-wrapper">
-						<Link to="#">Create new user</Link>
+						<Link to="#">Create</Link>
 					</div>
 				</div>
 

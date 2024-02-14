@@ -6,7 +6,7 @@ function UpdateUser() {
 
 	const navigate = useNavigate();
 
-	const [ userID, setUserID ] = useState(String);
+	const [ userId, setUserID ] = useState(String);
 	const [ userFirstName, setUserFirstName ] = useState(String);
 	const [ userLastName, setUserLastName ] = useState(String);
 	const [ userEmail, setUserEmail ] = useState(String);
@@ -16,15 +16,29 @@ function UpdateUser() {
 	const [ displayDeleteModel, setDisplayDeleteModel ] = useState(false);
 
 	const handleDelete = (event) => {
-		event.preventDefault();
-		alert("Great - Now make a delete request to the server and refresh or something")
-	}
 
-	const handleSubmit = (event) => {
 		event.preventDefault();
 
 		const requestData = {
-			"_id": userID,
+			"_id": userId
+		}
+		
+		axios.delete(`http://localhost:9000/user/delete/`, { params: { requestData } })
+		.then(response => {
+			
+		})
+		.catch(error => {
+			alert("An error occured - It has been logged to the console");
+			console.log(error);
+		})
+	}
+
+	const handleSubmit = (event) => {
+
+		event.preventDefault();
+
+		const requestData = {
+			"_id": userId,
 			"firstName": userFirstName,
 			"lastName": userLastName,
 			"email": userEmail,
@@ -32,11 +46,12 @@ function UpdateUser() {
 			"active": userIsActive
 		}
 
-		axios.patch(`http://localhost:9000/user/edit/${userID}`, requestData)
+		axios.patch(`http://localhost:9000/user/edit/${userId}`, requestData)
 		.then(response => {
 			if (response.data.message === "success") setSuccessMessage("User has been updates successfully!");
 		})
 		.catch(error => {
+			alert("An error occured - It has been logged to the console");
 			console.log(error);
 		});
 	}
@@ -57,7 +72,8 @@ function UpdateUser() {
 				setUserRole(response.data.role);
 				setUserIsActive(response.data.active);
 			})
-			.catch(error => { 
+			.catch(error => {
+				alert("An error occured - It has been logged to the console"); 
 				console.log(error);
 			});
 

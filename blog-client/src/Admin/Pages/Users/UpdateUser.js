@@ -128,7 +128,7 @@ function UpdateUser() {
 				<>
 					<div className="overlay"></div>
 					<div className="popup-model delete">
-						<div class="row">
+						<div className="row">
 							<div className="title">
 								<h3>{`Delete: ${userFirstName} ${userLastName}`}</h3>
 								<span className="close" onClick={() => { setDisplayDeleteModel(!setDisplayDeleteModel) }}>x</span>

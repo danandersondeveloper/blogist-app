@@ -83,7 +83,17 @@ function UpdateUser() {
 
 	return(
 		<main className="content-wrapper dashboard user-edit">
+
+
 			<div className="row">
+
+				{(successMessage.length > 0) &&
+					<p className="success-message">
+						<span>{successMessage}</span>
+						<span className="close" onClick={(event) => {setSuccessMessage("")}}>x</span>
+					</p>
+				}
+
 				<div className="title">
 					<h1>{`Edit: ${userFirstName} ${userLastName}`}</h1>
 					<button type="button" className="btn btn-dash-back" onClick={() => {navigate(-1)}}>Back</button>
@@ -116,13 +126,6 @@ function UpdateUser() {
 					</div>
 
 				</form>
-
-				{(successMessage.length > 0) &&
-					<p className="success-message">
-						<span>{successMessage}</span>
-						<span className="close" onClick={(event) => {setSuccessMessage("")}}>x</span>
-					</p>
-				}
 
 				{ displayDeleteModel && 
 				<>

@@ -82,7 +82,12 @@ function Register() {
 
 					:
 
-					<p>Thank you for regestering. Your account has been created!</p>
+					<>
+						<div className="registration-complete">
+							<p>Thank you for regestering. Your account has been created!</p>
+							<Link className="btn" to="/login">login</Link>
+						</div>
+					</>
 
 				}
 			</div>

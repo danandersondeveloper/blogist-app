@@ -7,6 +7,16 @@ import { getUsers } from "../../Services/UserServices";
 function Users() {
 
 	const [ users, setUsers ] = useState([]);
+	const [ searchInputString, setSearchInputString ] = useState(String);
+
+	const handleSearch = (event) => {
+
+		event.preventDefault();
+
+		if (searchInputString.length <= 4) return alert("Dont search.")
+		alert("Make a search!")
+
+	}
 
 	useEffect(() => {
 		const requestUserData = async () => {
@@ -23,6 +33,15 @@ function Users() {
 					<h1>Users</h1>
 					<div className="buttons-wrapper">
 						<Link to="#">Create</Link>
+					</div>
+				</div>
+
+				<div className="search">
+					<div className="row">
+						<form onSubmit={ (event) => { handleSearch(event) } }>
+							<input className="search-input" type="text" placeholder="Search users..." value={ searchInputString } onChange={ (event) => { setSearchInputString(event.target.value) } }/>
+							<button className="btn search-button" type="submit">Search</button>
+						</form>
 					</div>
 				</div>
 

@@ -70,6 +70,9 @@ function Users() {
 								<strong>User role:</strong>
 							</div>
 							<div className="cell">
+								<strong>Is active</strong>
+							</div>
+							<div className="cell">
 								<strong className="hide-font">Edit</strong>
 							</div>
 						</div>
@@ -86,6 +89,9 @@ function Users() {
 								</div>
 								<div className="cell">
 									<span>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>
+								</div>
+								<div className="cell">
+									<span>{user.active ? "Active" : "Not Active"}</span>
 								</div>
 								<div className="cell">
 									<Link className="btn btn-dash-primary" to={`/dashboard/users/update/${user._id}`}>Edit</Link>

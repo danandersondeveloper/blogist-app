@@ -14,22 +14,24 @@ function UpdateUser() {
 	const [ userIsActive, setUserIsActive ] = useState(Boolean);
 	const [ successMessage, setSuccessMessage ] = useState(String);
 	const [ displayDeleteModel, setDisplayDeleteModel ] = useState(false);
+	const [ deleteInput, setDeleteInput ] = useState(String);
+	const [ deleteUserErrorMessage, setDeleteUserErrorMessage ] = useState(String);
 
 	const handleDelete = (event) => {
 
 		event.preventDefault();
 
 		const requestData = {
-			"_id": userId
+			"_id": userId,
+			"deleteString": deleteInput
 		}
 		
-		axios.delete(`http://localhost:9000/user/delete/`, { params: { requestData } })
+		axios.delete(`http://localhost:9000/user/delete/`, {data: {requestData}})
 		.then(response => {
-			
+			response.data.message == "success" && navigate(-1);
 		})
 		.catch(error => {
-			alert("An error occured - It has been logged to the console");
-			console.log(error);
+			setDeleteUserErrorMessage(error.response.data.message);
 		})
 	}
 
@@ -51,7 +53,6 @@ function UpdateUser() {
 			if (response.data.message === "success") setSuccessMessage("User has been updates successfully!");
 		})
 		.catch(error => {
-			alert("An error occured - It has been logged to the console");
 			console.log(error);
 		});
 	}
@@ -73,7 +74,6 @@ function UpdateUser() {
 				setUserIsActive(response.data.active);
 			})
 			.catch(error => {
-				alert("An error occured - It has been logged to the console"); 
 				console.log(error);
 			});
 
@@ -137,10 +137,11 @@ function UpdateUser() {
 								<p>Copy what you see in the input field below:</p>
 								<div className="inputs-wrapper">
 									<form>
-										<input type="text" placeholder="DELETE"/>
+										<input type="text" value={ deleteInput } placeholder="DELETE" onChange={ (event) => { setDeleteInput(event.target.value) } } />
 										<button className="btn btn-dash-delete" type="submit" onClick={ (event) => { handleDelete(event) }}>Delete</button>
 									</form>
 								</div>
+								{ deleteUserErrorMessage.length > 0 && <p className="error-message">{ deleteUserErrorMessage }</p> }
 							</div>
 						</div>
 					</div>

@@ -122,10 +122,15 @@ const editUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
+		
+		const userId = req.body.requestData._id;
+		const userDeleteString = req.body.requestData.deleteString;
 
-		const id = req.params.id;
+		if (userDeleteString != "DELETE") return res.status(422).json({ message: "Invalid input, please try again!" });
 
-		console.log(id)
+		await User.findByIdAndDelete(userId);
+
+		res.status(200).json({ message: "success" })
 
 	} catch(error) {
 		

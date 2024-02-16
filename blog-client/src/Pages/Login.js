@@ -29,8 +29,6 @@ function Login() {
 
 		const data = await login(requestBody);
 
-		console.log(data)
-
 		if (data === 'success') {
 			setAuth(true);
 			navigate("/");

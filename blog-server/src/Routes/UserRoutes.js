@@ -4,31 +4,10 @@ const router = express.Router();
 const userController = require("../Controllers/UserController");
 
 
-// @route /users
+// @route /users/delete
 
-router.get('/', (req, res) => {
-	userController.getUsers(req, res);
-});
-
-
-// @route /users/id
-
-router.get('/:id', (req, res) => {
-	userController.getUser(req, res);
-});
-
-
-// @route /users/search
-
-router.get('search', (req, res) => {
-	userController.searchUsers(req, res);
-});
-
-
-// @route /users/regster
-
-router.post('/register', (req, res) => {
-	userController.createUser(req, res);
+router.delete('/delete', (req, res) => {
+	userController.deleteUser(req, res);
 });
 
 
@@ -39,10 +18,31 @@ router.patch('/edit/:id', (req, res) => {
 });
 
 
-// @route /users/delete
+// @route /users/regster
 
-router.delete('/delete', (req, res) => {
-	userController.deleteUser(req, res);
+router.post('/register', (req, res) => {
+	userController.createUser(req, res);
+});
+
+
+// @route /user/search
+
+router.get('/search', (req, res) => {
+	userController.getSearchedUsers(req, res);
+});
+
+
+// @route /users/id
+
+router.get('/:id', (req, res) => {
+	userController.getUser(req, res);
+});
+
+
+// @route /user
+
+router.get('/', (req, res) => {
+	userController.getUsers(req, res);
 });
 
 module.exports = router;

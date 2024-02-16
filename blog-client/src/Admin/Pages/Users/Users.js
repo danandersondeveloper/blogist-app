@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -13,9 +14,13 @@ function Users() {
 
 		event.preventDefault();
 
-		if (searchInputString.length <= 4) return alert("Dont search.")
-		alert("Make a search!")
-
+		if (searchInputString.length <= 4) return alert("Search input too short")
+		
+		axios.get(`http://localhost:9000/user/search`)
+		.then(response => {
+			console.log(response)
+		})
+		.catch(error => { console.log(error) });
 	}
 
 	useEffect(() => {

@@ -106,7 +106,10 @@ const createUser = async (req, res) => {
 const getSearchedUsers = async (req, res) => {
 	try {
 
-		console.log(req);
+		const searchString = req.query.search;
+		const users = await User.find({ $text : { $search: searchString } }).select("-password");
+
+		return res.status(200).json(users);
 
 	} catch(error) {
 		res.status(500);

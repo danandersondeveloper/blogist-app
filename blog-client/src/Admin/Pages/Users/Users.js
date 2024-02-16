@@ -46,7 +46,7 @@ function Users() {
 				<div className="title">
 					<h1>Users</h1>
 					<div className="buttons-wrapper">
-						<Link to="/users/create">Create</Link>
+						<Link to="/dashboard/users/create">Create</Link>
 					</div>
 				</div>
 

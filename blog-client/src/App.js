@@ -27,6 +27,7 @@ import Dashboard from "./Admin/Dashboard";
 import Blogs from "./Admin/Pages/Blogs/Blogs";
 import Users from "./Admin/Pages/Users/Users";
 import UpdateUser from "./Admin/Pages/Users/UpdateUser";
+import CreateUser from "./Admin/Pages/Users/CreateUser";
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
             <Route path="users">
               <Route index element={ <Users /> } />
               <Route path="update/:id" element={ <UpdateUser /> } />
+              <Route path="create" element={ <CreateUser /> } />
             </Route>
           </Route>
         </Route>

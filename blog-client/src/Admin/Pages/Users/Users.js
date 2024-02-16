@@ -60,7 +60,7 @@ function Users() {
 					</div>
 				</div>
 
-				{ users.lenth <= 0 ? 
+				{ users.length <= 0 ? 
 
 					<div className="no-data-found">
 						<div className="row">

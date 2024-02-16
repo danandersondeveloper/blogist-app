@@ -355,6 +355,10 @@ select {
 	margin-left: 5px;
 }
 
+.btn.clear-search-button {
+	margin-left: 5px;
+}
+
 .search form input {
 	width: 100%;
     min-height: 38px;

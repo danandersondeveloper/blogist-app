@@ -102,23 +102,47 @@ function UpdateUser() {
 				<form onSubmit={(event) => { handleSubmit(event) }}>
 					<div className="row">
 						<label htmlFor="first-name">First Name:</label>
-						<input name="first-name" value={ userFirstName } onChange={(event) => { setUserFirstName(event.target.value)} } />
+						<input
+							type="text"
+							name="first-name"
+							value={ userFirstName }
+							onChange={(event) => { setUserFirstName(event.target.value)} } 
+						/>
 					</div>
 					<div className="row">
 						<label htmlFor="last-name">Last Name:</label>
-						<input name="last-name" value={ userLastName } onChange={(event) => { setUserLastName(event.target.value) }} />
+						<input
+							type="text"
+							name="last-name"
+							value={ userLastName }
+							onChange={(event) => { setUserLastName(event.target.value) }}
+						/>
 					</div>
 					<div className="row">
 						<label htmlFor="email">Email Address:</label>
-						<input name="email" value={ userEmail } onChange={(event) => { setUserEmail(event.target.value) }} />
+						<input
+							type="email"
+							name="email"
+							value={ userEmail }
+							onChange={(event) => { setUserEmail(event.target.value) }}
+						/>
 					</div>
 					<div className="row">
 						<label htmlFor="user-role">User Role:</label>
-						<input name="user-role" value={ userRole } onChange={(event) => { setUserRole(event.target.value) }} />
+						<input
+							name="user-role"
+							value={ userRole }
+							onChange={(event) => { setUserRole(event.target.value) }}
+						/>
 					</div>
 					<div className="row">
 						<label htmlFor="active">Active:</label>
-						<input name="active" type="checkbox" checked={ userIsActive ? "checked" : "" } onChange={ (event) => { setUserIsActive(!userIsActive) } } />
+						<input
+							name="active"
+							type="checkbox"
+							checked={ userIsActive ? "checked" : "" }
+							onChange={ (event) => { setUserIsActive(!userIsActive) } }
+						/>
 					</div>
 					<div className="row">
 						<button className="btn btn-dash-primary" type="submit">Save</button>

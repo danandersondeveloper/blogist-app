@@ -22,7 +22,7 @@ function Blogs() {
 			<div className="row">
 				<div className="title">
 					<h1>Blogs</h1>
-					<div class="button-wrapper">
+					<div className="button-wrapper">
 						<Link to="#">Create blog</Link>
 					</div>
 				</div>

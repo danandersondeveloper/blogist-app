@@ -30,6 +30,9 @@ function Header() {
 				<div className="col">
 					<nav className="navigation">
 						<ul>
+							<li>
+								<Link to="/">Home</Link>
+							</li>
 							{!auth ?
 								<>
 									<li>

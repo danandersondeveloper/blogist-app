@@ -22,8 +22,9 @@ function Blogs() {
 			<div className="row">
 				<div className="title">
 					<h1>Blogs</h1>
-					<div className="button-wrapper">
-						<Link to="#">Create blog</Link>
+					<div className="buttons-wrapper">
+						<Link className="btn btn-create" to="#">Create Blog</Link>
+						<Link className="btn btn-export" to="X">Export JSON</Link>
 					</div>
 				</div>
 			</div>

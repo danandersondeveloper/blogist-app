@@ -4,24 +4,31 @@ const router = express.Router();
 const userController = require("../Controllers/UserController");
 
 
-// @route /users/delete
+// @route /user/delete
 
 router.delete('/delete', (req, res) => {
 	userController.deleteUser(req, res);
 });
 
 
-// @route /users/edit/:id
+// @route /user/edit/:id
 
 router.patch('/edit/:id', (req, res) => {
 	userController.editUser(req, res);
 });
 
 
-// @route /users/regster
+// @route /user/regster
 
 router.post('/register', (req, res) => {
 	userController.createUser(req, res);
+});
+
+
+// @route /user/export
+
+router.get('/export', (req, res) => {
+	userController.getExportedUsers(req, res);
 });
 
 

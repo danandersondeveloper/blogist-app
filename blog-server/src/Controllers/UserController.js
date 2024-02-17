@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const fs = require("node:fs");
 
 // Model imports
 const User = require("../Models/UserModel");
@@ -24,7 +25,7 @@ const deleteUser = async (req, res) => {
 	} catch(error) {
 		
 		res.status(500);
-		res.json({ message: "Status Code 500: Internal server error." });
+		res.json({ message: "Status Code 500: Internal Server Error." });
 		console.log(error);
 
 	}
@@ -56,7 +57,7 @@ const editUser = async (req, res) => {
 	} catch(error) {
 
 		res.status(500);
-		res.json({ message: "Status Code 500: Internal server error." });
+		res.json({ message: "Status Code 500: Internal Server Error." });
 		console.log(error);
 
 	}
@@ -108,10 +109,34 @@ const createUser = async (req, res) => {
 	} catch(err) {
 
 		console.log(err);
-		res.status(500).json({ message: "Status Code 500: Internal server error." });
+		res.status(500).json({ message: "Status Code 500: Internal Server Error." });
 
 	}
 };
+
+
+// @desc Get and prepare user export
+// @route GET /user/export
+// @access Private
+
+const getExportedUsers = async (req, res) => {
+	try {
+
+		const users = await User.find({}).select(["-password", "-_id"]);
+		const jsonData = JSON.stringify(users);
+
+		fs.writeFileSync('src/Assets/export.json', jsonData.toString());
+
+		res.status(200).download("src/Assets/export.json", "user-export.json");
+		
+
+	} catch ( error ) {
+
+		res.status(500);
+		res.json({ message: "Status Code 500: Internal Server Error." });
+		
+	}
+}
 
 
 // @desc Get users based on search query
@@ -128,7 +153,7 @@ const getSearchedUsers = async (req, res) => {
 
 	} catch(error) {
 		res.status(500);
-		res.json({ message: "Status Code 500: Internal server error." })
+		res.json({ message: "Status Code 500: Internal Server Error." })
 		//console.log(error);
 	}
 };
@@ -148,7 +173,7 @@ const getUser = async (req, res) => {
 	} catch(error) {
 
 		res.status(500);
-		res.json({ message: "Status Code 500: Internal server error." });
+		res.json({ message: "Status Code 500: Internal Server Error." });
 		console.log(error);
 
 	}
@@ -170,7 +195,7 @@ const getUsers = async (req, res) => {
 	} catch(error) {
 
 		res.status(500)
-		res.json({ message: "Status Code 500: Internal server error." });
+		res.json({ message: "Status Code 500: Internal Server Error." });
 		console.log(error);
 
 	}
@@ -180,6 +205,7 @@ module.exports = {
 	deleteUser,
 	editUser,
 	createUser,
+	getExportedUsers,
 	getSearchedUsers,
 	getUser,
 	getUsers

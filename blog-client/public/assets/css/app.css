@@ -459,6 +459,7 @@ select {
 	display: flex;
 	align-items: center;
 	margin-bottom: 20px;
+	position: relative;
 }
 
 .user-edit form .row:last-child,
@@ -495,4 +496,14 @@ select {
 .user-edit form .row .btn,
 .create-user form .row .btn {
 	margin-left: 5px;
+}
+
+.create-user form .row .btn.btn.view-password {
+	position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: unset;
+    border: none;
+    line-height: 42px;
+    background: transparent;
 }

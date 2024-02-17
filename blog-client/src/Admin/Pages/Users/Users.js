@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import download from 'js-file-download';
 
 //Import services
 import { getUsers } from "../../Services/UserServices";
@@ -10,6 +11,16 @@ function Users() {
 	const [ users, setUsers ] = useState([]);
 	const [ searchInputString, setSearchInputString ] = useState(String);
 	const [ searchIsActive, setSearchIsActive ] = useState(false);
+
+	const handleExport = () => {
+		axios.get(`http://localhost:9000/user/export`)
+		.then(response => {
+			download(response.data, "user-export.json")
+		})
+		.catch(error => {
+			console.log(error);
+		});
+	}
 
 	const handleClearSearch = () => {
 		requestUserData();
@@ -46,7 +57,8 @@ function Users() {
 				<div className="title">
 					<h1>Users</h1>
 					<div className="buttons-wrapper">
-						<Link to="/dashboard/users/create">Create</Link>
+						<Link className="btn create" to="/dashboard/users/create">Create User</Link>
+						<Link className="btn export" onClick={ handleExport }>Export JSON</Link>
 					</div>
 				</div>
 

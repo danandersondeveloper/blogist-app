@@ -70,7 +70,7 @@ const editUser = async (req, res) => {
 const createUser = async (req, res) => {
 	try {
 
-		const { firstName, lastName, email, password } = req.body;
+		const { firstName, lastName, email, password, role, active } = req.body;
 
 		if (firstName.length <= 0 || lastName.length <= 0 || email.length <= 0 || password.lengh <= 0) return res.json({ message: "First and Last name are reqired!" });
 		if (!email.includes('@') || !email.includes('.com') & !email.includes('.co.za')) return res.json({ message: "Invalid email address" });
@@ -79,16 +79,31 @@ const createUser = async (req, res) => {
 
 		const saltRounds = 10;
 		const encryptedPassword =  await bcrypt.hash(password, saltRounds);
-		const newUser = {
-			"firstName": firstName,
-			"lastName": lastName,
-			"email": email,
-			"password": encryptedPassword
+
+		if (role && active) {
+			const newUser = {
+				"firstName": firstName,
+				"lastName": lastName,
+				"email": email,
+				"password": encryptedPassword,
+				"role": role,
+				"active": active
+			}
+
+			await User.create(newUser);
+
+		} else {
+			const newUser = {
+				"firstName": firstName,
+				"lastName": lastName,
+				"email": email,
+				"password": encryptedPassword
+			}	
+
+			await User.create(newUser);
 		}
 
-		await User.create(newUser);
-
-		return res.json({ message: "Successfull request" })
+		return res.json({ message: "success" })
 
 	} catch(err) {
 

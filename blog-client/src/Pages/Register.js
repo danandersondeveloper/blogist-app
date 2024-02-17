@@ -25,13 +25,13 @@ function Register() {
 			"password": password
 		}
 
-		axios.post("http://localhost:9000/user/register", requestBody)
+		axios.post(`http://localhost:9000/user/register`, requestBody)
 		.then(response => {
-			if (response.data.message === "Successfull request") {
+			if (response.data.message === "success") {
 				setFormSubmitted(true);
 				setInalidSubmit(true);
 			};
-			if (response.data.message != "Successfull request") {
+			if (response.data.message != "success") {
 				setErrorMessage(response.data.message);
 				setInalidSubmit(false)
 			};

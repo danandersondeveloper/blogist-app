@@ -3,6 +3,8 @@ import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext";
 import { login } from "../Services/AuthServices";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
 
@@ -11,8 +13,9 @@ function Login() {
 	const [ auth, setAuth ] = useContext(AuthContext);
 	const [ invalidSubmit, setInvalidSubmit ] = useState(false)
 	const [invalidSubmitMessage, setInvalidSubmitMessage ] = useState('Invalid email or password!')
-	const [ email, setEmail ] = useState('');
-	const [ password, setPassword ] = useState('');
+	const [ email, setEmail ] = useState(String);
+	const [ password, setPassword ] = useState(String);
+	const [ showPassword, setShowPassword ] = useState(false);
 
 
 	const handleLogin = async (event) => {
@@ -48,12 +51,25 @@ function Login() {
 
 				<form onSubmit={(e) => {handleLogin(e)}}>
 					<div className="row">
-						<label htmlFor="email">Email</label>
-						<input type="text" name="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+						<label htmlFor="email">Email:</label>
+						<input
+							type="text"
+							name="email"
+							value={ email }
+							onChange={(e) => { setEmail(e.target.value) }}
+						/>
 					</div>
 					<div className="row">
-						<label htmlFor="password">Password</label>
-						<input type="password" name="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+						<label htmlFor="password">Password:</label>
+						<input 
+							type={!showPassword ? "password" : "text"}
+							name="password"
+							value={ password }
+							onChange={(e) => { setPassword(e.target.value) }}
+						/>
+						<button className="btn view-password" type="button" onClick={() => { setShowPassword(!showPassword) }}>
+							{ !showPassword ? <FontAwesomeIcon icon={ faEye } /> : <FontAwesomeIcon icon={ faEyeSlash } />}
+						</button>
 					</div>
 					<div className="row">
 						<button className="btn btn-primary" type="submit">Login</button>

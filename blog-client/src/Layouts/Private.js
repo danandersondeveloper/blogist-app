@@ -14,7 +14,7 @@ function Private() {
 
 	return (
 		<>
-			{!auth ?
+			{!auth && !sessionStorage.getItem("auth") ?
 				<Navigate to="/login" replace />
 			:
 				<>

@@ -34,9 +34,12 @@ function App() {
   const [ auth, setAuth ] = useState();
 
   useEffect(() => {
-    axios.get('http://localhost:9000/auth', {withCredentials: true})
+    axios.get('http://localhost:9000/auth', { withCredentials: true })
     .then(response => {
-      (response.data.message.loggedIn) && setAuth(true);
+      if (response.data.message.loggedIn) {
+        sessionStorage.setItem("auth", "true");
+        setAuth(true);
+      };
     });
   }, []);
 

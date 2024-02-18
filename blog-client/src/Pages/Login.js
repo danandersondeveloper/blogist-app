@@ -33,6 +33,7 @@ function Login() {
 		const data = await login(requestBody);
 
 		if (data === 'success') {
+			sessionStorage.setItem("auth", "true");
 			setAuth(true);
 			navigate("/");
 		} else {

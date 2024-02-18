@@ -13,6 +13,7 @@ function Header() {
 	const handleLogout = () => {
 		axios.get('http://localhost:9000/logout', {withCredentials: true})
 		.then(response => {
+			sessionStorage.removeItem("auth");
 			if (response.data.message === 'success') setAuth(false);
 		});
 

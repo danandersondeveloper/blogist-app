@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 
 function CreateUser() {
@@ -62,7 +62,9 @@ function CreateUser() {
 				{ showMessage &&
 					<p className={ messageType }>
 						<span>{ messageContents }</span>
-						<span className="close" onClick={(event) => { setShowMessage(false) }}>x</span>
+						<span className="close" onClick={(event) => { setShowMessage(false) }}>
+							<FontAwesomeIcon icon={ faXmark } />
+						</span>
 					</p>
 				}
 

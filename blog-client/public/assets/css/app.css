@@ -449,6 +449,10 @@ select {
 	float: right;
 }
 
+.users .row .cell .btn svg {
+	margin-right: 5px;
+}
+
 /* USERS - EDIT / CREATE */
 
 .user-edit form,

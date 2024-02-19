@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import download from 'js-file-download';
 
 //Import services
@@ -66,7 +68,9 @@ function Users() {
 					<div className="row">
 						<form onSubmit={ (event) => { handleSearch(event) } }>
 							<input className="search-input" type="text" placeholder="Search users..." value={ searchInputString } onChange={ (event) => { setSearchInputString(event.target.value) } }/>
-							<button className="btn search-button" type="submit">Search</button>
+							<button className="btn search-button" type="submit">
+								<span>Search</span>
+							</button>
 							{ searchIsActive && <button className="btn clear-search-button" type="button" onClick={ handleClearSearch }>Clear</button> }
 						</form>
 					</div>
@@ -121,7 +125,10 @@ function Users() {
 									<span>{user.active ? "Active" : "Not Active"}</span>
 								</div>
 								<div className="cell">
-									<Link className="btn btn-dash-primary" to={`/dashboard/users/update/${user._id}`}>Edit</Link>
+									<Link className="btn btn-dash-primary" to={`/dashboard/users/update/${user._id}`}>
+										<span><FontAwesomeIcon icon={ faPenToSquare } /></span>
+										<span>Edit</span>
+									</Link>
 								</div>
 							</div>
 						))}

@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema({
 		default: true
 	},
 	created: {
-		type: Date,
-		default: new Date().toLocaleDateString()
+		type: String,
+		default: new Date().toLocaleDateString('en-GB')
 	}
 	
 });

@@ -101,7 +101,10 @@ function Users() {
 								<strong>User role:</strong>
 							</div>
 							<div className="cell">
-								<strong>Is active</strong>
+								<strong>Is active:</strong>
+							</div>
+							<div className="cell">
+								<strong>Member Since:</strong>
 							</div>
 							<div className="cell">
 								<strong className="hide-font">Edit</strong>
@@ -123,6 +126,9 @@ function Users() {
 								</div>
 								<div className="cell">
 									<span>{user.active ? "Active" : "Not Active"}</span>
+								</div>
+								<div className="cell">
+									<span>{user.created}</span>
 								</div>
 								<div className="cell">
 									<Link className="btn btn-dash-primary" to={`/dashboard/users/update/${user._id}`}>

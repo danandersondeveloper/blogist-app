@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
 	active: {
 		type: Boolean,
 		default: true
+	},
+	created: {
+		type: Date,
+		default: new Date().toLocaleDateString()
 	}
 	
 });

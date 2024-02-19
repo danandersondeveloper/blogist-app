@@ -45,37 +45,39 @@ function App() {
 
   return (
     <>
-      <Routes>
+      <AuthContext.Provider value={[auth, setAuth]}>
+        <Routes>
 
-        {/* Public routes - Anyone can view thes routes */}
+          {/* Public routes - Anyone can view thes routes */}
 
-        <Route element={ <AuthContext.Provider value={[ auth, setAuth ]}><Public /></AuthContext.Provider> }>
-          <Route path="/">
-            <Route index  element={ <Home /> } />
-            <Route path="login" element={ <Login /> } />
-            <Route path="register" element={ <Register /> } />
-          </Route>
-        </Route>
-
-        {/* Private routes - User needs to be logged in to view */}
-
-        <Route element={ <AuthContext.Provider value={[ auth, setAuth ]}><Private /></AuthContext.Provider> }>
-          <Route path="dashboard">
-            <Route index element={ <Dashboard /> } />
-            <Route path="blogs" element={ <Blogs /> } />
-            <Route path="users">
-              <Route index element={ <Users /> } />
-              <Route path="update/:id" element={ <UpdateUser /> } />
-              <Route path="create" element={ <CreateUser /> } />
+          <Route element={ <Public /> }>
+            <Route path="/">
+              <Route index  element={ <Home /> } />
+              <Route path="login" element={ <Login /> } />
+              <Route path="register" element={ <Register /> } />
             </Route>
           </Route>
-        </Route>
 
-        {/* $404 Error Catch */}
+          {/* Private routes - User needs to be logged in to view */}
 
-        <Route path="*" element={ <Error /> } />
+          <Route element={ <Private /> }>
+            <Route path="dashboard">
+              <Route index element={ <Dashboard /> } />
+              <Route path="blogs" element={ <Blogs /> } />
+              <Route path="users">
+                <Route index element={ <Users /> } />
+                <Route path="update/:id" element={ <UpdateUser /> } />
+                <Route path="create" element={ <CreateUser /> } />
+              </Route>
+            </Route>
+          </Route>
 
-      </Routes>
+          {/* $404 Error Catch */}
+
+          <Route path="*" element={ <Error /> } />
+
+        </Routes>
+      </AuthContext.Provider>
     </>
   );
 }

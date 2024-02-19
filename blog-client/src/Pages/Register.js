@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Register() {
 
@@ -13,6 +15,7 @@ function Register() {
 	const [ formSubmitted, setFormSubmitted ] = useState(false);
 	const [ invalidSubmit, setInalidSubmit ] = useState(true);
 	const [ errorMessage, setErrorMessage ] = useState('');
+	const [ showPassword, setShowPassword ] = useState(false);
 
 	const handleSubmit = (event) => {
 
@@ -54,19 +57,42 @@ function Register() {
 					<form onSubmit={(e) => {handleSubmit(e)}}>
 						<div className="row">
 							<label htmlFor="first-name">First Name:</label>
-							<input type="text" name="first-name" value={ firstName } onChange={ (e) => { setFirstName(e.target.value)} } />
+							<input
+								type="text"
+								name="first-name"
+								value={ firstName }
+								onChange={ (e) => { setFirstName(e.target.value)} }
+							/>
 						</div>
 						<div className="row">
 							<label htmlFor="last-name">Last Name:</label>
-							<input type="text" name="last-name" value={ lastName } onChange={ (e) => { setLastName(e.target.value) } } />
+							<input
+								type="text"
+								name="last-name"
+								value={ lastName }
+								onChange={ (e) => { setLastName(e.target.value) } }
+							/>
 						</div>
 						<div className="row">
 							<label htmlFor="email">Email:</label>
-							<input type="text" name="email" value={email} onChange={ (e) => { setEmail(e.target.value) } } />
+							<input
+								type="text"
+								name="email"
+								value={email}
+								onChange={ (e) => { setEmail(e.target.value) } }
+							/>
 						</div>
 						<div className="row">
 							<label htmlFor="password">Password:</label>
-							<input type="password" name="password" value={password} onChange={ (e) => {setPassword(e.target.value) } } />
+							<input
+								type={ showPassword ? "text" : "password"}
+								name="password"
+								value={password}
+								onChange={ (e) => {setPassword(e.target.value) } }
+							/>
+							<button className="btn view-password" type="button" onClick={ () => { setShowPassword( !showPassword) } }>
+								<FontAwesomeIcon icon={ faEye } />
+							</button>
 							<span className="small">Password needs to be more than 5 characters</span>
 						</div>
 						<div className="row">

@@ -440,8 +440,7 @@ select {
 	padding: 15px;
 }
 
-.row.headers .cell strong {
-	text-transform: uppercase;
+.row.headers .cell span {
 	color: #fff;
 }
 

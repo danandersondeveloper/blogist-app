@@ -89,25 +89,25 @@ function Users() {
 					<div className="users">
 						<div className="row headers">
 							<div className="cell">
-								<strong>First Name:</strong>
+								<span>First Name:</span>
 							</div>
 							<div className="cell">
-								<strong>Last name:</strong>
+								<span>Last name:</span>
 							</div>
 							<div className="cell">
-								<strong>Email:</strong>
+								<span>Email:</span>
 							</div>
 							<div className="cell">
-								<strong>User role:</strong>
+								<span>User role:</span>
 							</div>
 							<div className="cell">
-								<strong>Is active:</strong>
+								<span>Is active:</span>
 							</div>
 							<div className="cell">
-								<strong>Member Since:</strong>
+								<span>Member Since:</span>
 							</div>
 							<div className="cell">
-								<strong className="hide-font">Edit</strong>
+								<span className="hide-font">Edit</span>
 							</div>
 						</div>
 						{users.map(user => (

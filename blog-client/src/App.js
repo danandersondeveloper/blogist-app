@@ -25,6 +25,7 @@ import Error from "./Pages/Error";
 
 import Dashboard from "./Admin/Dashboard";
 import Blogs from "./Admin/Pages/Blogs/Blogs";
+import CreateBlog from "./Admin/Pages/Blogs/CreateBlog";
 import Users from "./Admin/Pages/Users/Users";
 import UpdateUser from "./Admin/Pages/Users/UpdateUser";
 import CreateUser from "./Admin/Pages/Users/CreateUser";
@@ -62,11 +63,17 @@ function App() {
           <Route element={ <Private /> }>
             <Route path="dashboard">
               <Route index element={ <Dashboard /> } />
-              <Route path="blogs" element={ <Blogs /> } />
+
+              <Route path="blogs">
+                <Route index element={ <Blogs /> } />
+                <Route path="create" element={ <CreateBlog /> } />
+              </Route>
+
+
               <Route path="users">
                 <Route index element={ <Users /> } />
-                <Route path="update/:id" element={ <UpdateUser /> } />
                 <Route path="create" element={ <CreateUser /> } />
+                <Route path="update/:id" element={ <UpdateUser /> } />
               </Route>
             </Route>
           </Route>

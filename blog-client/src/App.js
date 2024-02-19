@@ -44,7 +44,6 @@ function App() {
   }, []);
 
   return (
-    <>
       <AuthContext.Provider value={[auth, setAuth]}>
         <Routes>
 
@@ -78,7 +77,6 @@ function App() {
 
         </Routes>
       </AuthContext.Provider>
-    </>
   );
 }
 

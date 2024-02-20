@@ -39,13 +39,16 @@ function App() {
     .then(response => {
       if (response.data.message.loggedIn) {
         sessionStorage.setItem("auth", "true");
+        if (response.data.message.admin) {
+          sessionStorage.setItem("role", "admin")
+        }
         setAuth(true);
       };
     });
   }, []);
 
   return (
-      <AuthContext.Provider value={[auth, setAuth]}>
+      <AuthContext.Provider value={[ auth, setAuth ]}>
         <Routes>
 
           {/* Public routes - Anyone can view thes routes */}

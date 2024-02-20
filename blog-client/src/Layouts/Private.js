@@ -11,10 +11,11 @@ import Footer from "../Admin/Components/Footer";
 function Private() {
 
 	const [ auth, setAuth ] = useContext(AuthContext);
+	const role = sessionStorage.getItem('role');
 
 	return (
 		<>
-			{!auth && !sessionStorage.getItem("auth") ?
+			{(!auth && !sessionStorage.getItem("auth") && role !== 'admin' || role == null) ?
 				<Navigate to="/login" replace />
 			:
 				<>

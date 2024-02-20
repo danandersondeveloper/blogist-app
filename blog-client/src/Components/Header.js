@@ -14,6 +14,7 @@ function Header() {
 		axios.get('http://localhost:9000/logout', {withCredentials: true})
 		.then(response => {
 			sessionStorage.removeItem("auth");
+			sessionStorage.removeItem("role");
 			if (response.data.message === 'success') setAuth(false);
 		});
 
@@ -46,7 +47,9 @@ function Header() {
 								:
 								<>
 									<li>
-										<Link to="/dashboard">Dashboard</Link>
+										{ sessionStorage.getItem("role") == 'admin' &&
+											<Link to="/dashboard">Dashboard</Link>
+										}
 									</li>
 									<li>
 										<Link onClick={ handleLogout }>Logout</Link>

@@ -32,8 +32,9 @@ function Login() {
 
 		const data = await login(requestBody);
 
-		if (data === 'success') {
+		if (data.message === 'success') {
 			sessionStorage.setItem("auth", "true");
+			(data.role === 'admin') && sessionStorage.setItem("role", "admin");
 			setAuth(true);
 			navigate("/");
 		} else {

@@ -49,7 +49,7 @@ const login = async (req, res) => {
 		}
 
 		res.cookie('auth_user', `userId=${user._id};name=${user.firstName};role=${user.role};`, cookieOptions);
-		res.status(200).json({ message: "success" });
+		res.status(200).json({ message: "success", role: user.role });
 
 	} catch(err) {
 		console.log(err);

@@ -49,14 +49,21 @@ function Header() {
 								</>
 								:
 								<>
-									{ USER?.role === "admin" &&
+									{USER &&
 										<li>
-											<Link to="/dashboard">Dashboard</Link>							
+											<Link>Welcome back, {USER.name}</Link>
+											<ul className="dropdown">
+												{ USER?.role === "admin" &&
+													<li>
+														<Link to="/dashboard">Dashboard</Link>							
+													</li>
+												}
+												<li>
+													<Link onClick={ handleLogout }>Logout</Link>
+												</li>
+											</ul>
 										</li>
 									}
-									<li>
-										<Link onClick={ handleLogout }>Logout</Link>
-									</li>
 								</>
 							}
 						</ul>

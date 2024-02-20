@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext";
+import { UserContext } from "../Contexts/UserContext";
 import { login } from "../Services/AuthServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -10,9 +11,11 @@ function Login() {
 
 	const navigate = useNavigate();
 
-	const [ auth, setAuth ] = useContext(AuthContext);
+	const [ AUTH, setAuth, AUTH_REF ] = useContext(AuthContext);
+	const [ USER, setUser ] = useContext(UserContext);
+
 	const [ invalidSubmit, setInvalidSubmit ] = useState(false)
-	const [invalidSubmitMessage, setInvalidSubmitMessage ] = useState('Invalid email or password!')
+	const [ invalidSubmitMessage, setInvalidSubmitMessage ] = useState('Invalid email or password!')
 	const [ email, setEmail ] = useState(String);
 	const [ password, setPassword ] = useState(String);
 	const [ showPassword, setShowPassword ] = useState(false);
@@ -33,15 +36,13 @@ function Login() {
 		const data = await login(requestBody);
 
 		if (data.message === 'success') {
-			sessionStorage.setItem("auth", "true");
-			(data.role === 'admin') && sessionStorage.setItem("role", "admin");
+			setUser(data.user);
 			setAuth(true);
 			navigate("/");
 		} else {
 			setInvalidSubmitMessage(data);
 			setInvalidSubmit(true);
 		}
-
 	}
 
 	return(

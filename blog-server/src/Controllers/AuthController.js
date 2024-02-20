@@ -14,12 +14,17 @@ const isAutherised = (req, res) => {
 
 	if (authCookie) {
 
-		const isAdmin = authCookie.includes("admin") ? true : false 
+		const userInfomation = authCookie.split(';');
+		const userId = userInfomation[0].replace("userId=", "");
+		const userName = userInfomation[1].replace("name=", "");
+		const userRole = userInfomation[2].replace("role=", "");
 
 		res.status(200).json({
-			message: {
-				loggedIn: true,
-				admin: isAdmin
+			auth: true,
+			user: {
+				id: userId,
+				name: userName,
+				role: userRole
 			}
 		});
 	}
@@ -49,7 +54,7 @@ const login = async (req, res) => {
 		}
 
 		res.cookie('auth_user', `userId=${user._id};name=${user.firstName};role=${user.role};`, cookieOptions);
-		res.status(200).json({ message: "success", role: user.role });
+		res.status(200).json({ message: "success", user: { id: user._id, name: user.firstName, role: user.role } });
 
 	} catch(err) {
 		console.log(err);
@@ -58,4 +63,7 @@ const login = async (req, res) => {
 
 }
 
-module.exports = { isAutherised, login }
+module.exports = {
+	isAutherised,
+	login 
+}

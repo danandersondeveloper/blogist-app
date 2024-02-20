@@ -5,17 +5,20 @@ import { Link } from "react-router-dom";
 
 // Import contexts
 import { AuthContext } from "../../Contexts/AuthContext";
+import { UserContext } from "../../Contexts/UserContext";
 
 function Header() {
 
-	const [ auth, setAuth ] = useContext(AuthContext);
+	const [ AUTH, setAuth ] = useContext(AuthContext);
+	const [ USER, setUser ] = useContext(UserContext);
 
 	const handleLogout = () => {
-		axios.get('http://localhost:9000/logout', {withCredentials: true})
+		axios.get('http://localhost:9000/logout', { withCredentials: true })
 		.then(response => {
-			sessionStorage.removeItem("auth");
-			sessionStorage.removeItem("role");
-			if (response.data.message === 'success') setAuth(false);
+			if (response.data.message === 'success') {
+				setUser({ id: null, name: null, role: null });
+				setAuth(false);
+			}
 		});
 
 		window.location.reload();

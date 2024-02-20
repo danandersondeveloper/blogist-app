@@ -5,17 +5,20 @@ import { Link, useNavigate } from "react-router-dom";
 
 // Import contexts
 import { AuthContext } from "../Contexts/AuthContext";
+import { UserContext } from "../Contexts/UserContext";
 
 function Header() {
 
-	const [ auth, setAuth ] = useContext(AuthContext);
+	const [ AUTH, setAuth ] = useContext(AuthContext);
+	const [ USER, setUser ] = useContext(UserContext);
 
 	const handleLogout = () => {
 		axios.get('http://localhost:9000/logout', {withCredentials: true})
 		.then(response => {
-			sessionStorage.removeItem("auth");
-			sessionStorage.removeItem("role");
-			if (response.data.message === 'success') setAuth(false);
+			if (response.data.message === 'success') {
+				setUser({ id: null, name: null, role: null });
+				setAuth(false);
+			}
 		});
 
 		window.location.reload();
@@ -35,7 +38,7 @@ function Header() {
 							<li>
 								<Link to="/">Home</Link>
 							</li>
-							{!auth ?
+							{!AUTH ?
 								<>
 									<li>
 										<Link to="/login">Login</Link>
@@ -46,11 +49,11 @@ function Header() {
 								</>
 								:
 								<>
-									<li>
-										{ sessionStorage.getItem("role") == 'admin' &&
-											<Link to="/dashboard">Dashboard</Link>
-										}
-									</li>
+									{ USER?.role === "admin" &&
+										<li>
+											<Link to="/dashboard">Dashboard</Link>							
+										</li>
+									}
 									<li>
 										<Link onClick={ handleLogout }>Logout</Link>
 									</li>

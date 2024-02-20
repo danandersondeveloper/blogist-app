@@ -1,8 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 // Import comtexts
 import { AuthContext } from "../Contexts/AuthContext";
+import { UserContext } from "../Contexts/UserContext";
 
 // Import components
 import Header from "../Admin/Components/Header";
@@ -10,19 +11,20 @@ import Footer from "../Admin/Components/Footer";
 
 function Private() {
 
-	const [ auth, setAuth ] = useContext(AuthContext);
-	const role = sessionStorage.getItem('role');
+	const [ AUTH, setAuth ] = useContext(AuthContext);
+	const [ USER, setUser ] = useContext(UserContext);
 
 	return (
 		<>
-			{(!auth && !sessionStorage.getItem("auth") && role !== 'admin' || role == null) ?
-				<Navigate to="/login" replace />
-			:
+			{ ( AUTH ) ?
 				<>
 					<Header />
 					<Outlet />
 					<Footer />
-				</>				
+				</>	
+				
+			:	
+				<Navigate to="/login" replace />		
 			}
 		</>
 	);

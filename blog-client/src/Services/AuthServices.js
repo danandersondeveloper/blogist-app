@@ -6,7 +6,7 @@ const login = async (requestBody) =>  {
 		const response =  await axios.post("http://localhost:9000/auth/login", requestBody, {withCredentials: true})
 		return response.data;
 	} catch(error) {
-		return error.response.data;
+		return error.response.data.message;
 	}
 }
 

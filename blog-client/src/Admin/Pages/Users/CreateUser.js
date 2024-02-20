@@ -14,7 +14,7 @@ function CreateUser() {
 	const [ userEmail, setUserEmail ] = useState(String);
 	const [ userPassword, setUserPassword ] = useState(String);
 	const [ userRole, setUserRole ] = useState(String);
-	const [ userIsActive, setUserIsActive ] = useState(Boolean);
+	const [ userIsActive, setUserIsActive ] = useState(true);
 	const [ showPassword, setShowPassword ] = useState(false);
 	const [ messageType, setMessageType ] = useState(String);
 	const [ messageContents, setMessageContents ] = useState(String);

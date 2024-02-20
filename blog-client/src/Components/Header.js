@@ -51,7 +51,7 @@ function Header() {
 								<>
 									{USER &&
 										<li>
-											<Link>Welcome back, {USER.name}</Link>
+											<Link>Welcome, {USER.name}</Link>
 											<ul className="dropdown">
 												{ USER?.role === "admin" &&
 													<li>

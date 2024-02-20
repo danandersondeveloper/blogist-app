@@ -16,7 +16,7 @@ function Private() {
 
 	return (
 		<>
-			{ ( AUTH ) ?
+			{ ( AUTH  && USER.role === 'admin') ?
 				<>
 					<Header />
 					<Outlet />

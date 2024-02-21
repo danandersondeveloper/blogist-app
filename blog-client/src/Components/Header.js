@@ -52,19 +52,21 @@ function Header() {
 									{USER &&
 										<li>
 											<Link>Welcome, {USER.name}</Link>
-											<ul className="dropdown">
-												<li>
-													<Link to="/account">My Account</Link>
-												</li>
-												{ USER?.role === "admin" &&
+											<div className="dropdown-wrapper">
+												<ul className="dropdown">
 													<li>
-														<Link to="/dashboard">Dashboard</Link>							
+														<Link to="/account">My Account</Link>
 													</li>
-												}
-												<li>
-													<Link onClick={ handleLogout }>Logout</Link>
-												</li>
-											</ul>
+													{ USER?.role === "admin" &&
+														<li>
+															<Link to="/dashboard">Dashboard</Link>							
+														</li>
+													}
+													<li>
+														<Link onClick={ handleLogout }>Logout</Link>
+													</li>
+												</ul>
+											</div>
 										</li>
 									}
 								</>

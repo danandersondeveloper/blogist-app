@@ -37,9 +37,7 @@ function Account() {
 
 				{ !AUTH ?
 					<div className="content">
-						<p>Does not look like you are logged in.</p>
-						<Link className="btn-link" to="/login">Login</Link>
-						<Link className="btn-link" to="/register">Register</Link>
+						<p>Does not look like you are logged in. You can either <Link className="btn-link" to="/login">Login</Link> or <Link className="btn-link" to="/register">Register</Link></p>
 					</div>
 
 					:

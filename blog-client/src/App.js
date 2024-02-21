@@ -2,7 +2,10 @@ import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 
-//Context imports
+// Services import
+import { auth } from "./Services/AuthServices";
+
+// Context imports
 import { AuthContext } from "./Contexts/AuthContext";
 import { UserContext } from "./Contexts/UserContext";
 
@@ -36,14 +39,22 @@ function App() {
   const [ AUTH, setAuth ] = useState(Boolean);
   const [ USER, setUser] = useState(Object);
 
+  const initAuth = async () => {
+    const response = await auth();
+    return response
+  }
+
   useEffect(() => {
-    axios.get('http://localhost:9000/auth', { withCredentials: true })
-    .then(response => {
-      if (response.data.auth) {
+
+    const initAuth = async () => {
+      const response = await auth();
+      if (response.auth) {
         setAuth(true);
-        setUser(response.data.user);
-      };
-    });
+        setUser(response.user);
+      } 
+    }
+    initAuth();
+
   }, []);
 
   return (

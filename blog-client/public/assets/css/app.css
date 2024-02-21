@@ -204,7 +204,7 @@ select {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 7px 80px;
+	padding: 7px 100px;
 	overflow: visible;
 }
 
@@ -232,7 +232,7 @@ select {
 }
 
 .footer .row {
-	padding: 8px 80px;
+	padding: 8px 100px;
 }
 
 .built-by {
@@ -275,7 +275,7 @@ select {
 	background-color: #fff;
 	z-index: 999;
 	border: 1px solid #000;
-	left: 0;
+	left: 10;
 	top: calc(100% - 1px);
 	min-width: 200px;
 }
@@ -310,7 +310,7 @@ select {
 }
 
 .content-wrapper > .row {
-	margin: 35px 80px
+	margin: 35px 100px
 }
 
 

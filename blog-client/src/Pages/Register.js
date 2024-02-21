@@ -91,7 +91,7 @@ function Register() {
 								onChange={ (e) => {setPassword(e.target.value) } }
 							/>
 							<button className="btn view-password" type="button" onClick={ () => { setShowPassword( !showPassword) } }>
-								<FontAwesomeIcon icon={ showPassword? faEye : faEyeSlash } />
+								<FontAwesomeIcon icon={ showPassword? faEyeSlash : faEye } />
 							</button>
 							<span className="small">Password needs to be more than 5 characters</span>
 						</div>
@@ -101,7 +101,7 @@ function Register() {
 					</form> 
 
 					<div className="already-registered">
-						<p>Already registered? <Link to="/login">Login</Link></p>
+						<p>Already registered? <Link className="btn-link" to="/login">Login</Link></p>
 					</div>
 
 					</>

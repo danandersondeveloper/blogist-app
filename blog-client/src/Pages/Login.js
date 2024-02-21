@@ -80,7 +80,7 @@ function Login() {
 				</form>
 
 				<div className="not-registered">
-					<p>Not register? <Link to="/register">Register</Link></p>
+					<p>Not register? <Link className="btn-link" to="/register">Register</Link></p>
 				</div>
 			</div>
 		</main>

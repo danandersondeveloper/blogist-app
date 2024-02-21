@@ -1,9 +1,10 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faXmark } from "@fortawesome/free-solid-svg-icons";
 
+// SERVIVES
+import { createUser } from "../../Services/UserServices";
 
 function CreateUser() {
 
@@ -26,7 +27,7 @@ function CreateUser() {
 		setShowMessage(status);
 	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		
 		event.preventDefault();
 
@@ -39,25 +40,23 @@ function CreateUser() {
 			"active": userIsActive
 		}
 
-		axios.post(`http://localhost:9000/user/register`, requestBody)
-		.then(response => {
-			response.data.message === "success" && handleMessage(true, { message: "User has successfully been create" }, "success-message");
-			response.data.message !== "success" && handleMessage(true, { message: response.data.message }, "error-message");
-		})
-		.catch(error => {
-			console.log(error);
-		})
+		const response = await createUser(requestBody);
+
+		response.data.message === "success" && handleMessage(true, { message: "User has successfully been create" }, "success-message");
+		response.data.message !== "success" && handleMessage(true, { message: response.data.message }, "error-message");
+
+		setUserFirstName("");
+		setUserLastName("");
+		setUserEmail("");
+		setUserPassword("");
+		setUserRole("");
+		setUserIsActive("");
 
 	}
 
 	return(
 		<main className="content-wrapper dashboard create-user">
 			<div className="row">
-
-				<div className="title">
-					<h1>Create New User</h1>
-					<button type="button" className="btn btn-dash-back" onClick={() => {navigate(-1)}}>Back</button>
-				</div>
 
 				{ showMessage &&
 					<p className={ messageType }>
@@ -67,6 +66,11 @@ function CreateUser() {
 						</span>
 					</p>
 				}
+
+				<div className="title">
+					<h1>Create New User</h1>
+					<button type="button" className="btn btn-dash-back" onClick={() => {navigate(-1)}}>Back</button>
+				</div>
 
 				<form onSubmit={ (event) => { handleSubmit(event) } }>
 					<div className="row">

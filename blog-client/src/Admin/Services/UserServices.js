@@ -1,12 +1,24 @@
 import axios from "axios";
 
-const getUsers = async () => {
+const createUser = async (requestBody) => {
 	try {
-		const response = await axios.get("http://localhost:9000/user/")
+		const response = await axios.post(`http://localhost:9000/user/register`, requestBody);
 		return response;
-	} catch(err) {
-		return err;
+	} catch(error) {
+		return error;
 	}
 }
 
-export { getUsers }
+const getUsers = async () => {
+	try {
+		const response = await axios.get("http://localhost:9000/user/");
+		return response;
+	} catch(error) {
+		return error;
+	}
+}
+
+export {
+	createUser,
+	getUsers,
+}

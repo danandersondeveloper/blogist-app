@@ -9,6 +9,8 @@ import { UserContext } from "../Contexts/UserContext";
 
 function Header() {
 
+	const navigate = useNavigate();
+
 	const [ AUTH, setAuth ] = useContext(AuthContext);
 	const [ USER, setUser ] = useContext(UserContext);
 
@@ -21,6 +23,7 @@ function Header() {
 			}
 		});
 
+		navigate("/");
 		window.location.reload();
 	}
 

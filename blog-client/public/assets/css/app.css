@@ -121,6 +121,12 @@ select {
 	color: #fff;
 }
 
+a.btn-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .hide-font {
 	font-size: 0;
 }

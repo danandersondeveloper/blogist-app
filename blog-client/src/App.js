@@ -18,6 +18,7 @@ import Private from "./Layouts/Private"
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import Account from "./Pages/Account";
 import Error from "./Pages/Error";
 
 
@@ -57,6 +58,7 @@ function App() {
                 <Route index  element={ <Home /> } />
                 <Route path="login" element={ <Login /> } />
                 <Route path="register" element={ <Register /> } />
+                <Route path="account" element={ <Account /> } />
               </Route>
             </Route>
 
@@ -65,13 +67,10 @@ function App() {
             <Route element={ <Private /> }>
               <Route path="dashboard">
                 <Route index element={ <Dashboard /> } />
-
                 <Route path="blogs">
                   <Route index element={ <Blogs /> } />
                   <Route path="create" element={ <CreateBlog /> } />
                 </Route>
-
-
                 <Route path="users">
                   <Route index element={ <Users /> } />
                   <Route path="create" element={ <CreateUser /> } />

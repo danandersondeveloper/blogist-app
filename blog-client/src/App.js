@@ -3,9 +3,11 @@ import { useState, useEffect, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 
 // Services import
+
 import { auth } from "./Services/AuthServices";
 
 // Context imports
+
 import { AuthContext } from "./Contexts/AuthContext";
 import { UserContext } from "./Contexts/UserContext";
 

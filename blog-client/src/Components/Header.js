@@ -1,7 +1,10 @@
-import axios from "axios";
+
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+
+// Import services
+import { logout } from "../Services/AuthServices";
 
 // Import contexts
 import { AuthContext } from "../Contexts/AuthContext";
@@ -14,14 +17,14 @@ function Header() {
 	const [ AUTH, setAuth ] = useContext(AuthContext);
 	const [ USER, setUser ] = useContext(UserContext);
 
-	const handleLogout = () => {
-		axios.get('http://localhost:9000/logout', {withCredentials: true})
-		.then(response => {
-			if (response.data.message === 'success') {
-				setUser({ id: null, name: null, role: null });
-				setAuth(false);
-			}
-		});
+	const handleLogout = async () => {
+
+		const response = await logout();
+
+		if (response == 'success') {
+			setUser({ id: null, name: null, role: null });
+			setAuth(false);
+		}
 
 		navigate("/");
 		window.location.reload();

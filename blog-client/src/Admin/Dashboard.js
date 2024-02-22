@@ -4,7 +4,7 @@ function Dashboard() {
 		<main className="content-wrapper dashboard">
 			<div className="row">
 				<div className="title">
-					<h1>Dashboard component</h1>
+					<h1>Basic System Statistics</h1>
 				</div>
 				<div className="content">
 					<div class="row">

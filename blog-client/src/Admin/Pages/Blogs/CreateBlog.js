@@ -51,7 +51,7 @@ function CreateBlog() {
 					<div className="row">
 						<label htmlFor="">Blog Content:</label>
 
-						// TinyMCE
+						{ /* TinyMCE */ }
 
 					</div>
 					<div className="row">

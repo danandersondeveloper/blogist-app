@@ -28,7 +28,7 @@ function UpdateUser() {
 		
 		axios.delete(`http://localhost:9000/user/delete/`, {data: {requestData}})
 		.then(response => {
-			response.data.message == "success" && navigate(-1);
+			response.data.message === "success" && navigate(-1);
 		})
 		.catch(error => {
 			setDeleteUserErrorMessage(error.response.data.message);

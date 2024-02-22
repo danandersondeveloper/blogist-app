@@ -21,7 +21,7 @@ function Header() {
 
 		const response = await logout();
 
-		if (response == 'success') {
+		if (response === 'success') {
 			setUser({ id: null, name: null, role: null });
 			setAuth(false);
 		}

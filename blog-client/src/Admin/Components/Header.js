@@ -12,8 +12,8 @@ import { UserContext } from "../../Contexts/UserContext";
 
 function Header() {
 
-	const [ AUTH, setAuth ] = useContext(AuthContext);
-	const [ USER, setUser ] = useContext(UserContext);
+	const [ ...setAuth ] = useContext(AuthContext);
+	const [ ...setUser ] = useContext(UserContext);
 
 	const handleLogout = async () => {
 		

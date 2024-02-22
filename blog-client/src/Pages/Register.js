@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Register() {
-
-	const navigate = useNavigate();
 
 	const [ firstName, setFirstName ] = useState('');
 	const [ lastName, setLastName ] = useState('');
@@ -34,7 +32,7 @@ function Register() {
 				setFormSubmitted(true);
 				setInalidSubmit(true);
 			};
-			if (response.data.message != "success") {
+			if (response.data.message !== "success") {
 				setErrorMessage(response.data.message);
 				setInalidSubmit(false)
 			};

@@ -10,8 +10,8 @@ function Login() {
 
 	const navigate = useNavigate();
 
-	const [ AUTH, setAuth, AUTH_REF ] = useContext(AuthContext);
-	const [ USER, setUser ] = useContext(UserContext);
+	const [ ,setAuth ] = useContext(AuthContext);
+	const [ ,setUser ] = useContext(UserContext);
 
 	const [ invalidSubmit, setInvalidSubmit ] = useState(false)
 	const [ invalidSubmitMessage, setInvalidSubmitMessage ] = useState('Invalid email or password!')

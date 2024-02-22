@@ -58,6 +58,7 @@ function Login() {
 							type="text"
 							name="email"
 							value={ email }
+							autoComplete="username"
 							onChange={(e) => { setEmail(e.target.value) }}
 						/>
 					</div>
@@ -68,6 +69,7 @@ function Login() {
 							name="password"
 							value={ password }
 							onChange={(e) => { setPassword(e.target.value) }}
+							autoComplete="current-password"
 						/>
 						<button className="btn view-password" type="button" onClick={() => { setShowPassword(!showPassword) }}>
 							{ !showPassword ? <FontAwesomeIcon icon={ faEye } /> : <FontAwesomeIcon icon={ faEyeSlash } />}

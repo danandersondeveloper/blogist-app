@@ -79,6 +79,7 @@ function Register() {
 								type="text"
 								name="email"
 								value={email}
+								autoComplete="username"
 								onChange={ (e) => { setEmail(e.target.value) } }
 							/>
 						</div>
@@ -88,6 +89,7 @@ function Register() {
 								type={ showPassword ? "text" : "password"}
 								name="password"
 								value={password}
+								autoComplete="new-password"
 								onChange={ (e) => {setPassword(e.target.value) } }
 							/>
 							<button className="btn view-password" type="button" onClick={ () => { setShowPassword( !showPassword) } }>

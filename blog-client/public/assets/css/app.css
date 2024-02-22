@@ -325,6 +325,21 @@ a.btn-link {
 }
 
 
+.header.dashboard .row .col:first-child {
+	margin-right: 50px;
+}
+
+.header.dashboard .row .col:last-child {
+	width: 100%;
+}
+
+.header.dashboard .navigation {
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
 /* MAIN CONTENT */
 
 .content-wrapper {
@@ -395,12 +410,6 @@ a.btn-link {
 
 
 /* DASHBOARD */
-
-.nav-border {
-	border-left: 1px solid #7b7b7b;
-    padding-left: 25px !important;
-    margin-left: 15px;
-}
 
 .content-wrapper.dashboard h1 {
 	color: #343a40

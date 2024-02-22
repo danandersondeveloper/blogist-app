@@ -37,13 +37,15 @@ function Header() {
 				</div>
 				<div className="col">
 					<nav className="navigation">
-						<ul>
+						<ul className="admin-links">
 							<li>
 								<Link to="/dashboard/blogs">Blogs</Link>
 							</li>
 							<li>
 								<Link to="/dashboard/users">Users</Link>
 							</li>
+						</ul>
+						<ul className="user-links">
 							<li className="nav-border">
 								<Link to="/">Public site</Link>
 							</li>

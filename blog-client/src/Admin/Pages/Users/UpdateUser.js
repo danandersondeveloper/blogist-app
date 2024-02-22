@@ -83,8 +83,6 @@ function UpdateUser() {
 
 	return(
 		<main className="content-wrapper dashboard user-edit">
-
-
 			<div className="row">
 
 				{(successMessage.length > 0) &&

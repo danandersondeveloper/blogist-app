@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Editor } from "@tinymce/tinymce-react";
 
 function CreateBlog() {
+
+	const TINYMCE_KEY = process.env.REACT_APP_TINYMCE;
 
 	const navigate = useNavigate();
 
 	const [ blogTitle, setBlogTitle ] = useState(String);
 	const [ blogPictureUrl, setBlogPictureUrl ] = useState(String);
 	const [ blogShortDescription, setBlogShortDescription ] = useState(String);
+	const [value, setValue] = useState("");
+	const [text, setText] = useState("");
+
+	const onEditorInputChange = (newValue, editor) => {
+		setValue(newValue);
+	   setText(editor.getContent({ format: "text" }));
+   	}
 
 	const handleSubmit = () => {
 		alert("Handle form submit")
@@ -52,6 +62,36 @@ function CreateBlog() {
 						<label htmlFor="">Blog Content:</label>
 
 						{ /* TinyMCE */ }
+
+						<div className="tiny-mce-container">
+							<Editor
+								apiKey={TINYMCE_KEY}
+								onEditorChange={(newValue, editor) => onEditorInputChange(newValue, editor)}
+								onInit={(evt, editor) => setText(editor.getContent({ format: "text" }))}
+								value={value}
+								initialValue=""
+								init={{
+									plugins: [
+										'advlist',
+										'autolink',
+										'lists',
+										'link',
+										'image',
+										'charmap',
+										'preview',
+										'anchor',
+										'searchreplace',
+										'visualblocks',
+										'code',
+										'insertdatetime',
+										'media',
+										'table',
+										'code'
+									],
+									toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
+								}}
+							/>
+						</div>
 
 					</div>
 					<div className="row">

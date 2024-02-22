@@ -575,7 +575,8 @@ a.btn-link {
 /* USERS - EDIT / CREATE */
 
 .user-edit form,
-.create-user form {
+.create-user form,
+.create-blog form {
 	background: #f6f6f6;
     padding: 30px;
     border: 1px solid #e9e9e9;
@@ -583,7 +584,8 @@ a.btn-link {
 }
 
 .user-edit form .row,
-.create-user form .row {
+.create-user form .row,
+.create-blog form .row {
 	display: flex;
 	align-items: center;
 	margin-bottom: 20px;
@@ -591,19 +593,22 @@ a.btn-link {
 }
 
 .user-edit form .row:last-child,
-.create-user form .row:last-child { 
+.create-user form .row:last-child,
+.create-blog form .row:last-child { 
 	margin-bottom: 0;
 }
 
 .user-edit form .row label,
-.create-user form .row label {
+.create-user form .row label,
+.create-blog form .row label {
 	min-width: 15%;
 	padding: 0px 10px;
 	text-align: right;
 }
 
 .user-edit form .row input,
-.create-user form .row input {
+.create-user form .row input,
+.create-blog form .row input {
 	width: calc(100% - 15px);
 	height: 42px;
 	padding: 5px 15px;

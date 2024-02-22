@@ -39,10 +39,10 @@ function Header() {
 					<nav className="navigation">
 						<ul className="admin-links">
 							<li>
-								<Link to="/dashboard/blogs">Blogs</Link>
+								<Link to="/dashboard/users">Users</Link>
 							</li>
 							<li>
-								<Link to="/dashboard/users">Users</Link>
+								<Link to="/dashboard/blogs">Blogs</Link>
 							</li>
 						</ul>
 						<ul className="user-links">

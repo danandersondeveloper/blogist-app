@@ -326,7 +326,7 @@ a.btn-link {
 
 
 .header.dashboard .row .col:first-child {
-	margin-right: 50px;
+	margin-right: 35px;
 }
 
 .header.dashboard .row .col:last-child {
@@ -411,6 +411,50 @@ a.btn-link {
 
 /* DASHBOARD */
 
+.basic-stats .row {
+	display: flex;
+	align-items: center;
+}
+
+.basic-stats .row .col {
+	width: 100%;
+}
+
+.basic-stats .row .col:first-child {
+    margin-right: 15px;
+}
+
+.basic-stats .row .col:last-child {
+    margin-left: 15px;
+}
+
+.stat {
+    padding: 15px;
+    background: #5f9978;
+    border: 1px solid #57896d;
+    border-radius: 3px;
+}
+
+.stat-title {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #4f8165;
+    padding-bottom: 18px;
+}
+
+.stat-title span {
+	display: block;
+	font-size: 18px;
+	text-align: center;
+	color: #fff
+}
+
+.stat-number span {
+	display: block;
+	text-align: center;
+	color: #fff;
+	font-size: 60px;
+}
+
 .content-wrapper.dashboard h1 {
 	color: #343a40
 }
@@ -474,8 +518,6 @@ a.btn-link {
     border-radius: 3px;
     padding: 5px 15px;
 }
-
-
 
 .users {
 	padding: 15px;

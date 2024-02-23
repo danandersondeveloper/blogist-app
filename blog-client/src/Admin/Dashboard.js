@@ -10,7 +10,7 @@ function Dashboard() {
 					<h1>Basic System Statistics</h1>
 				</div>
 				<div className="content">
-					<div class="row">
+					<div className="row">
 						<Statistics />
 					</div>
 				</div>

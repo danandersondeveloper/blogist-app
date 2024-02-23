@@ -8,7 +8,7 @@ function Statistics() {
 						<div className="stat-title">
 							<span>Total Users:</span>
 						</div>
-						<div class="stat-number">
+						<div className="stat-number">
 							<span>45</span>
 						</div>
 					</div>
@@ -18,7 +18,7 @@ function Statistics() {
 						<div className="stat-title">
 							<span>Total Blogs:</span>
 						</div>
-						<div class="stat-number">
+						<div className="stat-number">
 							<span>200</span>
 						</div>
 					</div>

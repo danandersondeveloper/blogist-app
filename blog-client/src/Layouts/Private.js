@@ -1,30 +1,43 @@
-import { Outlet, Navigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-// Import comtexts
-import { AuthContext } from "../Contexts/AuthContext";
-import { UserContext } from "../Contexts/UserContext";
 
-// Import components
+// Import Services
+
+import { auth } from "../Services/AuthServices";
+
+// Import Components
+
 import Header from "../Admin/Components/Header";
 import Footer from "../Admin/Components/Footer";
 
 function Private() {
 
-	const [ AUTH, setAuth ] = useContext(AuthContext);
-	const [ USER, setUser ] = useContext(UserContext);
+	const navigate = useNavigate();
+
+	const [ autherised, setAutherised ] = useState();
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const response = await auth();
+				(!response.auth || response.user.role !== "admin" || response.user.role === "user" || response.user.role === "guest") && navigate("/login")
+				setAutherised(true)
+			} catch (error) {
+				setAutherised(false)
+				navigate("/login")
+			}
+		})();
+	},[]);
 
 	return (
 		<>
-			{ ( AUTH  && USER.role === 'admin') ?
+			{ autherised &&
 				<>
 					<Header />
 					<Outlet />
 					<Footer />
-				</>	
-				
-			:	
-				<Navigate to="/login" replace />		
+				</>
 			}
 		</>
 	);

@@ -1,10 +1,7 @@
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-// Services import
-
-import { auth } from "./Services/AuthServices";
 
 // Context imports
 
@@ -40,24 +37,6 @@ function App() {
 
   const [ AUTH, setAuth ] = useState(Boolean);
   const [ USER, setUser] = useState(Object);
-
-  const initAuth = async () => {
-    const response = await auth();
-    return response
-  }
-
-  useEffect(() => {
-
-    const initAuth = async () => {
-      const response = await auth();
-      if (response.auth) {
-        setAuth(true);
-        setUser(response.user);
-      } 
-    }
-    initAuth();
-
-  }, []);
 
   return (
       <AuthContext.Provider value={[ AUTH, setAuth ]}>

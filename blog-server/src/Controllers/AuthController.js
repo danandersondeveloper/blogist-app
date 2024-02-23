@@ -8,25 +8,38 @@ const User = require("../Models/UserModel");
 // @access Private
 
 const isAutherised = (req, res) => {
-	const authCookie = req.cookies.auth_user;
 
-	console.log(authCookie);
+	try {
+		const authCookie = req.cookies.auth_user;
 
-	if (authCookie) {
-
-		const userInfomation = authCookie.split(';');
-		const userId = userInfomation[0].replace("userId=", "");
-		const userName = userInfomation[1].replace("name=", "");
-		const userRole = userInfomation[2].replace("role=", "");
-
-		res.status(200).json({
-			auth: true,
-			user: {
-				id: userId,
-				name: userName,
-				role: userRole
-			}
-		});
+		if (authCookie) {
+	
+			const userInfomation = authCookie.split(';');
+			const userId = userInfomation[0].replace("userId=", "");
+			const userName = userInfomation[1].replace("name=", "");
+			const userRole = userInfomation[2].replace("role=", "");
+	
+			res.status(200).json({
+				auth: true,
+				user: {
+					id: userId,
+					name: userName,
+					role: userRole
+				}
+			});
+		} else {
+			res.status(200).json({
+				auth: false,
+				user : {
+					id: null,
+					name: null,
+					role: "guest"
+				}
+			})
+		}
+	} catch(error) {
+		console.log(err);
+		res.status(500).json({ message: "Status Code 500: Internal server error."});
 	}
 }
 

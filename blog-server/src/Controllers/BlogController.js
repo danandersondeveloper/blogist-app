@@ -16,11 +16,20 @@ const createBlog = async (req, res) => {
 	}
 }
 
-const getBlogs = (req, res) => {
+const getBlogs = async (req, res) => {
 	try {
+
+		const removedData = [
+			"-picture",
+			"-content",
+			"-shortDescription",
+			"-__v"
+		]
+
+		const blogs = await Blog.find().select(removedData);
 		
 		res.status(200);
-		res.json({ message: "Request made to get list of blogs" })
+		res.json(blogs);
 
 	} catch(error) {
 

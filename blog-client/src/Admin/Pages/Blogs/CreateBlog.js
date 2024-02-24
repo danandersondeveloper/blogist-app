@@ -34,19 +34,21 @@ function CreateBlog() {
 			state: saveButtonClicked
 		}
 
-		axios.post("http://localhost:9000/blog/create", requestBody)
-		.then(response => {
-			if (response.data.message === "success") {
-				setBlogTitle("");
-				setBlogPictureUrl("");
-				setBlogShortDescription("");
-				setBlogContent("");
-				setSaveButtonClicked("");
-			}
-		})
-		.catch(error => {
-			alert(error);
-		})
+		alert(blogContent);
+
+		// axios.post("http://localhost:9000/blog/create", requestBody)
+		// .then(response => {
+		// 	if (response.data.message === "success") {
+		// 		setBlogTitle("");
+		// 		setBlogPictureUrl("");
+		// 		setBlogShortDescription("");
+		// 		setBlogContent("");
+		// 		setSaveButtonClicked("");
+		// 	}
+		// })
+		// .catch(error => {
+		// 	alert(error);
+		// })
 
 	}
 
@@ -93,7 +95,7 @@ function CreateBlog() {
 						<div className="tiny-mce-container">
 							<Editor
 								apiKey={TINYMCE_KEY}
-								onEditorChange={(newValue, editor) => onEditorInputChange(newValue, editor)}
+								onEditorChange={ (newValue, editor) => onEditorInputChange(newValue, editor) }
 								onInit={(evt, editor) => setBlogContent(editor.getContent())}
 								value={value}
 								initialValue="Type something in..."

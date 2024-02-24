@@ -125,9 +125,9 @@ const getExportedUsers = async (req, res) => {
 		const users = await User.find({}).select(["-password", "-_id"]);
 		const jsonData = JSON.stringify(users);
 
-		fs.writeFileSync('src/Assets/export.json', jsonData, "utf-8");
+		fs.writeFileSync('src/Assets/Exports/export.json', jsonData, "utf-8");
 
-		res.status(200).download("src/Assets/export.json", "user-export.json");
+		res.status(200).download("src/Assets/Exports/export.json", "user-export.json");
 		
 
 	} catch ( error ) {

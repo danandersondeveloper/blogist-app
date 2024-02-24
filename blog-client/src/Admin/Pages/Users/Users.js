@@ -86,7 +86,7 @@ function Users() {
 
 					:
 
-					<div className="users">
+					<div className="table users">
 						<div className="row headers">
 							<div className="cell">
 								<span>First Name:</span>

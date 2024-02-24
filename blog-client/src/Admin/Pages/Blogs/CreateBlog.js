@@ -1,3 +1,5 @@
+
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Editor } from "@tinymce/tinymce-react";
@@ -11,16 +13,41 @@ function CreateBlog() {
 	const [ blogTitle, setBlogTitle ] = useState(String);
 	const [ blogPictureUrl, setBlogPictureUrl ] = useState(String);
 	const [ blogShortDescription, setBlogShortDescription ] = useState(String);
-	const [value, setValue] = useState("");
-	const [text, setText] = useState("");
+	const [ value, setValue ] = useState("");
+	const [ blogContent, setBlogContent ] = useState("");
+	const [ saveButtonClicked, setSaveButtonClicked ] = useState(String);
 
 	const onEditorInputChange = (newValue, editor) => {
 		setValue(newValue);
-	   setText(editor.getContent({ format: "text" }));
+	   	setBlogContent(editor.getContent({ format: "text" }));
    	}
 
-	const handleSubmit = () => {
-		alert("Handle form submit")
+	const handleSubmit = (event, saveButtonClicked) => {
+
+		event.preventDefault();
+	
+		const requestBody = {
+			title: blogTitle,
+			picture: blogPictureUrl,
+			shortDescription: blogShortDescription,
+			content: blogContent,
+			state: saveButtonClicked
+		}
+
+		axios.post("http://localhost:9000/blog/create", requestBody)
+		.then(response => {
+			if (response.data.message === "success") {
+				setBlogTitle("");
+				setBlogPictureUrl("");
+				setBlogShortDescription("");
+				setBlogContent("");
+				setSaveButtonClicked("");
+			}
+		})
+		.catch(error => {
+			alert(error);
+		})
+
 	}
 
 	return(
@@ -31,7 +58,7 @@ function CreateBlog() {
 					<button type="button" className="btn btn-dash-back" onClick={() => {navigate(-1)}}>Back</button>
 				</div>
 
-				<form onSubmit={ handleSubmit }>
+				<form onSubmit={ (event) => { handleSubmit(event, saveButtonClicked) } }>
 					<div className="row">
 						<label htmlFor="blog-title">Blog title:</label>
 						<input
@@ -46,7 +73,7 @@ function CreateBlog() {
 							name="blog-picture-url"
 							type="text"
 							value={ blogPictureUrl }
-							onchange={ ( event ) => { setBlogPictureUrl( event.target.value ) } }
+							onChange={ ( event ) => { setBlogPictureUrl( event.target.value ) } }
 						/>
 					</div>
 					<div className="row">
@@ -55,7 +82,7 @@ function CreateBlog() {
 							name="blog-short-description"
 							type="text"
 							value={ blogShortDescription }
-							onchange={ ( event ) => { setBlogShortDescription( event.target.value ) } }
+							onChange={ ( event ) => { setBlogShortDescription( event.target.value ) } }
 						/>
 					</div>
 					<div className="row">
@@ -67,9 +94,9 @@ function CreateBlog() {
 							<Editor
 								apiKey={TINYMCE_KEY}
 								onEditorChange={(newValue, editor) => onEditorInputChange(newValue, editor)}
-								onInit={(evt, editor) => setText(editor.getContent({ format: "text" }))}
+								onInit={(evt, editor) => setBlogContent(editor.getContent())}
 								value={value}
-								initialValue=""
+								initialValue="Type something in..."
 								init={{
 									plugins: [
 										'advlist',
@@ -95,7 +122,8 @@ function CreateBlog() {
 
 					</div>
 					<div className="row">
-						<button type="submit">Save</button>
+						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { setSaveButtonClicked("publish") } }>Save and Publish</button>
+						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { setSaveButtonClicked("draft") } }>Save as Draft</button>
 					</div>
 				</form>
 

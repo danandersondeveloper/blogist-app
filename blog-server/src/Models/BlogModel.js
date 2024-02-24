@@ -16,6 +16,14 @@ const blogSchema = new mongoose.Schema({
 	content: {
 		type: String,
 		required: true
+	},
+	state: {
+		type: String,
+		default: "draft"
+	},
+	created: {
+		type: String,
+		default: new Date().toLocaleDateString('en-GB')
 	}
 });
 

@@ -506,9 +506,15 @@ a.btn-link {
 }
 
 .btn.search-button {
+	display: flex;
+	align-items: center;
 	background: #1a6680;
     color: #fff;
 	margin-left: 5px;
+}
+
+.btn.search-button .icon {
+	margin-right: 5px;
 }
 
 .btn.clear-search-button {
@@ -558,6 +564,14 @@ a.btn-link {
 	padding: 10px 15px; 
 }
 
+.table .row .cell.narrow {
+	max-width: 150px;
+}
+
+.table .row .cell.center {
+	text-align: center;
+}
+
 .table .row.headers {
 	background: #343a40;
 	border-radius: 3px 3px 0 0;
@@ -582,7 +596,7 @@ a.btn-link {
 	float: right;
 }
 
-.users .row .cell .btn svg {
+.table .row .cell .btn svg {
 	margin-right: 5px;
 }
 

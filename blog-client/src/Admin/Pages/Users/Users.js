@@ -69,7 +69,9 @@ function Users() {
 						<form onSubmit={ (event) => { handleSearch(event) } }>
 							<input className="search-input" type="text" placeholder="Search users..." value={ searchInputString } onChange={ (event) => { setSearchInputString(event.target.value) } }/>
 							<button className="btn search-button" type="submit">
-								<span className="icon"><FontAwesomeIcon icon={ faMagnifyingGlass } /></span>
+								<span className="icon">
+									<FontAwesomeIcon icon={ faMagnifyingGlass } />
+								</span>
 								<span>Search</span>
 							</button>
 							{ searchIsActive && <button className="btn clear-search-button" type="button" onClick={ handleClearSearch }>Clear</button> }

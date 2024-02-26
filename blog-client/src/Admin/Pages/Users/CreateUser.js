@@ -131,6 +131,7 @@ function CreateUser() {
 						/>
 					</div>
 					<div className="row">
+						<button className="btn btn-dash-default" type="button" onClick={() => {navigate(-1)}}>Cancel</button>
 						<button className="btn btn-dash-primary" type="submit">Save</button>
 					</div>
 				</form>

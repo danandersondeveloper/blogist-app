@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faXmark, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 //Import services
 import { getBlogs } from "../../Services/BlogServices";
@@ -44,13 +46,13 @@ function Blogs() {
 							<div className="cell">
 								<span>Title</span>
 							</div>
-							<div className="cell">
-								<span>State</span>
+							<div className="cell narrow center">
+								<span>Status</span>
 							</div>
-							<div className="cell">
+							<div className="cell narrow">
 								<span>Created</span>
 							</div>
-							<div className="cell">
+							<div className="cell narrow">
 								<span className="hide-font">edit</span>
 							</div>
 						</div>
@@ -59,14 +61,23 @@ function Blogs() {
 								<div className="cell">
 									<span>{blog.title}</span>
 								</div>
-								<div className="cell">
-									<span>{blog.state}</span>
+								<div className="cell narrow center">
+									<span>
+										{blog.state === "publish" ?
+
+											<FontAwesomeIcon icon={ faCheck } />
+											:
+											<FontAwesomeIcon icon={ faXmark } />
+
+										}
+									</span>
 								</div>
-								<div className="cell">
+								<div className="cell narrow">
 									<span>{blog.created}</span>
 								</div>
-								<div className="cell">
+								<div className="cell narrow">
 									<Link className="btn btn-dash-primary" to={`/dashboard/blog/update/${blog._id}`}>
+										<span><FontAwesomeIcon icon={ faPenToSquare } /></span>
 										<span>Edit</span>
 									</Link>
 								</div>

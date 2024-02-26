@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faCheck, faXmark, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import download from 'js-file-download';
 
 //Import services
@@ -69,6 +69,7 @@ function Users() {
 						<form onSubmit={ (event) => { handleSearch(event) } }>
 							<input className="search-input" type="text" placeholder="Search users..." value={ searchInputString } onChange={ (event) => { setSearchInputString(event.target.value) } }/>
 							<button className="btn search-button" type="submit">
+								<span className="icon"><FontAwesomeIcon icon={ faMagnifyingGlass } /></span>
 								<span>Search</span>
 							</button>
 							{ searchIsActive && <button className="btn clear-search-button" type="button" onClick={ handleClearSearch }>Clear</button> }
@@ -89,48 +90,56 @@ function Users() {
 					<div className="table users">
 						<div className="row headers">
 							<div className="cell">
-								<span>First Name:</span>
-							</div>
-							<div className="cell">
-								<span>Last name:</span>
-							</div>
-							<div className="cell">
 								<span>Email:</span>
 							</div>
-							<div className="cell">
+							<div className="cell narrow">
+								<span>First Name:</span>
+							</div>
+							<div className="cell narrow">
+								<span>Last name:</span>
+							</div>
+							<div className="cell narrow">
 								<span>User role:</span>
 							</div>
-							<div className="cell">
+							<div className="cell narrow center">
 								<span>Is active:</span>
 							</div>
-							<div className="cell">
+							<div className="cell narrow">
 								<span>Member Since:</span>
 							</div>
-							<div className="cell">
+							<div className="cell narrow">
 								<span className="hide-font">Edit</span>
 							</div>
 						</div>
 						{users.map(user => (
 							<div className="row" key={user._id}>
 								<div className="cell">
-									<span>{user.firstName}</span>
-								</div>
-								<div className="cell">
-									<span>{user.lastName}</span>
-								</div>
-								<div className="cell">
 									<span>{user.email}</span>
 								</div>
-								<div className="cell">
+								<div className="cell narrow">
+									<span>{user.firstName}</span>
+								</div>
+								<div className="cell narrow">
+									<span>{user.lastName}</span>
+								</div>
+								<div className="cell narrow">
 									<span>{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>
 								</div>
-								<div className="cell">
-									<span>{user.active ? "Active" : "Not Active"}</span>
+								<div className="cell narrow center">
+									<span>
+										{user.active ?
+											
+											<FontAwesomeIcon icon={ faCheck } />
+											:
+											<FontAwesomeIcon icon={ faXmark } />
+										
+										}
+									</span>
 								</div>
-								<div className="cell">
+								<div className="cell narrow">
 									<span>{user.created}</span>
 								</div>
-								<div className="cell">
+								<div className="cell narrow">
 									<Link className="btn btn-dash-primary" to={`/dashboard/users/update/${user._id}`}>
 										<span><FontAwesomeIcon icon={ faPenToSquare } /></span>
 										<span>Edit</span>

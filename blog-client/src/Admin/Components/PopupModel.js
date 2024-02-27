@@ -39,7 +39,7 @@ function PopupModel(props) {
 						<div className="row">
 							<div className="title">
 								<h3>{`Delete: ${props.config.data.userFirstName} ${props.config.data.userLastName}`}</h3>
-								<span className="close" onClick={() => { props.config.data.displayModel.setDisplayDeleteModel(!props.config.data.displayModel.displayDeleteModel) }}>
+								<span className="close" onClick={() => { props.setState(!props.state) }}>
 									{/* FONT AWSEOM ICON HERE!! */}
 									x
 									{/* FONT AWSEOM ICON HERE!! */}

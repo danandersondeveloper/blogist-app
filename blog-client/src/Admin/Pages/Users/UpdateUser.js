@@ -143,12 +143,10 @@ function UpdateUser() {
 								userId: userId,
 								userFirstName: userFirstName,
 								userLastName: userLastName,
-								displayModel: [ 
-									displayPopupModel,
-									setDisplayPopupModel
-								]
 							}
 						}}
+						state={ displayPopupModel }
+						setState={ setDisplayPopupModel }
 					/>
 
 				}

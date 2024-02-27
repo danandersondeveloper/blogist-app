@@ -1,5 +1,14 @@
 import axios from "axios";
 
+const updateUser = async (userId, requestBody) => {
+	try {
+		const response = await axios.patch(`http://localhost:9000/user/edit/${userId}`, requestBody);
+		return response
+	} catch(error) {
+		return error;
+	}
+}
+
 const createUser = async (requestBody) => {
 	try {
 		const response = await axios.post(`http://localhost:9000/user/register`, requestBody);
@@ -19,6 +28,7 @@ const getUsers = async () => {
 }
 
 export {
+	updateUser,
 	createUser,
 	getUsers,
 }

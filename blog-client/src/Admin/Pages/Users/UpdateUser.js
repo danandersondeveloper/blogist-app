@@ -1,6 +1,9 @@
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+
+//Services
+import { updateUser } from "../../Services/UserServices";
 
 function UpdateUser() {
 
@@ -35,7 +38,7 @@ function UpdateUser() {
 		})
 	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 
 		event.preventDefault();
 
@@ -48,13 +51,10 @@ function UpdateUser() {
 			"active": userIsActive
 		}
 
-		axios.patch(`http://localhost:9000/user/edit/${userId}`, requestData)
-		.then(response => {
-			if (response.data.message === "success") setSuccessMessage("User has been updates successfully!");
-		})
-		.catch(error => {
-			console.log(error);
-		});
+		const response = await updateUser(userId, requestData);
+		
+		response.data.message === 'success' && setSuccessMessage("User has been updated successfully!");
+
 	}
 
 	useEffect(() => {

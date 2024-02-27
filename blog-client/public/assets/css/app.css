@@ -650,12 +650,14 @@ a.btn-link {
 }
 
 .user-edit form .row:last-child,
-.create-user form .row:last-child {
+.create-user form .row:last-child,
+.create-blog form .row:last-child {
 	justify-content: right;
 }
 
 .user-edit form .row .btn,
-.create-user form .row .btn {
+.create-user form .row .btn,
+.create-blog form .row .btn {
 	margin-left: 5px;
 }
 

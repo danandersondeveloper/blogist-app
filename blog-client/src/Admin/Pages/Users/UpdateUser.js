@@ -2,6 +2,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+//Components
+import PopupModel from "../../Components/PopupModel";
+
 //Services
 import { updateUser } from "../../Services/UserServices";
 
@@ -9,34 +12,15 @@ function UpdateUser() {
 
 	const navigate = useNavigate();
 
-	const [ userId, setUserID ] = useState(String);
+	const [ userId, setUserId ] = useState(String);
 	const [ userFirstName, setUserFirstName ] = useState(String);
 	const [ userLastName, setUserLastName ] = useState(String);
 	const [ userEmail, setUserEmail ] = useState(String);
 	const [ userRole, setUserRole ] = useState(String);
 	const [ userIsActive, setUserIsActive ] = useState(Boolean);
 	const [ successMessage, setSuccessMessage ] = useState(String);
-	const [ displayDeleteModel, setDisplayDeleteModel ] = useState(false);
-	const [ deleteInput, setDeleteInput ] = useState(String);
-	const [ deleteUserErrorMessage, setDeleteUserErrorMessage ] = useState(String);
 
-	const handleDelete = (event) => {
-
-		event.preventDefault();
-
-		const requestData = {
-			"_id": userId,
-			"deleteString": deleteInput
-		}
-		
-		axios.delete(`http://localhost:9000/user/delete/`, {data: {requestData}})
-		.then(response => {
-			response.data.message === "success" && navigate(-1);
-		})
-		.catch(error => {
-			setDeleteUserErrorMessage(error.response.data.message);
-		})
-	}
+	const [ displayPopupModel, setDisplayPopupModel ] = useState(false);
 
 	const handleSubmit = async (event) => {
 
@@ -60,24 +44,25 @@ function UpdateUser() {
 	useEffect(() => {
 
 		const id = window.location.href.replace("http://localhost:3000/dashboard/users/update/", "")
+		setUserId(id);
 
 		const requestData = {
 			userId: id
 		}
 
 		axios.get(`http://localhost:9000/user/${id}`, { params: requestData })
-			.then(response => {
-				setUserFirstName(response.data.firstName);
-				setUserLastName(response.data.lastName);
-				setUserEmail(response.data.email);
-				setUserRole(response.data.role);
-				setUserIsActive(response.data.active);
-			})
-			.catch(error => {
-				console.log(error);
-			});
+		.then(response => {
+			setUserFirstName(response.data.firstName);
+			setUserLastName(response.data.lastName);
+			setUserEmail(response.data.email);
+			setUserRole(response.data.role);
+			setUserIsActive(response.data.active);
+		})
+		.catch(error => {
+			console.log(error);
+		});
 
-		setUserID(id);
+		setUserId(id);
 
 	}, []);
 
@@ -104,7 +89,7 @@ function UpdateUser() {
 							type="text"
 							name="first-name"
 							value={ userFirstName }
-							onChange={(event) => { setUserFirstName(event.target.value)} } 
+							onChange={ (event) => { setUserFirstName(event.target.value)} } 
 						/>
 					</div>
 					<div className="row">
@@ -113,7 +98,7 @@ function UpdateUser() {
 							type="text"
 							name="last-name"
 							value={ userLastName }
-							onChange={(event) => { setUserLastName(event.target.value) }}
+							onChange={ (event) => { setUserLastName(event.target.value) } }
 						/>
 					</div>
 					<div className="row">
@@ -122,7 +107,7 @@ function UpdateUser() {
 							type="email"
 							name="email"
 							value={ userEmail }
-							onChange={(event) => { setUserEmail(event.target.value) }}
+							onChange={ (event) => { setUserEmail(event.target.value) } }
 						/>
 					</div>
 					<div className="row">
@@ -130,7 +115,7 @@ function UpdateUser() {
 						<input
 							name="user-role"
 							value={ userRole }
-							onChange={(event) => { setUserRole(event.target.value) }}
+							onChange={ (event) => { setUserRole(event.target.value) } }
 						/>
 					</div>
 					<div className="row">
@@ -139,38 +124,33 @@ function UpdateUser() {
 							name="active"
 							type="checkbox"
 							checked={ userIsActive ? "checked" : "" }
-							onChange={ (event) => { setUserIsActive(!userIsActive) } }
+							onChange={ () => { setUserIsActive(!userIsActive) } }
 						/>
 					</div>
 					<div className="row">
 						<button className="btn btn-dash-primary" type="submit">Save</button>
-						<button className="btn btn-dash-delete" type="button" onClick={(e) => { setDisplayDeleteModel(true) }}>Delete</button>
+						<button className="btn btn-dash-delete" type="button" onClick={ () => { setDisplayPopupModel(true) } }>Delete</button>
 					</div>
 
 				</form>
 
-				{ displayDeleteModel && 
-				<>
-					<div className="overlay"></div>
-					<div className="popup-model delete">
-						<div className="row">
-							<div className="title">
-								<h3>{`Delete: ${userFirstName} ${userLastName}`}</h3>
-								<span className="close" onClick={() => { setDisplayDeleteModel(!setDisplayDeleteModel) }}>x</span>
-							</div>
-							<div className="content">
-								<p>Copy what you see in the input field below:</p>
-								<div className="inputs-wrapper">
-									<form>
-										<input type="text" value={ deleteInput } placeholder="DELETE" onChange={ (event) => { setDeleteInput(event.target.value) } } />
-										<button className="btn btn-dash-delete" type="submit" onClick={ (event) => { handleDelete(event) }}>Delete</button>
-									</form>
-								</div>
-								{ deleteUserErrorMessage.length > 0 && <p className="error-message">{ deleteUserErrorMessage }</p> }
-							</div>
-						</div>
-					</div>
-				</>
+				{ displayPopupModel && 
+
+					<PopupModel
+						config={{
+							type: "delete",
+							data: {
+								userId: userId,
+								userFirstName: userFirstName,
+								userLastName: userLastName,
+								displayModel: [ 
+									displayPopupModel,
+									setDisplayPopupModel
+								]
+							}
+						}}
+					/>
+
 				}
 
 			</div>

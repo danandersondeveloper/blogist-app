@@ -124,6 +124,7 @@ function CreateBlog() {
 
 					</div>
 					<div className="row">
+						<button className="btn btn-dash-default" type="button" onClick={ () => { navigate(-1) }}>Cancel</button>
 						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { setSaveButtonClicked("publish") } }>Save and Publish</button>
 						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { setSaveButtonClicked("draft") } }>Save as Draft</button>
 					</div>

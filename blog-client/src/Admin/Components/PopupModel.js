@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 
 function PopupModel(props) {
@@ -40,9 +42,7 @@ function PopupModel(props) {
 							<div className="title">
 								<h3>{`Delete: ${props.config.data.userFirstName} ${props.config.data.userLastName}`}</h3>
 								<span className="close" onClick={() => { props.setState(!props.state) }}>
-									{/* FONT AWSEOM ICON HERE!! */}
-									x
-									{/* FONT AWSEOM ICON HERE!! */}
+									<FontAwesomeIcon icon={ faXmark } />
 								</span>
 							</div>
 							<div className="content">

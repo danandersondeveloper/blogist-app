@@ -44,7 +44,6 @@ function UpdateUser() {
 	useEffect(() => {
 
 		const id = window.location.href.replace("http://localhost:3000/dashboard/users/update/", "")
-		setUserId(id);
 
 		const requestData = {
 			userId: id

@@ -76,7 +76,7 @@ function Blogs() {
 									<span>{blog.created}</span>
 								</div>
 								<div className="cell narrow">
-									<Link className="btn btn-dash-primary" to={`/dashboard/blog/update/${blog._id}`}>
+									<Link className="btn btn-dash-primary" to={`/dashboard/blogs/update/${blog._id}`}>
 										<span><FontAwesomeIcon icon={ faPenToSquare } /></span>
 										<span>Edit</span>
 									</Link>

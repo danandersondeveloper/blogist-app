@@ -29,6 +29,7 @@ import Error from "./Pages/Error";
 import Dashboard from "./Admin/Dashboard";
 import Blogs from "./Admin/Pages/Blogs/Blogs";
 import CreateBlog from "./Admin/Pages/Blogs/CreateBlog";
+import UpdateBlog from "./Admin/Pages/Blogs/UpdateBlog";
 import Users from "./Admin/Pages/Users/Users";
 import UpdateUser from "./Admin/Pages/Users/UpdateUser";
 import CreateUser from "./Admin/Pages/Users/CreateUser";
@@ -62,6 +63,7 @@ function App() {
                 <Route path="blogs">
                   <Route index element={ <Blogs /> } />
                   <Route path="create" element={ <CreateBlog /> } />
+                  <Route path="update/:id" element={ <UpdateBlog /> } />
                 </Route>
                 <Route path="users">
                   <Route index element={ <Users /> } />

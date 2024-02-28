@@ -17,7 +17,7 @@ function PopupModel(props) {
 		event.preventDefault();
 
 		const requestData = {
-			"_id": props.data.userId,
+			"_id": props.config.data.userId,
 			"deleteString": deleteInput
 		}
 		

@@ -127,6 +127,7 @@ function UpdateUser() {
 						/>
 					</div>
 					<div className="row">
+						<button className="btn btn-dash-default" type="button" onClick={() => { navigate(-1) }}>Cancel</button>
 						<button className="btn btn-dash-primary" type="submit">Save</button>
 						<button className="btn btn-dash-delete" type="button" onClick={ () => { setDisplayPopupModel(true) } }>Delete</button>
 					</div>

@@ -6,13 +6,13 @@ import { faMagnifyingGlass, faCheck, faXmark, faPenToSquare } from "@fortawesome
 import download from 'js-file-download';
 
 //Import services
-import { getUsers } from "../../Services/UserServices";
+import { getUsers, searchUsers } from "../../Services/UserServices";
 
 function Users() {
 
 	const [ users, setUsers ] = useState([]);
+	const [ search, setSearch ] = useState(false);
 	const [ searchInputString, setSearchInputString ] = useState(String);
-	const [ searchIsActive, setSearchIsActive ] = useState(false);
 
 	const handleExport = () => {
 		axios.get(`http://localhost:9000/user/export`)
@@ -27,21 +27,20 @@ function Users() {
 	const handleClearSearch = () => {
 		requestUserData();
 		setSearchInputString("");
-		setSearchIsActive(false);
+		setSearch(false);
 	}
 
-	const handleSearch = (event) => {
+	const handleSearch = async (event) => {
 
 		event.preventDefault();
 
 		if (searchInputString.length <= 4) return alert("Search input too short")
+
+		const response = await searchUsers(searchInputString);
+
+		setUsers(response.data);
+		setSearch(true);
 		
-		axios.get(`http://localhost:9000/user/search`, { params: { "search": searchInputString } })
-		.then(response => {
-			setUsers(response.data);
-			setSearchIsActive(true);
-		})
-		.catch(error => { console.log(error) });
 	}
 
 	const requestUserData = async () => {

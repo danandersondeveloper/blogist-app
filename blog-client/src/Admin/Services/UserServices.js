@@ -24,6 +24,14 @@ const createUser = async ( requestBody ) => {
 	}
 }
 
+const searchUsers = async ( searchString ) => {
+	try {
+		return await axios.get(`http://localhost:9000/user/search`, { params: { "search": searchString } })
+	} catch(error) {
+		return error
+	}
+}
+
 const getUsers = async () => {
 	try {
 		return await axios.get( `http://localhost:9000/user/` );
@@ -36,5 +44,6 @@ export {
 	deleteUser,
 	updateUser,
 	createUser,
+	searchUsers,
 	getUsers,
 }

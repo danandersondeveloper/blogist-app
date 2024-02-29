@@ -111,11 +111,15 @@ function UpdateUser() {
 					</div>
 					<div className="row">
 						<label htmlFor="user-role">User Role:</label>
-						<input
+						{/* <input
 							name="user-role"
 							value={ userRole }
 							onChange={ (event) => { setUserRole(event.target.value) } }
-						/>
+						/> */}
+						<select value={ userRole } onChange={(event) => { setUserRole(event.target.value) }}>
+							<option value="user">User</option>
+							<option value="admin">Administrator</option>
+						</select>
 					</div>
 					<div className="row">
 						<label htmlFor="active">Active:</label>

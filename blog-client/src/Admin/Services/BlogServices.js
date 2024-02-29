@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const BASE_URI = process.env.REACT_APP_API;
+
 const getBlogs = async () => {
 	try {
-		return await axios.get("http://localhost:9000/blog" );
+		return await axios.get( `${BASE_URI}/blog` );
 	} catch (err) {
 		return err;
 	}

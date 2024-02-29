@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const BASE_URI = process.env.REACT_APP_API;
+
 const exportUsers = async () => {
 	try {
-		return axios.get(`http://localhost:9000/user/export`)	
+		return axios.get(`${BASE_URI}/user/export`)	
 	} catch (error) {
 		return error
 	}
@@ -10,7 +12,7 @@ const exportUsers = async () => {
 
 const deleteUser = async ( requestBody ) => {
 	try {
-		return await axios.delete( `http://localhost:9000/user/delete/`, { data: { requestBody } } )
+		return await axios.delete( `${BASE_URI}/user/delete/`, { data: { requestBody } } )
 	} catch (error) {
 		return error;
 	}
@@ -18,7 +20,7 @@ const deleteUser = async ( requestBody ) => {
 
 const updateUser = async ( userId, requestBody ) => {
 	try {
-		return await axios.patch( `http://localhost:9000/user/edit/${ userId }`, requestBody );
+		return await axios.patch( `${BASE_URI}/user/edit/${ userId }`, requestBody );
 	} catch(error) {
 		return error;
 	}
@@ -26,7 +28,7 @@ const updateUser = async ( userId, requestBody ) => {
 
 const createUser = async ( requestBody ) => {
 	try {
-		return await axios.post( `http://localhost:9000/user/register`, requestBody );
+		return await axios.post( `${BASE_URI}/user/register`, requestBody );
 	} catch(error) {
 		return error;
 	}
@@ -34,7 +36,7 @@ const createUser = async ( requestBody ) => {
 
 const searchUsers = async ( searchString ) => {
 	try {
-		return await axios.get(`http://localhost:9000/user/search`, { params: { "search": searchString } })
+		return await axios.get(`${BASE_URI}/user/search`, { params: { "search": searchString } })
 	} catch(error) {
 		return error
 	}
@@ -42,7 +44,7 @@ const searchUsers = async ( searchString ) => {
 
 const getUsers = async () => {
 	try {
-		return await axios.get( `http://localhost:9000/user/` );
+		return await axios.get( `${BASE_URI}/user/` );
 	} catch(error) {
 		return error;
 	}

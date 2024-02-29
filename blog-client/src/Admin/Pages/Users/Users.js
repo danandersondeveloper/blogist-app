@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +5,7 @@ import { faMagnifyingGlass, faCheck, faXmark, faPenToSquare } from "@fortawesome
 import download from 'js-file-download';
 
 //Import services
-import { getUsers, searchUsers } from "../../Services/UserServices";
+import { getUsers, searchUsers, exportUsers } from "../../Services/UserServices";
 
 function Users() {
 
@@ -14,14 +13,15 @@ function Users() {
 	const [ search, setSearch ] = useState(false);
 	const [ searchInputString, setSearchInputString ] = useState(String);
 
-	const handleExport = () => {
-		axios.get(`http://localhost:9000/user/export`)
-		.then(response => {
-			download(response.data, "user-export.json")
-		})
-		.catch(error => {
-			console.log(error);
-		});
+	const handleExport = async () => {
+
+		const response = await exportUsers();
+
+		if (response.status === 200 & response.data.length > 0) {
+			download(JSON.stringify(response.data), "user-export.json");
+		} else {
+			console.log(response);
+		}
 	}
 
 	const handleClearSearch = () => {
@@ -73,7 +73,7 @@ function Users() {
 								</span>
 								<span>Search</span>
 							</button>
-							{ searchIsActive && <button className="btn clear-search-button" type="button" onClick={ handleClearSearch }>Clear</button> }
+							{ search && <button className="btn clear-search-button" type="button" onClick={ handleClearSearch }>Clear</button> }
 						</form>
 					</div>
 				</div>

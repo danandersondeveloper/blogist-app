@@ -1,5 +1,13 @@
 import axios from "axios";
 
+const exportUsers = async () => {
+	try {
+		return axios.get(`http://localhost:9000/user/export`)	
+	} catch (error) {
+		return error
+	}
+}
+
 const deleteUser = async ( requestBody ) => {
 	try {
 		return await axios.delete( `http://localhost:9000/user/delete/`, { data: { requestBody } } )
@@ -40,10 +48,4 @@ const getUsers = async () => {
 	}
 }
 
-export {
-	deleteUser,
-	updateUser,
-	createUser,
-	searchUsers,
-	getUsers,
-}
+export { exportUsers, deleteUser, updateUser, createUser, searchUsers, getUsers }

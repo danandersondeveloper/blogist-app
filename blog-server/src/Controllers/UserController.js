@@ -10,11 +10,11 @@ const User = require("../Models/UserModel");
 // @route DELETE /user/delete
 // @access Private
 
-const deleteUser = async (req, res) => {
+const deleteUser = async ( req, res ) => {
 	try {
-		
-		const userId = req.body.requestData._id;
-		const userDeleteString = req.body.requestData.deleteString;
+	
+		const userId = req.body.requestBody._id;
+		const userDeleteString = req.body.requestBody.deleteString;
 
 		if (userDeleteString != "DELETE") return res.status(422).json({ message: "Invalid input, please try again!" });
 
@@ -36,7 +36,7 @@ const deleteUser = async (req, res) => {
 // @route PATCH /user/edit/:id
 // @access Private
 
-const editUser = async (req, res) => {
+const editUser = async ( req, res ) => {
 	try {
 
 		const { _id, firstName, lastName, email, role, active } = req.body;
@@ -50,7 +50,7 @@ const editUser = async (req, res) => {
 			"active": active
 		}
 
-		const resposne = await User.findByIdAndUpdate(_id, update).select("-password")
+		await User.findByIdAndUpdate(_id, update).select("-password")
 
 		res.status(200).json({ message: "success" })
 

@@ -4,32 +4,33 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
+//Services
+import { deleteUser } from '../Services/UserServices';
+
 
 function PopupModel(props) {
-
-	console.log(props)
 
 	const navigate = useNavigate();
 
 	const [ deleteInput, setDeleteInput ] = useState(String);
 	const [ deleteUserErrorMessage, setDeleteUserErrorMessage ] = useState(String);
 
-	const handleDelete = (event) => {
+	const handleDelete = async (event) => {
 
 		event.preventDefault();
 
-		const requestData = {
+		const requestBody = {
 			"_id": props.config.data.userId,
 			"deleteString": deleteInput
 		}
-		
-		axios.delete(`http://localhost:9000/user/delete/`, {data: {requestData}})
-		.then(response => {
-			response.data.message === "success" && navigate(-1);
-		})
-		.catch(error => {
-			setDeleteUserErrorMessage(error.response.data.message);
-		})
+
+		const response = await deleteUser(requestBody);
+
+		if (response.status === 200 && response.data.message === "success") {
+			return navigate(-1);
+		}
+
+		setDeleteUserErrorMessage(response.response.data.message);
 	}
 
 	return(

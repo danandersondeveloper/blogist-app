@@ -2,8 +2,7 @@ import axios from "axios";
 
 const deleteUser = async ( requestBody ) => {
 	try {
-		const response = await axios.delete( `http://localhost:9000/user/delete/`, { data: { requestBody } } )
-		return response;
+		return await axios.delete( `http://localhost:9000/user/delete/`, { data: { requestBody } } )
 	} catch (error) {
 		return error;
 	}
@@ -11,8 +10,7 @@ const deleteUser = async ( requestBody ) => {
 
 const updateUser = async ( userId, requestBody ) => {
 	try {
-		const response = await axios.patch( `http://localhost:9000/user/edit/${ userId }`, requestBody );
-		return response
+		return await axios.patch( `http://localhost:9000/user/edit/${ userId }`, requestBody );
 	} catch(error) {
 		return error;
 	}
@@ -20,8 +18,7 @@ const updateUser = async ( userId, requestBody ) => {
 
 const createUser = async ( requestBody ) => {
 	try {
-		const response = await axios.post( `http://localhost:9000/user/register`, requestBody );
-		return response;
+		return await axios.post( `http://localhost:9000/user/register`, requestBody );
 	} catch(error) {
 		return error;
 	}
@@ -29,8 +26,7 @@ const createUser = async ( requestBody ) => {
 
 const getUsers = async () => {
 	try {
-		const response = await axios.get( `http://localhost:9000/user/` );
-		return response;
+		return await axios.get( `http://localhost:9000/user/` );
 	} catch(error) {
 		return error;
 	}

@@ -2,8 +2,7 @@ import axios from "axios";
 
 const getBlogs = async (filter) => {
 	try {
-		const response = await axios.get("http://localhost:9000/blog", { params: filter } );
-		return response;
+		return await axios.get("http://localhost:9000/blog" );
 	} catch (err) {
 		return err;
 	}

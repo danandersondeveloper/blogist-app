@@ -47,41 +47,44 @@ function Login() {
 	return(
 		<main className="content-wrapper login">
 			<div className="row">
-				<h1>Login</h1>
+				<div className="form-wrapper">
+					<h1>Login</h1>
 
-				{invalidSubmit && <p className="error-message">{invalidSubmitMessage}</p>}
+					{invalidSubmit && <p className="error-message">{invalidSubmitMessage}</p>}
 
-				<form onSubmit={(e) => {handleLogin(e)}}>
-					<div className="row">
-						<label htmlFor="email">Email:</label>
-						<input
-							type="text"
-							name="email"
-							value={ email }
-							autoComplete="username"
-							onChange={(e) => { setEmail(e.target.value) }}
-						/>
-					</div>
-					<div className="row">
-						<label htmlFor="password">Password:</label>
-						<input 
-							type={!showPassword ? "password" : "text"}
-							name="password"
-							value={ password }
-							onChange={(e) => { setPassword(e.target.value) }}
-							autoComplete="current-password"
-						/>
-						<button className="btn view-password" type="button" onClick={() => { setShowPassword(!showPassword) }}>
-							{ !showPassword ? <FontAwesomeIcon icon={ faEye } /> : <FontAwesomeIcon icon={ faEyeSlash } />}
-						</button>
-					</div>
-					<div className="row">
-						<button className="btn btn-primary" type="submit">Login</button>
-					</div>
-				</form>
+				
+					<form onSubmit={(e) => {handleLogin(e)}}>
+						<div className="row">
+							<label htmlFor="email">Email:</label>
+							<input
+								type="text"
+								name="email"
+								value={ email }
+								autoComplete="username"
+								onChange={(e) => { setEmail(e.target.value) }}
+							/>
+						</div>
+						<div className="row">
+							<label htmlFor="password">Password:</label>
+							<input 
+								type={!showPassword ? "password" : "text"}
+								name="password"
+								value={ password }
+								onChange={(e) => { setPassword(e.target.value) }}
+								autoComplete="current-password"
+							/>
+							<button className="btn view-password" type="button" onClick={() => { setShowPassword(!showPassword) }}>
+								{ !showPassword ? <FontAwesomeIcon icon={ faEye } /> : <FontAwesomeIcon icon={ faEyeSlash } />}
+							</button>
+						</div>
+						<div className="row">
+							<button className="btn btn-primary" type="submit">Login</button>
+						</div>
+					</form>
 
-				<div className="not-registered">
-					<p>Not register? <Link className="btn-link" to="/register">Register</Link></p>
+					<div className="not-registered">
+						<p>Not register? <Link className="btn-link" to="/register">Register</Link></p>
+					</div>
 				</div>
 			</div>
 		</main>

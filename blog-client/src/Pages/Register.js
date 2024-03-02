@@ -44,78 +44,81 @@ function Register() {
 	return(
 		<main className="content-wrapper register">
 			<div className="row">
-				<h1>Register</h1>
+				<div className="form-wrapper">
 
-				{ !invalidSubmit && <p className="error-message">{ errorMessage }</p> }
+					<h1>Register</h1>
 
-				{ !formSubmitted ? 
+					{ !invalidSubmit && <p className="error-message">{ errorMessage }</p> }
 
-					<>
+					{ !formSubmitted ? 
 
-					<form onSubmit={(e) => {handleSubmit(e)}}>
-						<div className="row">
-							<label htmlFor="first-name">First Name:</label>
-							<input
-								type="text"
-								name="first-name"
-								value={ firstName }
-								onChange={ (e) => { setFirstName(e.target.value)} }
-							/>
+						<>
+
+						<form onSubmit={(e) => {handleSubmit(e)}}>
+							<div className="row">
+								<label htmlFor="first-name">First Name:</label>
+								<input
+									type="text"
+									name="first-name"
+									value={ firstName }
+									onChange={ (e) => { setFirstName(e.target.value)} }
+								/>
+							</div>
+							<div className="row">
+								<label htmlFor="last-name">Last Name:</label>
+								<input
+									type="text"
+									name="last-name"
+									value={ lastName }
+									onChange={ (e) => { setLastName(e.target.value) } }
+								/>
+							</div>
+							<div className="row">
+								<label htmlFor="email">Email:</label>
+								<input
+									type="text"
+									name="email"
+									value={email}
+									autoComplete="username"
+									onChange={ (e) => { setEmail(e.target.value) } }
+								/>
+							</div>
+							<div className="row">
+								<label htmlFor="password">Password:</label>
+								<input
+									type={ showPassword ? "text" : "password"}
+									name="password"
+									value={password}
+									autoComplete="new-password"
+									onChange={ (e) => {setPassword(e.target.value) } }
+								/>
+								<button className="btn view-password" type="button" onClick={ () => { setShowPassword( !showPassword) } }>
+									<FontAwesomeIcon icon={ showPassword? faEyeSlash : faEye } />
+								</button>
+								<span className="small">Password needs to be more than 5 characters</span>
+							</div>
+							<div className="row">
+								<button className="btn btn-primary" type="submit">Register</button>
+							</div>
+						</form> 
+
+						<div className="already-registered">
+							<p>Already registered? <Link className="btn-link" to="/login">Login</Link></p>
 						</div>
-						<div className="row">
-							<label htmlFor="last-name">Last Name:</label>
-							<input
-								type="text"
-								name="last-name"
-								value={ lastName }
-								onChange={ (e) => { setLastName(e.target.value) } }
-							/>
-						</div>
-						<div className="row">
-							<label htmlFor="email">Email:</label>
-							<input
-								type="text"
-								name="email"
-								value={email}
-								autoComplete="username"
-								onChange={ (e) => { setEmail(e.target.value) } }
-							/>
-						</div>
-						<div className="row">
-							<label htmlFor="password">Password:</label>
-							<input
-								type={ showPassword ? "text" : "password"}
-								name="password"
-								value={password}
-								autoComplete="new-password"
-								onChange={ (e) => {setPassword(e.target.value) } }
-							/>
-							<button className="btn view-password" type="button" onClick={ () => { setShowPassword( !showPassword) } }>
-								<FontAwesomeIcon icon={ showPassword? faEyeSlash : faEye } />
-							</button>
-							<span className="small">Password needs to be more than 5 characters</span>
-						</div>
-						<div className="row">
-							<button className="btn btn-primary" type="submit">Register</button>
-						</div>
-					</form> 
 
-					<div className="already-registered">
-						<p>Already registered? <Link className="btn-link" to="/login">Login</Link></p>
-					</div>
+						</>
 
-					</>
+						:
 
-					:
+						<>
+							<div className="registration-complete">
+								<p>Thank you for regestering. Your account has been created!</p>
+								<Link className="btn" to="/login">login</Link>
+							</div>
+						</>
 
-					<>
-						<div className="registration-complete">
-							<p>Thank you for regestering. Your account has been created!</p>
-							<Link className="btn" to="/login">login</Link>
-						</div>
-					</>
-
-				}
+					}
+				</div>
 			</div>
 		</main>
 	);

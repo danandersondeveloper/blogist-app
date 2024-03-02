@@ -6,8 +6,12 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 
 const authRoutes = require("./Routes/AuthRoutes");
-const userRoutes = require("./Routes/UserRoutes");
-const blogRoutes = require("./Routes/BlogRoutes");
+
+const privateUserRoutes = require("./Admin/Routes/UserRoutes");
+const publicUserRoutes = require("./Routes/UserRoutes");
+
+const privateBlogRoutes = require("./Admin/Routes/BlogRoutes");
+const publicBlogRoutes = require("./Routes/BlogRoutes");
 
 const PORT = process.env.PORT || 5500;
 const app = express();
@@ -30,8 +34,12 @@ app.use(cors(corsConfig))
 
 // Routes 
 app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
-app.use("/blog", blogRoutes)
+
+app.use("/admin/user", privateUserRoutes);
+app.use("/user", publicUserRoutes);
+
+app.use("/admin/blog", privateBlogRoutes);
+app.use("/blog", publicBlogRoutes);
 
 
 app.get('/logout', (req, res) => {

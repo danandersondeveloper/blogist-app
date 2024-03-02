@@ -28,6 +28,7 @@ import Error from "./Pages/Error";
 // Private routes / pages 
 
 import Dashboard from "./Admin/Dashboard";
+import Settings from "./Admin/Pages/Settings/Settings";
 import Blogs from "./Admin/Pages/Blogs/Blogs";
 import CreateBlog from "./Admin/Pages/Blogs/CreateBlog";
 import UpdateBlog from "./Admin/Pages/Blogs/UpdateBlog";
@@ -62,6 +63,7 @@ function App() {
             <Route element={ <Private /> }>
               <Route path="dashboard">
                 <Route index element={ <Dashboard /> } />
+                <Route path="settings" element={ <Settings /> } />
                 <Route path="blogs">
                   <Route index element={ <Blogs /> } />
                   <Route path="create" element={ <CreateBlog /> } />

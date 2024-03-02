@@ -346,7 +346,9 @@ a.btn-link {
 /* MAIN CONTENT */
 
 .content-wrapper {
+	background: #f6f6f6;
 	min-height: calc(100vh - 110px);
+	overflow: hidden;
 }
 
 .content-wrapper > .row {
@@ -729,4 +731,67 @@ a.btn-link {
 
 .tox .tox-button--naked {
 	background: transparent !important;
+}
+
+/* CARD */
+
+.card-wrapper {
+	display: flex;
+	align-items: start;
+	flex-wrap: wrap;
+}
+
+.card {
+	width: calc(33.3333% - 10px);
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 20px !important;
+	border-radius: 3px;
+}
+
+.card:nth-child(3n-1) {
+    margin: 0px 15px;
+}
+
+.card a {
+	text-decoration: none;
+}
+
+.card .picture {
+	min-height: 200px;
+	position: relative;
+	overflow: hidden;
+}
+
+.card .picture img {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	object-fit: cover;
+	object-position: center;
+}
+
+.card .content {
+	padding: 15px;
+}
+
+.card .content h4 {
+	min-height: 44px;
+	color: #000;
+}
+
+.card .content p {
+	min-height: 60px;
+	margin-bottom: 0;
+	color: #000;
+}
+
+.card .content .buttons-wrapper {
+	margin-top: 15px;
+}
+
+.card .content .buttons-wrapper a {
+	font-size: 14px;
+	color: #000;
+	text-decoration: none;
 }

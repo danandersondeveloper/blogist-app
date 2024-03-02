@@ -869,3 +869,55 @@ a.btn-link {
 .card .read-later svg {
 	font-size: 14px;
 }
+
+/* Blog */
+
+
+.blog {
+	max-width: 768px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 15px;
+	border-radius: 5px;
+	border: 1px solid #eee;
+}
+
+.blog .banner {
+	margin-bottom: 22px;
+}
+
+.blog .banner img {
+	max-width: 100%;
+	border-radius: 5px;
+}
+
+.blog .title {
+	margin-bottom: 15px;
+}
+
+.blog .title h1 {
+	margin-bottom: 10px;
+}
+
+.blog .title small {
+	color: #a0a0a0;
+}
+
+.blog .content {
+    border-top: 1px dashed #ddd;
+    border-bottom: 1px dashed #ddd;
+}
+
+.blog .buttons-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	margin-top: 15px;
+}
+
+.blog .buttons-wrapper .read-later {
+	margin-right: 5px;
+	background: #fff;
+	border: 1px solid #000;
+	color: #000;
+}

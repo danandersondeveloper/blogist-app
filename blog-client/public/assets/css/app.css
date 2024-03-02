@@ -1,7 +1,9 @@
 /* IMPORTS */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&family=Roboto:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&family=Roboto:wght@300;400;700;900&display=swap');
 
+/* font-family: 'Playfair Display', sans-serif */
 /* font-family: 'Roboto', sans-serif; */
 /* font-family: 'Roboto Slab', serif; */
 
@@ -31,7 +33,8 @@ h2,
 h3,
 h4 {
 	margin: 0;
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Roboto', serif;
+	font-weight: 900;
 	text-transform: uppercase;
 }
 
@@ -232,7 +235,7 @@ a.btn-link {
 	color: #fff;
 	text-transform: uppercase;
 	font-size: 26px;
-	font-family: 'Roboto Slab', sans-serif;
+	font-family: 'Playfair Display', sans-serif
 }
 
 
@@ -316,7 +319,7 @@ a.btn-link {
 }
 
 .navigation ul li ul li {
-	padding: 8px 15px;
+	padding: 10px 15px;
 	border-bottom: 1px solid #464646;
 }
 
@@ -332,6 +335,10 @@ a.btn-link {
 
 .navigation ul li a:hover ~ .dropdown-wrapper li {
 	width: 100%;
+}
+
+.navigation ul li .dropdown-wrapper .icon {
+	margin-right: 10px;
 }
 
 
@@ -390,7 +397,10 @@ a.btn-link {
 
 .content-wrapper.register h1,
 .content-wrapper.login h1 {
-	margin-bottom: 20px;
+	font-family: 'Playfair Display', serif;
+	font-weight: 300;
+	margin-top: 17px;
+	margin-bottom: 34px;
 }
 
 .content-wrapper.register form .row,
@@ -398,6 +408,11 @@ a.btn-link {
 	margin-bottom: 20px;
 	position: relative;
 }
+
+.content-wrapper.register form .row:last-child,
+.content-wrapper.login form .row:last-child {
+	margin-top: 26px;
+} 
 
 .content-wrapper.register form label,
 .content-wrapper.login  form label {
@@ -411,7 +426,7 @@ a.btn-link {
 .content-wrapper.login form input {
 	width: 100%;
 	height: 42px;
-	border: 1px solid #000;
+	border: 1px solid #eee;
 	border-radius: 5px;
 	padding: 5px 10px;
 }
@@ -520,7 +535,7 @@ a.btn-link {
 
 .search {
 	padding: 15px;
-	background: #f6f6f6;
+	background: #ffff;
     border: 1px solid #e9e9e9;
     border-radius: 5px;
 	margin-bottom: 15px;
@@ -551,16 +566,13 @@ a.btn-link {
 .search form input {
 	width: 100%;
     min-height: 38px;
-    background: #fff;
-    border: none;
+    background: #f6f6f6;
+    border: 1px solid #eee;
     border-radius: 5px;
     padding: 5px 15px;
 }
 
 .table {
-	padding: 15px;
-    background: #f6f6f6;
-    border: 1px solid #e9e9e9;
     border-radius: 5px;
 }
 
@@ -629,15 +641,17 @@ a.btn-link {
 
 /* USERS - EDIT / CREATE */
 
+.settings form,
 .user-edit form,
 .create-user form,
 .create-blog form {
-	background: #f6f6f6;
+	background: #fff;
     padding: 30px;
     border: 1px solid #e9e9e9;
     border-radius: 5px;
 }
 
+.settings form .row,
 .user-edit form .row,
 .create-user form .row,
 .create-blog form .row {
@@ -647,12 +661,14 @@ a.btn-link {
 	position: relative;
 }
 
+.settings form .row:last-child,
 .user-edit form .row:last-child,
 .create-user form .row:last-child,
 .create-blog form .row:last-child { 
 	margin-bottom: 0;
 }
 
+.settings form .row label,
 .user-edit form .row label,
 .create-user form .row label,
 .create-blog form .row label {
@@ -661,6 +677,7 @@ a.btn-link {
 	text-align: right;
 }
 
+.settings form .row input,
 .user-edit form .row input,
 .create-user form .row input,
 .create-blog form .row input {
@@ -671,6 +688,7 @@ a.btn-link {
 	border-radius: 5px;
 }
 
+.settings form .row select,
 .user-edit form .row select,
 .create-user form .row select {
 	height: 42px;
@@ -685,17 +703,20 @@ a.btn-link {
     background-position: calc(100% - 17px);
 }
 
+.settings form .row input[type="checkbox"],
 .user-edit form .row input[type="checkbox"],
 .create-user form .row input[type="checkbox"] {
 	width: unset;
 }
 
+.settings form .row:last-child,
 .user-edit form .row:last-child,
 .create-user form .row:last-child,
 .create-blog form .row:last-child {
 	justify-content: right;
 }
 
+.settings form .row .btn,
 .user-edit form .row .btn,
 .create-user form .row .btn,
 .create-blog form .row .btn {

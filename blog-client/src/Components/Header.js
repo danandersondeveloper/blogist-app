@@ -1,6 +1,8 @@
 
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faGauge, faLock } from "@fortawesome/free-solid-svg-icons";
 
 
 // Import services
@@ -47,7 +49,7 @@ function Header() {
 							{!AUTH ?
 								<>
 									<li>
-										<Link to="/login">Login</Link>
+										<Link to="/login">Sign in</Link>
 									</li>
 									<li>
 										<Link to="/register" className="get-started">Get started</Link>
@@ -61,15 +63,24 @@ function Header() {
 											<div className="dropdown-wrapper">
 												<ul className="dropdown">
 													<li>
-														<Link to="/account">My Account</Link>
+														<Link to="/account">
+															<span className="icon"><FontAwesomeIcon icon={ faUser } /></span>
+															<span>My Account</span>
+														</Link>
 													</li>
 													{ USER?.role === "admin" &&
 														<li>
-															<Link to="/dashboard">Dashboard</Link>							
+															<Link to="/dashboard">
+																<span className="icon"><FontAwesomeIcon icon={ faGauge } /></span>
+																<span>Dashboard</span>
+															</Link>							
 														</li>
 													}
 													<li>
-														<Link onClick={ handleLogout }>Logout</Link>
+														<Link onClick={ handleLogout }>
+															<span className="icon"><FontAwesomeIcon icon={ faLock } /></span>
+															<span>Sign out</span>
+														</Link>
 													</li>
 												</ul>
 											</div>

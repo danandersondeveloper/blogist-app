@@ -21,6 +21,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Account from "./Pages/Account";
+import Blog from "./Pages/Blog";
 import Error from "./Pages/Error";
 
 
@@ -52,6 +53,7 @@ function App() {
                 <Route path="login" element={ <Login /> } />
                 <Route path="register" element={ <Register /> } />
                 <Route path="account" element={ <Account /> } />
+                <Route path="blog/:id" element={ <Blog /> } />
               </Route>
             </Route>
 

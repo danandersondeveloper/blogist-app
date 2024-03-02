@@ -50,7 +50,7 @@ function Header() {
 										<Link to="/login">Login</Link>
 									</li>
 									<li>
-										<Link to="/register">Register</Link>
+										<Link to="/register" className="get-started">Get started</Link>
 									</li>
 								</>
 								:

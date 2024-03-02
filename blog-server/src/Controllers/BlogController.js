@@ -5,9 +5,7 @@ const getBlogs = async (req, res) => {
 	try {
 
 		const removedData = [
-			"-picture",
 			"-content",
-			"-shortDescription",
 			"-__v"
 		]
 

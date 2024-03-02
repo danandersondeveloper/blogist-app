@@ -49,7 +49,7 @@ function UpdateUser() {
 			userId: id
 		}
 
-		axios.get(`http://localhost:9000/user/${id}`, { params: requestData })
+		axios.get(`http://localhost:9000/admin/user/${id}`, { params: requestData })
 		.then(response => {
 			setUserFirstName(response.data.firstName);
 			setUserLastName(response.data.lastName);

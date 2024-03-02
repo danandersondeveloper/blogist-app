@@ -48,11 +48,11 @@ function Login() {
 		<main className="content-wrapper login">
 			<div className="row">
 				<div className="form-wrapper">
-					<h1>Login</h1>
+
+					<h1>Welcome Back.</h1>
 
 					{invalidSubmit && <p className="error-message">{invalidSubmitMessage}</p>}
 
-				
 					<form onSubmit={(e) => {handleLogin(e)}}>
 						<div className="row">
 							<label htmlFor="email">Email:</label>

@@ -46,7 +46,7 @@ function Register() {
 			<div className="row">
 				<div className="form-wrapper">
 
-					<h1>Register</h1>
+					<h1>Join Blogist.</h1>
 
 					{ !invalidSubmit && <p className="error-message">{ errorMessage }</p> }
 

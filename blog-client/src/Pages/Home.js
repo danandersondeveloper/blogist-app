@@ -29,13 +29,16 @@ function Home() {
 					{
 						blogs.map(blog => (
 
-							<Card config={{
-								blogId: blog._id,
-								blogPicture: blog.picture,
-								blogTitle: blog.title,
-								blogShortDescription: blog.shortDescription,
-								blogCreated: blog.created
-							}} />
+							<Card
+								key={blog._id}
+								config={{
+									blogId: blog._id,
+									blogPicture: blog.picture,
+									blogTitle: blog.title,
+									blogShortDescription: blog.shortDescription,
+									blogCreated: blog.created
+								}} 
+							/>
 
 						))
 					}

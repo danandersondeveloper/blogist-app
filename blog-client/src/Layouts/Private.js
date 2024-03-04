@@ -9,6 +9,8 @@ import { auth } from "../Services/AuthServices";
 // Import Components
 
 import Header from "../Admin/Components/Header";
+import TopBar from "../Admin/Components/TopBar";
+import Navigation from "../Admin/Components/Navigation";
 import Footer from "../Admin/Components/Footer";
 
 function Private() {
@@ -34,9 +36,17 @@ function Private() {
 		<>
 			{ autherised &&
 				<>
-					<Header />
-					<Outlet />
-					<Footer />
+					<div className="dashboard-wrapper">
+						<div className="col main-navigation">
+							<Header />
+							<Navigation />
+						</div>
+						<div className="col main-content">
+							<TopBar />
+							<Outlet />
+							<Footer />
+						</div>
+					</div>
 				</>
 			}
 		</>

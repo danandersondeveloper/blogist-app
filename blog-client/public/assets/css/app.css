@@ -288,6 +288,10 @@ a.btn-link {
 	position: relative;
 }
 
+.navigation ul li a span {
+	margin-right: 8px;
+}
+
 .navigation ul li .dropdown-wrapper {
 	display: none;
 	position: absolute;
@@ -372,8 +376,16 @@ a.btn-link {
 	overflow: hidden;
 }
 
+.col.main-content .content-wrapper {
+	min-height: calc(100vh - 95px);
+}
+
 .content-wrapper > .row {
 	margin: 35px 100px
+}
+
+.content-wrapper.dashboard > .row {
+	margin: 35px 45px
 }
 
 
@@ -455,6 +467,75 @@ a.btn-link {
 
 
 /* DASHBOARD */
+
+.dashboard-wrapper {
+	display: flex;
+}
+
+.dashboard-wrapper .col.main-navigation {
+	min-width: 300px;
+	height: 100%;
+	position: fixed;
+	background: #343a41;
+	border-right: 1px solid #262b30;
+}
+
+.dashboard-wrapper .col.main-content {
+	width: calc(100% - 300px);
+    margin-left: 300px;
+}
+
+.header.dashboard {
+	padding: 7px 15px;
+    max-height: 60px;
+    line-height: 42px;
+    border-bottom: 1px solid #262b30;
+}
+
+.top-bar {
+	display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: end;
+    background: #343a42;
+    max-height: 60px;
+    border-bottom: 1px solid #262b30;
+}
+
+.top-bar .row {
+	padding: 10px 45px;
+}
+
+.col.main-navigation .navigation ul {
+	display: block;
+	margin: 0;
+}
+
+.col.main-navigation .navigation ul li {
+	padding: 15px;
+	border-bottom: 1px dashed #262b31;
+}
+
+.secondary-navigation .user-links {
+	display: flex;
+	list-style: none;
+	margin: 0;
+}
+
+.secondary-navigation .user-links li {
+	padding: 0 10px;
+}
+
+.secondary-navigation .user-links a {
+	color: #fff;
+	font-size: 12px;
+    text-decoration: none;
+	line-height: 40px;
+}
+
+.header.dashboard .row {
+	padding: 0;
+}
 
 .basic-stats .row {
 	display: flex;

@@ -25,5 +25,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/blog-server/public/Assets/Exports
-/blog-server/public/Assets/Uploads
+/blog-server/public/Files/Exports
+/blog-server/public/Files/Uploads

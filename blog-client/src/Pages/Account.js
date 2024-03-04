@@ -1,9 +1,9 @@
 
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 import { UserContext } from "../Contexts/UserContext";
-import { Link } from "react-router-dom";
 
 function Account() {
 
@@ -16,11 +16,9 @@ function Account() {
 
 	useEffect(() => {
 		if (AUTH & USER.id != null & USER.id != undefined) {
-			axios.get(`http://localhost:9000/user/${USER.id}`, { params: { id: USER.id } })
+			axios.get(`http://localhost:9000/user/info`, { withCredentials: true })
 			.then(response => {
-				setFirstName(response.data.firstName);
-				setLastName(response.data.lastName);
-				setEmail(response.data.email);
+				console.log(response.data)
 			})
 			.catch(error => {
 				console.log(error);

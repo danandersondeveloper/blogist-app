@@ -14,7 +14,7 @@ const getUserInfo = async (req, res) => {
 	const userInformation = authCookie.split(";");
 	const userId = userInformation[0].replace("userId=", "");
 
-	const user = await User.findById(userId).select("-password");
+	const user = await User.findById(userId).select(["-password", "-_id"]);
 
 	res.status(200).json({user});
 }

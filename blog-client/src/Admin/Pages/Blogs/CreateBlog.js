@@ -13,13 +13,13 @@ function CreateBlog() {
 	const [ blogTitle, setBlogTitle ] = useState(String);
 	const [ blogPictureUrl, setBlogPictureUrl ] = useState(String);
 	const [ blogShortDescription, setBlogShortDescription ] = useState(String);
-	const [ value, setValue ] = useState("");
-	const [ blogContent, setBlogContent ] = useState("");
+	const [ value, setValue ] = useState(String);
+	const [ blogContent, setBlogContent ] = useState(String);
 	const [ saveButtonClicked, setSaveButtonClicked ] = useState(String);
 
 	const onEditorInputChange = (newValue, editor) => {
 		setValue(newValue);
-	   	setBlogContent(editor.getContent({ format: "text" }));
+	   	setBlogContent(editor.getContent());
    	}
 
 	const handleSubmit = (event, saveButtonClicked) => {
@@ -34,21 +34,19 @@ function CreateBlog() {
 			state: saveButtonClicked
 		}
 
-		alert(blogContent);
-
-		// axios.post("http://localhost:9000/blog/create", requestBody)
-		// .then(response => {
-		// 	if (response.data.message === "success") {
-		// 		setBlogTitle("");
-		// 		setBlogPictureUrl("");
-		// 		setBlogShortDescription("");
-		// 		setBlogContent("");
-		// 		setSaveButtonClicked("");
-		// 	}
-		// })
-		// .catch(error => {
-		// 	alert(error);
-		// })
+		axios.post("http://localhost:9000/admin/blog/create", requestBody)
+		.then(response => {
+			if (response.data.message === "success") {
+				setBlogTitle("");
+				setBlogPictureUrl("");
+				setBlogShortDescription("");
+				setValue("");
+				setSaveButtonClicked("");
+			}
+		})
+		.catch(error => {
+			alert(error);
+		})
 
 	}
 
@@ -94,11 +92,10 @@ function CreateBlog() {
 
 						<div className="tiny-mce-container">
 							<Editor
-								apiKey={TINYMCE_KEY}
+								apiKey={ TINYMCE_KEY }
 								onEditorChange={ (newValue, editor) => onEditorInputChange(newValue, editor) }
-								onInit={(evt, editor) => setBlogContent(editor.getContent())}
+								onInit={ (evt, editor) => setBlogContent( editor.getContent({format: 'html'}) ) }
 								value={value}
-								initialValue="Type something in..."
 								init={{
 									plugins: [
 										'advlist',
@@ -111,10 +108,7 @@ function CreateBlog() {
 										'anchor',
 										'searchreplace',
 										'visualblocks',
-										'code',
 										'insertdatetime',
-										'media',
-										'table',
 										'code'
 									],
 									toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'

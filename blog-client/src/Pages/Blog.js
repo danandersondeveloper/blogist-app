@@ -1,4 +1,5 @@
 import axios from "axios";
+import parse from 'html-react-parser';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -46,7 +47,7 @@ function Blog() {
 						<small>Created: { blogCreated }</small>
 					</div>
 					<div className="content">
-						<p>{ blogContent }</p>
+						{parse( blogContent )}
 					</div>
 					<div className="buttons-wrapper">
 						<button className="btn btn-default small read-later">

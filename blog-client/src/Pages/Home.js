@@ -33,7 +33,7 @@ function Home() {
 								blogId: blog._id,
 								blogPicture: blog.picture,
 								blogTitle: blog.title,
-								blogShortDescription: blog.ShortDescription,
+								blogShortDescription: blog.shortDescription,
 								blogCreated: blog.created
 							}} />
 

@@ -12,7 +12,7 @@ function Card(props) {
 				</div>
 				<div className="content">
 					<h4>{ props.config.blogTitle }</h4>
-					<p>{ props.config.shortDescription }</p>
+					<p>{ props.config.blogShortDescription }</p>
 					<div className="extra-content">
 						<div className="buttons-wrapper">
 							<Link className="btn btn-primary small" to={`/blog/${ props.config.blogId }`}>Read blog</Link>

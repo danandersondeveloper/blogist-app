@@ -28,7 +28,7 @@ const updateUser = async ( userId, requestBody ) => {
 
 const createUser = async ( requestBody ) => {
 	try {
-		return await axios.post( `${BASE_URI}/admin/user/register`, requestBody );
+		return await axios.post( `${BASE_URI}/admin/user/create`, requestBody );
 	} catch(error) {
 		return error;
 	}

@@ -1,4 +1,4 @@
-const bcrypt = ("bcrypt");
+const bcrypt = require("bcrypt");
 const fs = require("node:fs");
 
 // Data Models

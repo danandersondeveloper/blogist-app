@@ -254,9 +254,17 @@ a.btn-link {
 	padding: 8px 100px;
 }
 
+.footer.dashboard .row {
+	padding: 8px 45px;
+}
+
 .built-by {
 	color: #fff;
 	font-size: 12px;
+}
+
+.footer.dashboard .row .col {
+	text-align: right;
 }
 
 

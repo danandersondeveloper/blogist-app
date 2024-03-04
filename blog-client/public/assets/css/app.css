@@ -533,6 +533,10 @@ a.btn-link {
 	line-height: 40px;
 }
 
+.secondary-navigation .user-links a span {
+	margin-right: 8px;
+}
+
 .header.dashboard .row {
 	padding: 0;
 }

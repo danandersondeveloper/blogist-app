@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext";
-import { UserContext } from "../Contexts/UserContext";
 import { login } from "../Services/AuthServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -10,8 +9,7 @@ function Login() {
 
 	const navigate = useNavigate();
 
-	const [ ,setAuth ] = useContext(AuthContext);
-	const [ ,setUser ] = useContext(UserContext);
+	const [ ,setAUTH ] = useContext(AuthContext);
 
 	const [ invalidSubmit, setInvalidSubmit ] = useState(false)
 	const [ invalidSubmitMessage, setInvalidSubmitMessage ] = useState('Invalid email or password!')
@@ -32,16 +30,16 @@ function Login() {
 			"password": password
 		}
 
-		const data = await login(requestBody);
+		const response = await login(requestBody);
 
-		if (data.message === 'success') {
-			setUser(data.user);
-			setAuth(true);
-			navigate("/");
-		} else {
-			setInvalidSubmitMessage(data);
+		if (response.message !== 'success') {
+			setInvalidSubmitMessage(response);
 			setInvalidSubmit(true);
+			return;
 		}
+
+		setAUTH(response.setAUTH);
+		navigate("/");
 	}
 
 	return(

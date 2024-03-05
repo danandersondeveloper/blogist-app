@@ -8,20 +8,17 @@ import { logout } from "../../Services/AuthServices";
 
 // Import contexts
 import { AuthContext } from "../../Contexts/AuthContext";
-import { UserContext } from "../../Contexts/UserContext";
 
 function TopBar() {
 
-	const [ ...setAuth ] = useContext(AuthContext);
-	const [ ...setUser ] = useContext(UserContext);
+	const [ ...setAUTH ] = useContext(AuthContext);
 
 	const handleLogout = async () => {
 		
 		const response = await logout();
 
-		if (response === 'success') {
-			setUser({ id: null, name: null, role: null });
-			setAuth(false);
+		if (response.message === 'success') {
+			setAUTH(response.setAuth);
 		}
 
 		window.location.reload();
@@ -33,10 +30,20 @@ function TopBar() {
 				<nav className="secondary-navigation">
 					<ul className="user-links">
 						<li className="nav-border">
-							<Link to="/"><span><FontAwesomeIcon icon={ faGlobe } /></span>Public site</Link>
+							<Link to="/">
+								<span>
+									<FontAwesomeIcon icon={ faGlobe } />
+								</span>
+								<span>Public site</span>
+							</Link>
 						</li>
 						<li>
-							<Link onClick={ handleLogout }><span><FontAwesomeIcon icon={ faLock } /></span>Logout</Link>
+							<Link onClick={ handleLogout }>
+								<span>
+									<FontAwesomeIcon icon={ faLock } />
+								</span>
+								<span>Sign out</span>
+							</Link>
 						</li>
 					</ul>
 				</nav>

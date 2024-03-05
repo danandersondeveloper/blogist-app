@@ -67,7 +67,17 @@ const login = async (req, res) => {
 		}
 
 		res.cookie('auth_user', `userId=${user._id};name=${user.firstName};role=${user.role};`, cookieOptions);
-		res.status(200).json({ message: "success", user: { id: user._id, name: user.firstName, role: user.role } });
+		res.status(200).json({ 
+			message: "success",
+			setAUTH: {
+				auth: true,
+				user: {
+					id: user._id,
+					name: user.firstName,
+					role: user.role
+				}
+			}
+		});
 
 	} catch(err) {
 		console.log(err);
@@ -76,7 +86,28 @@ const login = async (req, res) => {
 
 }
 
+const logout = (req, res) => {
+
+	console.log("LOGOUT!!!!!")
+
+	res.clearCookie("auth_user");
+
+	res.status(200).json({
+		message: 'sucsess',
+		setAUTH: {
+			auth: false,
+			user: {
+				id: null,
+				name: "guest",
+				role: "guest"
+			}
+		}
+	});
+
+}
+
 module.exports = {
 	isAutherised,
-	login 
+	login,
+	logout 
 }

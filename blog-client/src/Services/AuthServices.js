@@ -37,8 +37,8 @@ const login = async (requestBody) =>  {
 const logout = async () => {
 	try {
 
-		const response = await axios.get(`${BASE_URI}/logout`, { withCredentials: true })
-		return response.data.message;
+		const response = await axios.get(`${BASE_URI}/auth/logout`, { withCredentials: true })
+		return response.data;
 
 	} catch(error) {
 

@@ -41,12 +41,6 @@ app.use("/user", publicUserRoutes);
 app.use("/admin/blog", privateBlogRoutes);
 app.use("/blog", publicBlogRoutes);
 
-
-app.get('/logout', (req, res) => {
-	res.clearCookie("auth_user");
-	res.status(200).json({message: 'sucsess'});
-});
-
 // Root
 app.get("/", (req, res) => {
 	res.status(200).json({ message: "Blog Server: V0" })

@@ -10,22 +10,19 @@ import { logout } from "../Services/AuthServices";
 
 // Import contexts
 import { AuthContext } from "../Contexts/AuthContext";
-import { UserContext } from "../Contexts/UserContext";
 
 function Header() {
 
 	const navigate = useNavigate();
 
-	const [ AUTH, setAuth ] = useContext(AuthContext);
-	const [ USER, setUser ] = useContext(UserContext);
+	const [ AUTH, setAUTH ] = useContext(AuthContext);
 
 	const handleLogout = async () => {
 
 		const response = await logout();
 
 		if (response === 'success') {
-			setUser({ id: null, name: null, role: null });
-			setAuth(false);
+			setAUTH(response.setAUTH);
 		}
 
 		navigate("/");
@@ -46,7 +43,7 @@ function Header() {
 							<li>
 								<Link to="/">Home</Link>
 							</li>
-							{!AUTH ?
+							{!AUTH.auth ?
 								<>
 									<li>
 										<Link to="/login">Sign in</Link>
@@ -57,9 +54,9 @@ function Header() {
 								</>
 								:
 								<>
-									{USER &&
+									{AUTH.user &&
 										<li>
-											<Link>Welcome, {USER.name}</Link>
+											<Link>Welcome, { AUTH.user.name }</Link>
 											<div className="dropdown-wrapper">
 												<ul className="dropdown">
 													<li>
@@ -68,7 +65,7 @@ function Header() {
 															<span>My Account</span>
 														</Link>
 													</li>
-													{ USER?.role === "admin" &&
+													{ AUTH?.user.role === "admin" &&
 														<li>
 															<Link to="/dashboard">
 																<span className="icon"><FontAwesomeIcon icon={ faGauge } /></span>

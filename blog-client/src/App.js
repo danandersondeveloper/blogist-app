@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 
@@ -36,14 +36,22 @@ import Users from "./Admin/Pages/Users/Users";
 import UpdateUser from "./Admin/Pages/Users/UpdateUser";
 import CreateUser from "./Admin/Pages/Users/CreateUser";
 
+// Services
+import { auth } from "./Services/AuthServices";
+
 function App() {
 
-  const [ AUTH, setAuth ] = useState(Boolean);
-  const [ USER, setUser] = useState(Object);
+  const [ AUTH, setAUTH ] = useState(Object);
+
+  useEffect(() => {
+    (async () => {
+      const response = await auth();
+      setAUTH(response);
+    })()
+  }, [])
 
   return (
-      <AuthContext.Provider value={[ AUTH, setAuth ]}>
-        <UserContext.Provider value={[ USER, setUser ]}>
+      <AuthContext.Provider value={[ AUTH, setAUTH ]}>
           <Routes>
 
             {/* Public routes - Anyone can view thes routes */}
@@ -82,7 +90,6 @@ function App() {
             <Route path="*" element={ <Error /> } />
 
           </Routes>
-        </UserContext.Provider>
       </AuthContext.Provider>
   );
 }

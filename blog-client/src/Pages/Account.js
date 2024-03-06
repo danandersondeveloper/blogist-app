@@ -15,9 +15,20 @@ function Account() {
 	const [ lastName, setLastName] = useState(String);
 	const [ email, setEmail] = useState(String);
 	const [ created, setCreated ] = useState(String);
+	const [ categories, setCategories ] = useState(String);
 
-	const handleMultiSelect = (event) => {
-		alert(event.target.value)
+	const hanldeAddCategory = (event, categories) => {
+
+		if (categories.includes(event.target.value) || event.target.value === "select") return;
+
+		if ( categories ) {
+			setCategories(`${categories};${event.target.value}`);
+		} else {
+			setCategories(event.target.value)
+		}
+
+		event.target.value = "select";
+
 	}
 
 	useEffect(() => {
@@ -135,10 +146,9 @@ function Account() {
 									</div>
 									<div className="row multi">
 										<label>Categories:</label>
-										<div className="multi-select-input">
-											
-										</div>
-										<select className="multi-select-categories" onChange={(event) => {alert(event.target.value)}}>
+										<input value={ categories } readOnly />
+										<select className="multi-select-categories" onChange={ (event) => { hanldeAddCategory(event, categories) } }>
+											<option value="select">Select Categories</option>
 											<option value="business">Business</option>
 											<option value="fashion">Fashion</option>
 											<option value="health">Health</option>

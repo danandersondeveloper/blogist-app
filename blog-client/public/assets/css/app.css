@@ -128,6 +128,7 @@ select {
 	color: #fff;
 }
 
+.btn.btn-delete,
 .btn.btn-dash-delete {
 	background: #bc3c3c;
 	color: #fff;
@@ -1018,4 +1019,142 @@ a.btn-link {
 	background: #fff;
 	border: 1px solid #000;
 	color: #000;
+}
+
+
+/* ACCOUNT */
+
+.user-information > .row {
+	display: flex;
+}
+
+.user-information .row .col {
+	width: 100%;
+	padding: 30px;
+	background: #fff;
+	border: 1px solid #eee;
+	border-radius: 5px;
+}
+
+.user-information .row .col:first-child {
+	margin-right: 20px;
+}
+
+.user-information .row .col .picture {
+	width: 20%;
+	padding-top:20%;
+	border-radius: 100%;
+	background: #f6f6f6;
+	margin: 0 auto 30px;
+	position: relative;
+	cursor: pointer;
+	border: 1px solid #eee;
+	overflow: hidden;
+}
+
+.user-information .row .col .picture img {
+	width: 70%;
+	position: relative;
+	left:50%;
+	top: 50%;
+	transform: translate(-50%, 23%);
+	border-radius: 100%;
+}
+
+.user-information .row .col .basic-information {
+	text-align: center;
+}
+
+.picture-unset {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.upload-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -45%);
+	display: none;
+}
+
+.picture-unset:hover .upload-image {
+	display: block;
+}
+
+.user-information .row .col form .row {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.user-information .row .col form .section-title {
+	margin-top: 45px;
+	margin-bottom: 30px;
+	border-bottom: 1px dashed #eee;
+	padding-bottom: 20px;
+}
+
+.user-information .row .col form .section-title.first-title {
+	margin-top: 0 !important;
+}
+
+.user-information .row .col form .row label {
+	display: block;
+	width: 120px;
+}
+
+.user-information .row .col form .row input,
+.user-information .row .col form .row select {
+	width: calc(100% - 120px);
+	line-height: 42px;
+	height: 42px;
+	padding: 0 15px;
+	border-radius: 5px;
+	border: 1px solid #eee;
+}
+
+.user-information .row .col form .row:last-child {
+	margin-top: 30px;
+	margin-bottom: 0;
+	justify-content: end;
+}
+
+.user-information .row .col form .row button {
+	margin-left: 5px;
+}
+
+.user-information .row .col form .row.multi {
+	flex-wrap: wrap;
+}
+
+.multi-select-input {
+	width: calc(100% - 120px);
+	height: 42px;
+	border-radius: 5px;
+	border: 1px solid #eee;
+}
+
+.multi-select-categories {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15px;
+    margin-left: 120px;
+    border-radius: 5px;
+    background: #ededed;
+	list-style: none;
+}
+
+.multi-select-categories li {
+	padding: 3px 15px;
+	cursor: pointer;
+	border-radius:5px;
+}
+
+.multi-select-categories li:hover {
+	background: #ccc;
 }

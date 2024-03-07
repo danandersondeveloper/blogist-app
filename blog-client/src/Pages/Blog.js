@@ -13,6 +13,7 @@ function Blog() {
 	const [ blogTitle, setBlogTitle ] = useState(String);
 	const [ blogCreated, setBlogCreated ] = useState(String);
 	const [ blogContent, setBlogContent ] = useState(String);
+	const [ blogCategory, setBlogCategory ] = useState(String);
 
 	useEffect(() => {
 
@@ -28,6 +29,7 @@ function Blog() {
 			setBlogTitle(response.data.title);
 			setBlogCreated(response.data.created);
 			setBlogContent(response.data.content);
+			setBlogCategory(response.data.category);
 		})
 		.catch(error => {
 			alert(error)
@@ -40,6 +42,15 @@ function Blog() {
 			<div className="row">
 				<div className="blog">
 					<div className="banner">
+						{
+							( blogCategory ) &&
+
+								<div className="categories">
+									<div className="category">
+										{ blogCategory }
+									</div>
+								</div>
+						}
 						<img src={ blogPicture } alt="Blog banner" />
 					</div>
 					<div className="title">

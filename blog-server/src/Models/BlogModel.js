@@ -21,6 +21,9 @@ const blogSchema = new mongoose.Schema({
 		type: String,
 		default: "draft"
 	},
+	category: {
+		type: String
+	},
 	created: {
 		type: String,
 		default: new Date().toLocaleDateString('en-GB')

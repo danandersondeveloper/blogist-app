@@ -15,6 +15,7 @@ function CreateBlog() {
 	const [ blogShortDescription, setBlogShortDescription ] = useState(String);
 	const [ value, setValue ] = useState(String);
 	const [ blogContent, setBlogContent ] = useState(String);
+	const [ blogCategory, setBlogCategory ] = useState(String);
 	const [ saveButtonClicked, setSaveButtonClicked ] = useState(String);
 
 	const onEditorInputChange = (newValue, editor) => {
@@ -31,6 +32,7 @@ function CreateBlog() {
 			picture: blogPictureUrl,
 			shortDescription: blogShortDescription,
 			content: blogContent,
+			category: blogCategory,
 			state: saveButtonClicked
 		}
 
@@ -41,6 +43,7 @@ function CreateBlog() {
 				setBlogPictureUrl("");
 				setBlogShortDescription("");
 				setValue("");
+				setBlogCategory("")
 				setSaveButtonClicked("");
 			}
 		})
@@ -116,6 +119,14 @@ function CreateBlog() {
 							/>
 						</div>
 
+					</div>
+					<div className="row">
+						<label>Category:</label>
+						<input
+							type="text"
+							value={ blogCategory }
+							onChange={ (event) => { setBlogCategory(event.target.value) } }
+						/>
 					</div>
 					<div className="row">
 						<button className="btn btn-dash-default" type="button" onClick={ () => { navigate(-1) }}>Cancel</button>

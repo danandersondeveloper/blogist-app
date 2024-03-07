@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // Contexts
 
@@ -16,19 +18,36 @@ function Account() {
 	const [ email, setEmail] = useState(String);
 	const [ created, setCreated ] = useState(String);
 	const [ categories, setCategories ] = useState(String);
+	const [ uiCategories, setUiCategories ] = useState(Array);
+	const [ showSelect, setShowSelect ] = useState(false)
 
-	const hanldeAddCategory = (event, categories) => {
+	const hanldeAddCategory = (event, categories, uiCategories) => {
+
+		setShowSelect(!showSelect);
 
 		if (categories.includes(event.target.value) || event.target.value === "select") return;
 
-		if ( categories ) {
-			setCategories(`${categories};${event.target.value}`);
-		} else {
-			setCategories(event.target.value)
-		}
+		( categories ) ? setCategories(`${categories}${event.target.value};`) : setCategories(`${event.target.value};`)
+
+		const newCategory = event.target.value;
+
+		setUiCategories(uiCategories => [ ...uiCategories, newCategory ]);
 
 		event.target.value = "select";
 
+	}
+
+	const handleRemoveCategory = (categoryName) => {
+
+		const categoriesCopy = categories;
+		const updatedCategoryCopy = categoriesCopy.replace(`${categoryName};`, "")
+
+		setCategories(updatedCategoryCopy);
+
+		const uiCategoriesCopy = uiCategories;
+		const updatedUiCategoriesCopy = uiCategoriesCopy.filter(element => element != categoryName);
+
+		setUiCategories(updatedUiCategoriesCopy);
 	}
 
 	useEffect(() => {
@@ -146,8 +165,25 @@ function Account() {
 									</div>
 									<div className="row multi">
 										<label>Categories:</label>
-										<input value={ categories } readOnly />
-										<select className="multi-select-categories" onChange={ (event) => { hanldeAddCategory(event, categories) } }>
+										<div className="multi-select-div">
+											{
+												uiCategories.map((categoryName, index) => (
+													<div className="ui-category" key={ index }>
+														<span className="category">{ categoryName }</span>
+														<span className="icon" onClick={ (event) => { handleRemoveCategory(categoryName) } }>
+															<FontAwesomeIcon icon={ faXmark } />
+														</span>
+													</div>
+												))
+											}
+											<div className="show-select" onClick={() => { setShowSelect(!showSelect) }}>
+												<span>
+													<FontAwesomeIcon icon={ faPlus } />
+												</span>
+											</div>
+										</div>
+										<input className="multi-select-input" value={ categories } readOnly />
+										<select className={`multi-select-categories ${showSelect ? "active" : "" }`} onChange={(event) => { hanldeAddCategory(event, categories, uiCategories) }} multiple>
 											<option value="select">Select Categories</option>
 											<option value="business">Business</option>
 											<option value="fashion">Fashion</option>

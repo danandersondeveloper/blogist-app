@@ -1112,7 +1112,7 @@ a.btn-link {
 	width: calc(100% - 120px);
 	line-height: 42px;
 	height: 42px;
-	padding: 0 15px;
+	padding: 0 9px;
 	border-radius: 5px;
 	border: 1px solid #eee;
 }
@@ -1131,11 +1131,24 @@ a.btn-link {
 	flex-wrap: wrap;
 }
 
+.multi-select-div {
+	display: flex;
+	align-items: center;
+	width: calc(100% - 120px);
+    height: 42px;
+    padding: 0 9px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+	cursor: pointer;
+}
+
 .multi-select-input {
 	width: calc(100% - 120px);
 	height: 42px;
 	border-radius: 5px;
 	border: 1px solid #eee;
+	cursor: pointer;
+	display: none;
 }
 
 .multi-select-categories {
@@ -1147,6 +1160,11 @@ a.btn-link {
     border-radius: 5px;
     background: #ededed;
 	list-style: none;
+	display: none;
+}
+
+.multi-select-categories.active {
+	display: block;
 }
 
 .multi-select-categories li {
@@ -1157,4 +1175,26 @@ a.btn-link {
 
 .multi-select-categories li:hover {
 	background: #ccc;
+}
+
+.ui-category {
+	display: flex;
+	align-items: center;
+	background: #f6f6f6;
+    padding: 5px 8px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+	margin-right: 5px;
+}
+
+.ui-category .category {
+	text-transform: capitalize;
+	margin-right: 5px;
+}
+
+.multi-select-div .show-select {
+	padding: 4px 8px;
+    border-radius: 5px;
+    background: #f6f6f6;
+    border: 1px solid #eee;
 }

@@ -36,7 +36,8 @@ function Home() {
 									blogPicture: blog.picture,
 									blogTitle: blog.title,
 									blogShortDescription: blog.shortDescription,
-									blogCreated: blog.created
+									blogCreated: blog.created,
+									blogCategory: blog.category
 								}} 
 							/>
 

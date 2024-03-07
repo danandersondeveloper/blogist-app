@@ -8,6 +8,15 @@ function Card(props) {
 		<div className="card" key={ props.config.blogId }>
 			<Link to={`/blog/${ props.config.blogId }`}>
 				<div className="picture">
+					{
+						props.config.blogCategory &&
+						
+							<div className="categories">
+								<div className="category">
+									<span>{ props.config.blogCategory }</span>
+								</div>
+							</div>
+					}
 					<img src={ props.config.blogPicture } alt="Blog picture" />
 				</div>
 				<div className="content">

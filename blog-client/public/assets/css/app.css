@@ -908,6 +908,22 @@ a.btn-link {
 	overflow: hidden;
 }
 
+.card .picture .categories {
+	position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 999;
+}
+
+.card .picture .categories .category {
+	background: #f6f6f6;
+    padding: 3px 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #454545;
+    font-size: 12px;
+}
+
 .card .picture img {
 	width: 100%;
 	height: 100%;

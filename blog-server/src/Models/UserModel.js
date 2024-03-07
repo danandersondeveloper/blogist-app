@@ -21,6 +21,15 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		default: "user"
 	},
+	birthData: {
+		type: String
+	},
+	gender: {
+		type: String
+	},
+	categories: [{
+		type: String
+	}],
 	active: {
 		type: Boolean,
 		default: true

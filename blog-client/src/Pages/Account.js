@@ -19,7 +19,7 @@ function Account() {
 	const [ created, setCreated ] = useState(String);
 	const [ categories, setCategories ] = useState(String);
 	const [ uiCategories, setUiCategories ] = useState(Array);
-	const [ showSelect, setShowSelect ] = useState(false)
+	const [ showSelect, setShowSelect ] = useState(false);
 
 	const hanldeAddCategory = (event, categories, uiCategories) => {
 
@@ -27,7 +27,7 @@ function Account() {
 
 		if (categories.includes(event.target.value) || event.target.value === "select") return;
 
-		( categories ) ? setCategories(`${categories}${event.target.value};`) : setCategories(`${event.target.value};`)
+		( categories ) ? setCategories(`${categories}${event.target.value};`) : setCategories(`${event.target.value};`);
 
 		const newCategory = event.target.value;
 
@@ -40,7 +40,7 @@ function Account() {
 	const handleRemoveCategory = (categoryName) => {
 
 		const categoriesCopy = categories;
-		const updatedCategoryCopy = categoriesCopy.replace(`${categoryName};`, "")
+		const updatedCategoryCopy = categoriesCopy.replace(`${categoryName};`, "");
 
 		setCategories(updatedCategoryCopy);
 

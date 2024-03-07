@@ -543,6 +543,7 @@ a.btn-link {
 }
 
 .secondary-navigation .user-links a span {
+	font-weight: 100;
 	margin-right: 8px;
 }
 

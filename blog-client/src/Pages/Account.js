@@ -10,7 +10,7 @@ import { AuthContext } from "../Contexts/AuthContext";
 
 function Account() {
 
-	const [ AUTH, setAUTH] = useContext(AuthContext);
+	const [ AUTH ] = useContext(AuthContext);
 
 	const [ picture, setPicture] = useState(String);
 	const [ firstName, setFirstName ] = useState(String);
@@ -45,14 +45,12 @@ function Account() {
 		setCategories(updatedCategoryCopy);
 
 		const uiCategoriesCopy = uiCategories;
-		const updatedUiCategoriesCopy = uiCategoriesCopy.filter(element => element != categoryName);
+		const updatedUiCategoriesCopy = uiCategoriesCopy.filter(element => element !== categoryName);
 
 		setUiCategories(updatedUiCategoriesCopy);
 	}
 
 	useEffect(() => {
-
-		console.log(AUTH)
 
 		if (AUTH.auth) {
 			axios.get(`http://localhost:9000/user/info`, { withCredentials: true })
@@ -68,7 +66,7 @@ function Account() {
 			});
 		}
 
-	}, [AUTH])
+	}, [AUTH]);
 
 	return(
 		<main className="content-wrapper account">

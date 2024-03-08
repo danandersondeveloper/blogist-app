@@ -18,12 +18,14 @@ const getBlog = async (req, res) => {
 const getBlogs = async (req, res) => {
 	try {
 
+		const filter = req.query;		// Published blogs
+		
 		const removedData = [
 			"-content",
 			"-__v"
 		]
 
-		const blogs = await Blog.find().select(removedData);
+		const blogs = await Blog.find(filter).select(removedData);
 		
 		res.status(200);
 		res.json(blogs);

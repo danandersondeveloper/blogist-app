@@ -7,15 +7,12 @@ const blogSchema = new mongoose.Schema({
 	},
 	picture: {
 		type: String,
-		required: false
 	},
 	shortDescription: {
-		type: String,
-		required: true
+		type: String
 	},
 	content: {
-		type: String,
-		required: true
+		type: String
 	},
 	state: {
 		type: String,

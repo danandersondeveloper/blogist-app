@@ -14,6 +14,19 @@ const createBlog = async (req, res) => {
 	}
 }
 
+const getBlog = async (req, res) => {
+	try {
+
+		const blogId = req.params.id
+		const blog = await Blog.findById(blogId);
+		return res.status(200).json(blog);
+
+	} catch(error) {
+		console.log(error);
+		res.status(500).json({ message: "Status Code 500: Internal Server Error." });
+	}
+}
+
 const getBlogs = async (req, res) => {
 	try {
 
@@ -39,5 +52,6 @@ const getBlogs = async (req, res) => {
 
 module.exports = {
 	createBlog,
+	getBlog,
 	getBlogs
 }

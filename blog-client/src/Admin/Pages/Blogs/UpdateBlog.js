@@ -16,24 +16,34 @@ function UpdateBlog() {
 	const [ value, setValue ] = useState(String);
 	const [ blogContent, setBlogContent ] = useState(String);
 	const [ blogCategory, setBlogCategory ] = useState(String);
-	const [ saveButtonClicked, setSaveButtonClicked ] = useState(String);
+	const [ blogPublished, setBlogPublished ] = useState(String);
 
 	const onEditorInputChange = (newValue, editor) => {
 		setValue(newValue);
 	   	setBlogContent(editor.getContent());
    	}
 
-	const handleSubmit = () => {
-
+	const handleSubmit = (event) => {
+		event.preventDefault();
 	}
 
 	useEffect(() => {
 
-		const blogId = window.location.href.replace("http://localhost:3000/dashboard/blogs/update/", "")
+		const id = window.location.href.replace("http://localhost:3000/dashboard/blogs/update/", "")
 
-		axios.get(`http://localhost:9000/admin/blog/${blogId}`)
+		const requestData = {
+			blogId: id
+		}
+
+		axios.get(`http://localhost:9000/admin/blog/${id}`, { params: requestData })
 		.then(response => {
-
+			console.log(response.data)
+			setBlogTitle(response.data.title);
+			setBlogPictureUrl(response.data.picture);
+			setBlogShortDescription(response.data.shortDescription)
+			setBlogContent(response.data.content);
+			setBlogCategory(response.data.category);
+			setBlogPublished(response.data.state)
 		})
 		.catch(error => {
 			console.log(error);
@@ -42,14 +52,14 @@ function UpdateBlog() {
 	}, [])
 
 	return(
-		<main className="content-wrapper dashboard">
+		<main className="content-wrapper dashboard update-blog">
 			<div className="row">
 				<div className="title">
 					<h1>Update Blog Screen</h1>
 					<button type="button" className="btn btn-dash-back" onClick={() => {navigate(-1)}}>Back</button>
 				</div>
 
-				<form onSubmit={ (event) => { handleSubmit(event, saveButtonClicked) } }>
+				<form onSubmit={ (event) => { handleSubmit(event) } }>
 					<div className="row">
 						<label htmlFor="blog-title">Blog title:</label>
 						<input
@@ -118,9 +128,15 @@ function UpdateBlog() {
 						/>
 					</div>
 					<div className="row">
+						<label>Published:</label>
+						<input
+							type="checkbox"
+							checked={ blogPublished === "publish" ? "Checked" : "" }
+						/>
+					</div>
+					<div className="row">
 						<button className="btn btn-dash-default" type="button" onClick={ () => { navigate(-1) }}>Cancel</button>
-						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { setSaveButtonClicked("publish") } }>Save and Publish</button>
-						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { setSaveButtonClicked("draft") } }>Save as Draft</button>
+						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { handleSubmit(event) } }>Save</button>
 					</div>
 				</form>
 				

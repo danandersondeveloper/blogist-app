@@ -88,8 +88,6 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {
 
-	console.log("LOGOUT!!!!!")
-
 	res.clearCookie("auth_user");
 
 	res.status(200).json({

@@ -1,6 +1,11 @@
 // Data model 
 const Blog = require("../../Models/BlogModel");
 
+
+// @desc create a new blog
+// @route POST /admin/create
+// @access Private
+
 const createBlog = async (req, res) => {
 	try {
 
@@ -14,6 +19,11 @@ const createBlog = async (req, res) => {
 	}
 }
 
+
+// @desc Get specific blogs
+// @route DELETE admin/blog/:id
+// @access Private
+
 const getBlog = async (req, res) => {
 	try {
 
@@ -26,6 +36,11 @@ const getBlog = async (req, res) => {
 		res.status(500).json({ message: "Status Code 500: Internal Server Error." });
 	}
 }
+
+
+// @desc Get Blogs
+// @route GET admin/blog/
+// @access Private
 
 const getBlogs = async (req, res) => {
 	try {

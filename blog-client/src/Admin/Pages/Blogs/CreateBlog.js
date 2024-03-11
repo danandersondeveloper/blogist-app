@@ -16,14 +16,14 @@ function CreateBlog() {
 	const [ value, setValue ] = useState(String);
 	const [ blogContent, setBlogContent ] = useState(String);
 	const [ blogCategory, setBlogCategory ] = useState(String);
-	const [ saveButtonClicked, setSaveButtonClicked ] = useState(String);
+	const [ blogStatus, setBlogStatus ] = useState(false);
 
 	const onEditorInputChange = (newValue, editor) => {
 		setValue(newValue);
 	   	setBlogContent(editor.getContent());
    	}
 
-	const handleSubmit = (event, saveButtonClicked) => {
+	const handleSubmit = (event) => {
 
 		event.preventDefault();
 	
@@ -33,7 +33,7 @@ function CreateBlog() {
 			shortDescription: blogShortDescription,
 			content: blogContent,
 			category: blogCategory,
-			state: saveButtonClicked
+			status: blogStatus
 		}
 
 		axios.post("http://localhost:9000/admin/blog/create", requestBody)
@@ -44,7 +44,7 @@ function CreateBlog() {
 				setBlogShortDescription("");
 				setValue("");
 				setBlogCategory("")
-				setSaveButtonClicked("");
+				setBlogStatus(false);
 			}
 		})
 		.catch(error => {
@@ -61,7 +61,7 @@ function CreateBlog() {
 					<button type="button" className="btn btn-dash-back" onClick={() => {navigate(-1)}}>Back</button>
 				</div>
 
-				<form onSubmit={ (event) => { handleSubmit(event, saveButtonClicked) } }>
+				<form onSubmit={ (event) => { handleSubmit(event) } }>
 					<div className="row">
 						<label htmlFor="blog-title">Blog title:</label>
 						<input
@@ -130,8 +130,8 @@ function CreateBlog() {
 					</div>
 					<div className="row">
 						<button className="btn btn-dash-default" type="button" onClick={ () => { navigate(-1) }}>Cancel</button>
-						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { setSaveButtonClicked("publish") } }>Save and Publish</button>
-						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { setSaveButtonClicked("draft") } }>Save as Draft</button>
+						<button className="btn btn-dash-primary" type="submit" onClick={ () => { setBlogStatus(true) } }>Save and Publish</button>
+						<button className="btn btn-dash-primary" type="submit" onClick={ () => { setBlogStatus(false) } }>Save as Draft</button>
 					</div>
 				</form>
 

@@ -16,7 +16,7 @@ function UpdateBlog() {
 	const [ value, setValue ] = useState(String);
 	const [ blogContent, setBlogContent ] = useState(String);
 	const [ blogCategory, setBlogCategory ] = useState(String);
-	const [ blogPublished, setBlogPublished ] = useState(String);
+	const [ blogStatus, setBlogStatus ] = useState(String);
 
 	const onEditorInputChange = (newValue, editor) => {
 		setValue(newValue);
@@ -37,13 +37,12 @@ function UpdateBlog() {
 
 		axios.get(`http://localhost:9000/admin/blog/${id}`, { params: requestData })
 		.then(response => {
-			console.log(response.data)
 			setBlogTitle(response.data.title);
 			setBlogPictureUrl(response.data.picture);
-			setBlogShortDescription(response.data.shortDescription)
+			setBlogShortDescription(response.data.shortDescription);
 			setBlogContent(response.data.content);
 			setBlogCategory(response.data.category);
-			setBlogPublished(response.data.state)
+			setBlogStatus(response.data.state);
 		})
 		.catch(error => {
 			console.log(error);
@@ -131,7 +130,8 @@ function UpdateBlog() {
 						<label>Published:</label>
 						<input
 							type="checkbox"
-							checked={ blogPublished === "publish" ? "Checked" : "" }
+							checked={ blogStatus ? "Checked" : "" }
+							onClick={ () => { setBlogStatus(!blogStatus) } }
 						/>
 					</div>
 					<div className="row">

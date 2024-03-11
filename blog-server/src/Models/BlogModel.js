@@ -14,9 +14,9 @@ const blogSchema = new mongoose.Schema({
 	content: {
 		type: String
 	},
-	state: {
-		type: String,
-		default: "draft"
+	status: {
+		type: Boolean,
+		default: false
 	},
 	category: {
 		type: String

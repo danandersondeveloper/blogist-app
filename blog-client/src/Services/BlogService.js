@@ -12,7 +12,7 @@ const getBlog = async () => {
 
 const getBlogs = async () => {
 	try {
-		return await axios.get( `${BASE_URI}/blog`, { params: { state: "publish" } } );
+		return await axios.get( `${BASE_URI}/blog`, { params: { status: true } } );
 	} catch (error) {
 		return error;
 	}

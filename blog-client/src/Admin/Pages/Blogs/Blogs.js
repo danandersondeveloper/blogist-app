@@ -63,7 +63,7 @@ function Blogs() {
 								</div>
 								<div className="cell narrow center">
 									<span>
-										{blog.state === "publish" ?
+										{blog.status ?
 
 											<FontAwesomeIcon icon={ faCheck } />
 											:

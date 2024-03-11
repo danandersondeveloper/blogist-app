@@ -17,7 +17,7 @@ function Private() {
 
 	const navigate = useNavigate();
 
-	const [ autherised, setAutherised ] = useState();
+	const [ autherised, setAutherised ] = useState(false);
 
 	useEffect(() => {
 		(async () => {

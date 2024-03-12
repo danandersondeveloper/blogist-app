@@ -40,6 +40,7 @@ function UpdateBlog() {
 			setBlogTitle(response.data.title);
 			setBlogPictureUrl(response.data.picture);
 			setBlogShortDescription(response.data.shortDescription);
+			setValue(response.data.content);
 			setBlogContent(response.data.content);
 			setBlogCategory(response.data.category);
 			setBlogStatus(response.data.state);
@@ -95,8 +96,7 @@ function UpdateBlog() {
 								apiKey={ TINYMCE_KEY }
 								onEditorChange={ (newValue, editor) => onEditorInputChange(newValue, editor) }
 								onInit={ (evt, editor) => setBlogContent( editor.getContent({format: 'html'}) ) }
-								value={value}
-								initialValue={ blogContent }
+								value={ value }
 								init={{
 									plugins: [
 										'advlist',

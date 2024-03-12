@@ -143,10 +143,10 @@ function UpdateUser() {
 					<PopupModel
 						config={{
 							type: "delete",
+							for: "user",
 							data: {
-								userId: userId,
-								userFirstName: userFirstName,
-								userLastName: userLastName,
+								id: userId,
+								title: `${userFirstName} ${userLastName}`
 							}
 						}}
 						state={ displayPopupModel }

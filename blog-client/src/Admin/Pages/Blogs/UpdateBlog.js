@@ -3,6 +3,9 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { Editor } from "@tinymce/tinymce-react";
 
+// Components
+import PopupModel from "../../Components/PopupModel";
+
 
 function UpdateBlog() {
 
@@ -10,6 +13,7 @@ function UpdateBlog() {
 
 	const navigate = useNavigate();
 
+	const [ blogId, setBlogId ] = useState(String);
 	const [ blogTitle, setBlogTitle ] = useState(String);
 	const [ blogPictureUrl, setBlogPictureUrl ] = useState(String);
 	const [ blogShortDescription, setBlogShortDescription ] = useState(String);
@@ -18,6 +22,8 @@ function UpdateBlog() {
 	const [ blogCategory, setBlogCategory ] = useState(String);
 	const [ blogStatus, setBlogStatus ] = useState(String);
 
+	const [ displayPopupModel, setDisplayPopupModel ] = useState(false);
+
 	const onEditorInputChange = (newValue, editor) => {
 		setValue(newValue);
 	   	setBlogContent(editor.getContent());
@@ -25,6 +31,10 @@ function UpdateBlog() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+	}
+
+	const handleDelete = () => {
+		setDisplayPopupModel(true);
 	}
 
 	useEffect(() => {
@@ -48,6 +58,8 @@ function UpdateBlog() {
 		.catch(error => {
 			console.log(error);
 		})
+
+		setBlogId(id);
 
 	}, [])
 
@@ -137,8 +149,23 @@ function UpdateBlog() {
 					<div className="row">
 						<button className="btn btn-dash-default" type="button" onClick={ () => { navigate(-1) }}>Cancel</button>
 						<button className="btn btn-dash-primary" type="submit" onClick={ (event) => { handleSubmit(event) } }>Save</button>
+						<button className="btn btn-dash-delete" type="button" onClick={ () => { handleDelete() } }>Delete</button>
 					</div>
 				</form>
+
+				{ displayPopupModel &&
+
+					<PopupModel 
+						config={{
+							type: "delete",
+							for: "blog",
+							data: {
+								id: blogId,
+								title: `${blogId}`
+							}
+						}}
+					/>
+				}
 				
 			</div>
 		</main>

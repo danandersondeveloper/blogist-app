@@ -164,6 +164,8 @@ function UpdateBlog() {
 								title: `${blogId}`
 							}
 						}}
+						state={ displayPopupModel }
+						setState={ setDisplayPopupModel }
 					/>
 				}
 				

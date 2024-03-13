@@ -20,8 +20,8 @@ router.patch("/update/:id", (req, res) => {
 
 //@route /admin/blogs/delete/:id
 
-router.delete("/delete/:id", (req, res) => {
-	res.json({ message: "Request made to delete a specific blog" })
+router.delete("/delete/", (req, res) => {
+	blogController.deleteBlog(req, res);
 });
 
 

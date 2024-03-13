@@ -5,6 +5,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 //Services
 import { deleteUser } from '../Services/UserServices';
+import { deleteBlog } from '../Services/BlogServices';
 
 
 function PopupModel(props) {
@@ -19,17 +20,21 @@ function PopupModel(props) {
 		event.preventDefault();
 
 		const requestBody = {
-			"_id": props.config.data.userId,
+			"_id": props.config.data.id,
 			"deleteString": deleteInput
 		}
 
-		const response = await deleteUser(requestBody);
+		if ( props.config.for === 'user' ) {
+			const response = await deleteUser(requestBody);
+			( response.status === 200 & response.data.message === "success" ) && navigate(-1);
+		};
 
-		if (response.status === 200 && response.data.message === "success") {
-			return navigate(-1);
+		if  ( props.config.for === 'blog' ) {
+			const response = await deleteBlog(requestBody);
+			( response.status === 2000 & response.data.message === "success") && navigate(-1);
 		}
 
-		setDeleteUserErrorMessage(response.response.data.message);
+		//setDeleteUserErrorMessage(response.response.data.message);
 	}
 
 	return(
@@ -40,7 +45,7 @@ function PopupModel(props) {
 					<div className="popup-model delete">
 						<div className="row">
 							<div className="title">
-								<h3>{`Delete: ${props.config.data.userFirstName} ${props.config.data.userLastName}`}</h3>
+								<h3>{`Delete: ${props.config.data.title}`}</h3>
 								<span className="close" onClick={() => { props.setState(!props.state) }}>
 									<FontAwesomeIcon icon={ faXmark } />
 								</span>

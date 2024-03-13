@@ -2,6 +2,30 @@
 const Blog = require("../../Models/BlogModel");
 
 
+// @desc Delete a blog
+// @route DELETE /admin/delete/:id
+// @access Private
+
+const deleteBlog = async (res, req) => {
+	try {
+
+		console.log(req.body.requestBody);
+
+		// const blogId = req.body.requestBody._id;
+		// const userDeleteString = req.body.requestBody.deleteString;
+
+		// if (userDeleteString != "DELETE") return res.status(422).json({ message: "Invalid input, please try again!" });
+
+		// await Blog.findByIdAndDelete(blogId);
+
+		// res.status(200).json({ message: "success" })
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: "Status Code 500: Internal Server Error." });
+	}
+}
+
+
 // @desc create a new blog
 // @route POST /admin/create
 // @access Private
@@ -21,7 +45,7 @@ const createBlog = async (req, res) => {
 
 
 // @desc Get specific blogs
-// @route DELETE admin/blog/:id
+// @route GET admin/blog/:id
 // @access Private
 
 const getBlog = async (req, res) => {
@@ -66,6 +90,7 @@ const getBlogs = async (req, res) => {
 }
 
 module.exports = {
+	deleteBlog,
 	createBlog,
 	getBlog,
 	getBlogs

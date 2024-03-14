@@ -13,7 +13,7 @@ function PopupModel(props) {
 	const navigate = useNavigate();
 
 	const [ deleteInput, setDeleteInput ] = useState(String);
-	const [ deleteUserErrorMessage, setDeleteUserErrorMessage ] = useState(String);
+	const [ deleteErrorMessage, setDeleteErrorMessage ] = useState(String);
 
 	const handleDelete = async (event) => {
 
@@ -26,15 +26,15 @@ function PopupModel(props) {
 
 		if ( props.config.for === 'user' ) {
 			const response = await deleteUser(requestBody);
-			( response.status === 200 & response.data.message === "success" ) && navigate(-1);
+			(response.data.message === "success" ) && navigate(-1);
 		};
 
 		if  ( props.config.for === 'blog' ) {
 			const response = await deleteBlog(requestBody);
-			( response.status === 2000 & response.data.message === "success") && navigate(-1);
+			(response.data.message === "success") && navigate(-1);
 		}
 
-		//setDeleteUserErrorMessage(response.response.data.message);
+		setDeleteErrorMessage(response.response.data.message);
 	}
 
 	return(
@@ -54,12 +54,17 @@ function PopupModel(props) {
 								<p>Copy what you see in the input field below:</p>
 								<div className="inputs-wrapper">
 									<form>
-										<input type="text" value={ deleteInput } placeholder="DELETE" onChange={ ( event ) => { setDeleteInput(event.target.value) } } />
+										<input
+											type="text"
+											value={ deleteInput }
+											placeholder="DELETE"
+											onChange={ ( event ) => { setDeleteInput(event.target.value) } }
+										/>
 										<button className="btn btn-dash-delete" type="submit" onClick={ ( event ) => { handleDelete(event) } }>Delete</button>
 									</form>
 								</div>
-								{ ( deleteUserErrorMessage.length > 0 ) &&
-									<p className="error-message">{ deleteUserErrorMessage }</p>
+								{ ( deleteErrorMessage.length > 0 ) &&
+									<p className="error-message">{ deleteErrorMessage }</p>
 								}
 							</div>
 						</div>

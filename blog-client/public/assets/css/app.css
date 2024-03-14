@@ -645,12 +645,15 @@ a.btn-link {
 .btn.search-button {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	background: #1a6680;
     color: #fff;
 	margin-left: 5px;
 }
 
-.btn.search-button .icon {
+.btn.search-button .icon,
+.btn.btn-create .icon,
+.btn.btn-export .icon {
 	margin-right: 5px;
 }
 

@@ -6,19 +6,16 @@ const Blog = require("../../Models/BlogModel");
 // @route DELETE /admin/delete/:id
 // @access Private
 
-const deleteBlog = async (res, req) => {
+const deleteBlog = async (req, res) => {
 	try {
+		const blogId = req.body.requestBody._id;
+		const userDeleteString = req.body.requestBody.deleteString;
 
-		console.log(req.body.requestBody);
+		if (userDeleteString != "DELETE") return res.status(422).json({ message: "Invalid input, please try again!" });
 
-		// const blogId = req.body.requestBody._id;
-		// const userDeleteString = req.body.requestBody.deleteString;
+		await Blog.findByIdAndDelete(blogId);
 
-		// if (userDeleteString != "DELETE") return res.status(422).json({ message: "Invalid input, please try again!" });
-
-		// await Blog.findByIdAndDelete(blogId);
-
-		// res.status(200).json({ message: "success" })
+		res.status(200).json({ message: "success" })
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: "Status Code 500: Internal Server Error." });

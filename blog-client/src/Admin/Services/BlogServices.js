@@ -22,6 +22,6 @@ const getBlogs = async () => {
 }
 
 export {
-	getBlogs,
-	deleteBlog
+	deleteBlog,
+	getBlogs
 }

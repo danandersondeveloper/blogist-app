@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faXmark, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faXmark, faPenToSquare, faPlus, faDownload } from "@fortawesome/free-solid-svg-icons";
 
 //Import services
 import { getBlogs } from "../../Services/BlogServices";
@@ -26,8 +26,18 @@ function Blogs() {
 				<div className="title">
 					<h1>Blogs</h1>
 					<div className="buttons-wrapper">
-						<Link className="btn btn-create" to="/dashboard/blogs/create">Create Blog</Link>
-						<Link className="btn btn-export" to="X">Export JSON</Link>
+						<Link className="btn btn-create" to="/dashboard/blogs/create">
+							<span className="icon">
+								<FontAwesomeIcon icon={ faPlus } />
+							</span>
+							<span>Create Blog</span>
+						</Link>
+						<Link className="btn btn-export" to="X">
+							<span className="icon">
+								<FontAwesomeIcon icon={ faDownload } />
+							</span>
+							<span>Export JSON</span>
+						</Link>
 					</div>
 				</div>
 

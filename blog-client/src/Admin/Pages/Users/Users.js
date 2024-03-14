@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faCheck, faXmark, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faCheck, faXmark, faPenToSquare, faPlus, faDownload } from "@fortawesome/free-solid-svg-icons";
 import download from 'js-file-download';
 
 //Import services
@@ -58,8 +58,18 @@ function Users() {
 				<div className="title">
 					<h1>Users</h1>
 					<div className="buttons-wrapper">
-						<Link className="btn create" to="/dashboard/users/create">Create User</Link>
-						<Link className="btn export" onClick={ handleExport }>Export JSON</Link>
+					<Link className="btn btn-create" to="/dashboard/blogs/create">
+							<span className="icon">
+								<FontAwesomeIcon icon={ faPlus } />
+							</span>
+							<span>Create Blog</span>
+						</Link>
+						<Link className="btn btn-export" to="X">
+							<span className="icon">
+								<FontAwesomeIcon icon={ faDownload } />
+							</span>
+							<span>Export JSON</span>
+						</Link>
 					</div>
 				</div>
 

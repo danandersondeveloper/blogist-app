@@ -19,20 +19,16 @@ function PopupModel(props) {
 
 		event.preventDefault();
 
+		let response
+
 		const requestBody = {
 			"_id": props.config.data.id,
 			"deleteString": deleteInput
 		}
 
-		if ( props.config.for === 'user' ) {
-			const response = await deleteUser(requestBody);
-			(response.data.message === "success" ) && navigate(-1);
-		};
-
-		if  ( props.config.for === 'blog' ) {
-			const response = await deleteBlog(requestBody);
-			(response.data.message === "success") && navigate(-1);
-		}
+		props.config.for === 'user' ? response = await deleteUser(requestBody) : response = await deleteBlog(requestBody);
+			
+		if (response.data.message === "success" ) return navigate(-1);
 
 		setDeleteErrorMessage(response.response.data.message);
 	}

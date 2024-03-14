@@ -570,15 +570,32 @@ a.btn-link {
 
 .stat {
     padding: 15px;
-    background: #1a6680;
+    background: #1a6680 url("../img/pattern.png");
+    background-size: cover;
     border: 1px solid #1e5365;
     border-radius: 5px;
+    position: relative;
+}
+
+.stat::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #1a6680;
+	opacity: .6;
+	z-index: 1;
 }
 
 .stat-title {
     margin-bottom: 15px;
-    border-bottom: 1px solid #155e76;
+    border-bottom: 1px solid #fff;
     padding-bottom: 18px;
+    z-index: 99;
+    position: relative;
 }
 
 .stat-title span {
@@ -594,6 +611,8 @@ a.btn-link {
 	text-align: center;
 	color: #fff;
 	font-size: 60px;
+	position: relative;
+	z-index: 9;
 }
 
 .content-wrapper.dashboard h1 {

@@ -33,6 +33,9 @@ app.use(cors(corsConfig))
 
 
 // Routes 
+app.use(express.static('public'));
+app.use('/Files/Uploads/', express.static('images'));
+
 app.use("/auth", authRoutes);
 
 app.use("/admin/user", privateUserRoutes);

@@ -37,7 +37,7 @@ function UpdateUser() {
 
 		const response = await updateUser(userId, requestData);
 		
-		response.data.message === 'success' && setSuccessMessage("User has been updated successfully!");
+		if (response.data.message === 'success') setSuccessMessage("User has been updated successfully!");
 
 	}
 

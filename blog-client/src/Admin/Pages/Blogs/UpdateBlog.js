@@ -27,6 +27,8 @@ function UpdateBlog() {
 
 	const [ displayPopupModel, setDisplayPopupModel ] = useState(false);
 
+	const [ successMessage, setSuccessMessage ] = useState(String);
+
 	const onEditorInputChange = (newValue, editor) => {
 		setValue(newValue);
 	   	setBlogContent(editor.getContent());
@@ -40,12 +42,14 @@ function UpdateBlog() {
 			"title": blogTitle,
 			"picture": blogPictureUrl,
 			"shortDescription": blogShortDescription,
-			"content": blogContent,
+			"content": value,
 			"status": blogStatus,
 			"category": blogCategory
 		}
 
 		const response = await updateBlog(blogId, requestData);
+
+		if (response.data.message === 'success') setSuccessMessage("Blog has been updated successfully!");
 
 	}
 
@@ -69,7 +73,7 @@ function UpdateBlog() {
 			setValue(response.data.content);
 			setBlogContent(response.data.content);
 			setBlogCategory(response.data.category);
-			setBlogStatus(response.data.state);
+			setBlogStatus(response.data.status);
 		})
 		.catch(error => {
 			console.log(error);
@@ -82,6 +86,14 @@ function UpdateBlog() {
 	return(
 		<main className="content-wrapper dashboard update-blog">
 			<div className="row">
+
+				{(successMessage.length > 0) &&
+					<p className="success-message">
+						<span>{successMessage}</span>
+						<span className="close" onClick={(event) => {setSuccessMessage("")}}>x</span>
+					</p>
+				}
+
 				<div className="title">
 					<h1>Update Blog Screen</h1>
 					<button type="button" className="btn btn-dash-back" onClick={() => {navigate(-1)}}>Back</button>

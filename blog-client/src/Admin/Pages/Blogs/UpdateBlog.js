@@ -6,6 +6,9 @@ import { Editor } from "@tinymce/tinymce-react";
 // Components
 import PopupModel from "../../Components/PopupModel";
 
+// Services
+import { updateBlog } from "../../Services/BlogServices";
+
 
 function UpdateBlog() {
 
@@ -29,8 +32,21 @@ function UpdateBlog() {
 	   	setBlogContent(editor.getContent());
    	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
+		
+		const requestData = {
+			"_id": blogId,
+			"title": blogTitle,
+			"picture": blogPictureUrl,
+			"shortDescription": blogShortDescription,
+			"content": blogContent,
+			"status": blogStatus,
+			"category": blogCategory
+		}
+
+		const response = await updateBlog(blogId, requestData);
+
 	}
 
 	const handleDelete = () => {

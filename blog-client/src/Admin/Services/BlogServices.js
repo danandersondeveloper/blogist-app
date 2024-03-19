@@ -11,6 +11,14 @@ const deleteBlog = async ( requestBody ) => {
 	}
 }
 
+const updateBlog = async ( blogId, requestBody ) => {
+	try {
+		return await axios.patch( `${BASE_URI}/admin/blog/update/${ blogId }`, requestBody );
+	} catch (error) {
+		return error;
+	}
+}
+
 
 const getBlogs = async () => {
 	try {
@@ -23,5 +31,6 @@ const getBlogs = async () => {
 
 export {
 	deleteBlog,
+	updateBlog,
 	getBlogs
 }

@@ -40,7 +40,6 @@ const updateUser = async ( req, res ) => {
 	try {
 
 		const { _id, firstName, lastName, email, role, active } = req.body;
-		const filter = { "_id": _id }
 
 		const update = {
 			"firstName": firstName,

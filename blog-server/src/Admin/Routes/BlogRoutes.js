@@ -14,7 +14,7 @@ router.post( "/create", (req, res) => {
 //@route /admin/blog/update/:id
 
 router.patch("/update/:id", (req, res) => { 
-	res.json({message: "Request made to update / edit a blog"})
+	blogController.updateBlog(req, res);
 });
 
 

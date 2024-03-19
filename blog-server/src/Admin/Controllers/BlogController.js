@@ -23,17 +23,41 @@ const deleteBlog = async (req, res) => {
 }
 
 
+// @desc update a plog post
+// @route PATCH /admin/update/:id
+// @access Private
+
+const updateBlog = async (req, res) => {
+	try {
+		const { _id, title, picture, shortDescription, content, category, status } = req.body;
+
+		const updateContent = {
+			"title": title,
+			"picture": picture,
+			"shortDescription": shortDescription,
+			"content": content,
+			"status": status,
+			"category": category
+		}
+
+		await Blog.findByIdAndUpdate(_id, updateContent)
+
+		res.status(200).json({ message: "success" })
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: "Status Code 500: Internal Server Error." });
+	}
+}
+
+
 // @desc create a new blog
 // @route POST /admin/create
 // @access Private
 
 const createBlog = async (req, res) => {
 	try {
-
 		await Blog.create(req.body)
-
 		res.status(200).json({ message: "success" })
-
 	} catch(error) {
 		console.log(error);
 		res.status(500).json({ message: "Status Code 500: Internal Server Error." });
@@ -65,7 +89,6 @@ const getBlog = async (req, res) => {
 
 const getBlogs = async (req, res) => {
 	try {
-
 		const removedData = [
 			"-picture",
 			"-content",
@@ -77,7 +100,6 @@ const getBlogs = async (req, res) => {
 		
 		res.status(200);
 		res.json(blogs);
-
 	} catch(error) {
 
 		console.log(error);
@@ -88,6 +110,7 @@ const getBlogs = async (req, res) => {
 
 module.exports = {
 	deleteBlog,
+	updateBlog,
 	createBlog,
 	getBlog,
 	getBlogs
